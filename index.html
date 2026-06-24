@@ -1,20 +1,11 @@
 <!DOCTYPE html>
 <html lang="zh-CN" data-theme="light" data-subject="shudian">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="电子技术基础（数字电子技术 + 模拟电子技术）考试大纲 · 离线备考工具">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="电子技术基础（数字电子技术 + 模拟电子技术）考试大纲 · 离线备考工具" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='5' fill='%23475569'/%3E%3Ctext x='16' y='23' font-size='20' font-weight='800' fill='white' text-anchor='middle' font-family='system-ui,sans-serif'%3E%E7%94%B5%3C/text%3E%3C/svg%3E" />
   <title>电子技术基础考纲 · 备考工具</title>
-
-  <!-- CSS：按职责拆分，多 link 并行加载（避免 @import 瀑布）-->
-  <link rel="stylesheet" href="css/variables.css">
-  <link rel="stylesheet" href="css/base.css">
-  <link rel="stylesheet" href="css/layout.css">
-  <link rel="stylesheet" href="css/components.css">
-  <link rel="stylesheet" href="css/markdown.css">
-  <link rel="stylesheet" href="css/fields.css">
-  <link rel="stylesheet" href="vendor/katex/katex.min.css">
-
   <!-- 极少量初始化：尽早应用主题，避免刷新闪烁 -->
   <script>
     (function () {
@@ -27,83 +18,9 @@
       } catch (e) { /* noop */ }
     })();
   </script>
-
-  <!-- KaTeX：同步脚本先于 main.js(默认 defer 的 module) 执行；auto-render 须在 katex 之后 -->
-  <script src="vendor/katex/katex.min.js"></script>
-  <script src="vendor/katex/contrib/auto-render.min.js"></script>
 </head>
 <body>
-  <div class="app">
-
-    <!-- ============================ 顶栏 ============================ -->
-    <header class="header">
-      <button class="header__menu-btn" id="menu-btn" aria-label="打开菜单">☰</button>
-
-      <div class="header__brand">
-        <div class="header__logo">电</div>
-        <div class="header__title">
-          电子技术基础
-          <small>数电 + 模电 · 考纲</small>
-        </div>
-      </div>
-
-      <div class="header__tools">
-        <!-- 公式页入口按钮由 formula-views.js 动态注入到此处（#search 之前） -->
-        <div class="search" id="search">
-          <span class="search__icon">⌕</span>
-          <input
-            class="search__input"
-            id="search-input"
-            type="text"
-            placeholder="搜索章节或知识点…（按 / 聚焦）"
-            autocomplete="off"
-            spellcheck="false"
-            aria-label="全文搜索">
-          <button class="search__clear" id="search-clear" aria-label="清除搜索">✕</button>
-          <div class="search__results" id="search-results" role="listbox"></div>
-        </div>
-        <button class="icon-btn" id="theme-toggle" title="切换主题" aria-label="切换亮暗主题">☾</button>
-      </div>
-    </header>
-
-    <!-- ============================ 侧边栏 ============================ -->
-    <aside class="sidebar" id="sidebar" aria-label="章节导航">
-      <div class="sidebar__progress">
-        <div class="progress">
-          <div class="progress__head">
-            <span class="progress__label">复习进度</span>
-            <span class="progress__count" id="progress-count">已复习 <em>0</em> / 19</span>
-          </div>
-          <div class="progress__bar">
-            <div class="progress__fill" id="progress-fill"></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="sidebar__tabs" id="tabs" role="tablist"></div>
-      <div class="sidebar__subject-label" id="subject-label"></div>
-      <nav class="sidebar__list" id="chapter-list" aria-label="章节列表"></nav>
-    </aside>
-    <div class="sidebar__overlay" id="sidebar-overlay"></div>
-
-    <!-- ============================ 主内容 ============================ -->
-    <main class="main">
-      <nav class="breadcrumb" aria-label="路径">
-        <span>电子技术基础</span>
-        <span class="breadcrumb__sep">›</span>
-        <span class="breadcrumb__current" id="breadcrumb-current">首页</span>
-      </nav>
-      <article class="content" id="content">
-        <!-- 内容由 content.js 动态注入 -->
-      </article>
-      <!-- 公式页 root 容器由 formula-views.js 动态挂载到此（每个视图一个 .fields-root） -->
-    </main>
-
-  </div>
-
-  <!-- markdown 渲染器（全局 window.marked，普通脚本先加载）-->
-  <script src="vendor/marked.min.js"></script>
-  <!-- 应用入口（ES Module，默认 defer）-->
-  <script type="module" src="js/main.js"></script>
+  <div id="root"></div>
+  <script type="module" src="/src/main.tsx"></script>
 </body>
 </html>

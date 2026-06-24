@@ -102,7 +102,11 @@ export function createFormulaView(cfg) {
     const content = document.getElementById('content');
     if (content) content.hidden = true;
 
-    // 关闭移动端大纲抽屉及其遮罩，防止残留 overlay（全屏 blur）盖住公式页
+    // 公式页隐藏大纲汉堡按钮 + 关闭其抽屉遮罩，避免误触发全屏 blur 盖住公式页
+    const menuBtn = document.getElementById('menu-btn');
+    console.log('[ACT] menuBtn=', !!menuBtn, 'before=', menuBtn && menuBtn.style.display);
+    if (menuBtn) menuBtn.style.display = 'none';
+    console.log('[ACT] after=', menuBtn && menuBtn.style.display);
     const sidebar = document.querySelector('.sidebar');
     if (sidebar) sidebar.classList.remove('is-open');
     const sidebarOverlay = document.querySelector('.sidebar__overlay');
@@ -132,6 +136,9 @@ export function createFormulaView(cfg) {
     if (content) content.hidden = false;
     const entryEl = document.getElementById(entryId);
     if (entryEl) entryEl.classList.remove('is-active');
+    const menuBtn = document.getElementById('menu-btn');
+    console.log('[DEACT] id=' + id + ' stack=' + (new Error()).stack.split('\n').slice(2,5).join(' | '));
+    if (menuBtn) menuBtn.style.display = '';
     const sidebar = document.querySelector('.sidebar');
     if (sidebar) sidebar.classList.remove('is-open');
     const sidebarOverlay = document.querySelector('.sidebar__overlay');
