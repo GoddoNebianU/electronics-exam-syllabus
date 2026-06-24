@@ -219,7 +219,7 @@
     top: 0;
     left: 0;
     bottom: 0;
-    z-index: var(--z-sidebar);
+    z-index: var(--z-search); /* 移动端抽屉须高于 overlay(50)，否则 blur 遮罩盖住侧栏、点击章节被拦截而关闭 */
     width: min(86vw, 320px);
     height: 100vh;
     transform: translateX(-100%);
