@@ -1272,6 +1272,108 @@
 }
 .formula__fav-path { transition: d var(--transition); }
 .formula { position: relative; }
+
+/* ====== 公式推导折叠区 DerivationSteps ====== */
+.derivation {
+  margin-top: var(--space-3);
+  padding-top: var(--space-2);
+  border-top: 1px solid var(--border);
+}
+.derivation__toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: 2px var(--space-2);
+  border-radius: var(--radius-sm);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  color: var(--text-muted);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  transition: color var(--transition-fast),
+              background var(--transition-fast),
+              border-color var(--transition-fast);
+}
+.derivation__toggle:hover {
+  color: var(--accent-strong);
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+.derivation__toggle-icon {
+  font-size: 9px;
+  line-height: 1;
+  color: var(--text-faint);
+  transition: color var(--transition-fast);
+}
+.derivation__toggle:hover .derivation__toggle-icon { color: var(--accent); }
+.derivation__toggle-count {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--text-faint);
+  margin-left: 1px;
+}
+.derivation__list {
+  margin: var(--space-2) 0 0;
+  padding: var(--space-2) var(--space-3) var(--space-1);
+  counter-reset: der-step;
+  border-left: 2px solid var(--accent-soft);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+.derivation__step {
+  counter-increment: der-step;
+  font-size: var(--fs-xs);
+  line-height: var(--lh-normal);
+  color: var(--text-muted);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-1) var(--space-2);
+}
+.derivation__step::before {
+  content: counter(der-step);
+  flex: 0 0 auto;
+  width: 17px;
+  height: 17px;
+  display: inline-grid;
+  place-items: center;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--accent);
+  background: var(--accent-soft);
+  border-radius: var(--radius-sm);
+  line-height: 1;
+  margin-right: 1px;
+}
+.derivation__step-text {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.derivation__step-math {
+  flex: 0 1 auto;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 1px 0;
+}
+.derivation__step-math .katex {
+  font-size: 0.95em;
+}
+.derivation__step-math .sym {
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  padding: 0 2px;
+  margin: 0 -2px;
+  border-bottom: 1px dotted color-mix(in srgb, var(--accent) 55%, transparent);
+  transition: background var(--transition-fast), border-color var(--transition-fast);
+}
+.derivation__step-math .sym:hover {
+  background: var(--accent-soft);
+  border-bottom-color: var(--accent);
+}
 .formula__fav svg,
 .chapter__fav svg,
 .fields-fav-toggle svg { pointer-events: none; }

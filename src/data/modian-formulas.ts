@@ -87,12 +87,22 @@ export const MODIAN_FORMULAS: Formula[] = [
   { id:'dv-bjt-alpha', cat:'device', title:'共基电流放大系数',
     latex:'\\alpha=\\frac{I_C}{I_E}=\\frac{\\beta}{1+\\beta}',
     symbols:['\\alpha','I_C','I_E','\\beta'],
-    note:'α 略小于 1(约 0.95~0.995)，反映发射区注入载流子被集电极收集的比例' },
+    note:'α 略小于 1(约 0.95~0.995)，反映发射区注入载流子被集电极收集的比例',
+    derivation:[
+      {text:'共基电流放大系数定义 α=I_C/I_E'},
+      {text:'由 KCL I_E=I_B+I_C，及 I_C=βI_B 得 I_E=I_B+βI_B=(1+β)I_B'},
+      {text:'代入 α=I_C/I_E=βI_B/((1+β)I_B)',latex:'\\alpha=\\frac{\\beta}{1+\\beta}'},
+    ] },
 
   { id:'dv-bjt-iceo', cat:'device', title:'穿透电流与集基反向饱和电流',
     latex:'I_{CEO}=(1+\\beta)I_{CBO}',
     symbols:['I_{CEO}','\\beta','I_{CBO}'],
-    note:'基极开路时 c-e 间的穿透电流；I_{CBO} 为发射极开路时集电结反向饱和电流。硅管 I_{CEO} 很小(μA 级)' },
+    note:'基极开路时 c-e 间的穿透电流；I_{CBO} 为发射极开路时集电结反向饱和电流。硅管 I_{CEO} 很小(μA 级)',
+    derivation:[
+      {text:'I_{CBO} 为发射极开路时集电结反向饱和电流'},
+      {text:'基极开路（I_B=0）时，I_{CBO} 相当于流入基极的电流，被三极管放大 β 倍'},
+      {text:'故 c-e 间穿透电流为 I_{CBO} 本身加其放大结果',latex:'I_{CEO}=I_{CBO}+\\beta I_{CBO}=(1+\\beta)I_{CBO}'},
+    ] },
 
   { id:'dv-fet-gm', cat:'device', title:'场效应管跨导（定义）',
     latex:'g_m=\\frac{\\Delta I_D}{\\Delta U_{GS}}',
@@ -107,7 +117,12 @@ export const MODIAN_FORMULAS: Formula[] = [
   { id:'dv-mos-gm', cat:'device', title:'MOS 管饱和区跨导',
     latex:'g_m=\\sqrt{2K_n I_{DQ}}',
     symbols:['g_m','K_n','I_{DQ}'],
-    note:'由平方律关系导出，I_{DQ} 为静态漏极电流；跨导随工作电流增大而增大' },
+    note:'由平方律关系导出，I_{DQ} 为静态漏极电流；跨导随工作电流增大而增大',
+    derivation:[
+      {text:'饱和区电流方程（K_n=μ_n C_ox W/L）',latex:'I_D=\\frac{K_n}{2}(U_{GS}-V_{TN})^2'},
+      {text:'跨导定义 g_m=∂I_D/∂U_{GS}=K_n(U_{GS}-V_{TN})'},
+      {text:'由电流方程解出 U_{GS}-V_{TN}=√(2I_D/K_n)，代入',latex:'g_m=K_n\\sqrt{\\frac{2I_D}{K_n}}=\\sqrt{2K_n I_D}'},
+    ] },
 
   /* ============== 第 2 章 基本放大电路 basic-amp ★ ============== */
   { id:'ba-au-def', cat:'basic-amp', title:'电压放大倍数（定义）',
@@ -128,7 +143,11 @@ export const MODIAN_FORMULAS: Formula[] = [
   { id:'ba-ce-q-ib', cat:'basic-amp', title:'共射固定偏置：基极静态电流',
     latex:'I_{BQ}=\\frac{V_{CC}-U_{BEQ}}{R_b}',
     symbols:['I_{BQ}','V_{CC}','U_{BEQ}','R_b'],
-    note:'固定偏置(单电源)电路求 Q 点第一步；U_{BEQ} 硅管取 0.7 V、锗管取 0.3 V' },
+    note:'固定偏置(单电源)电路求 Q 点第一步；U_{BEQ} 硅管取 0.7 V、锗管取 0.3 V',
+    derivation:[
+      {text:'输入回路（基极回路）应用 KVL',latex:'V_{CC}=I_{BQ}R_b+U_{BEQ}'},
+      {text:'解出基极静态电流',latex:'I_{BQ}=\\frac{V_{CC}-U_{BEQ}}{R_b}'},
+    ] },
 
   { id:'ba-ce-q-ic', cat:'basic-amp', title:'共射固定偏置：集电极静态电流',
     latex:'I_{CQ}=\\beta I_{BQ}',
@@ -138,22 +157,40 @@ export const MODIAN_FORMULAS: Formula[] = [
   { id:'ba-ce-q-uce', cat:'basic-amp', title:'共射固定偏置：管压降',
     latex:'U_{CEQ}=V_{CC}-I_{CQ}R_c',
     symbols:['U_{CEQ}','V_{CC}','I_{CQ}','R_c'],
-    note:'由输出回路 KVL 确定；为获得最大不失真动态范围，Q 点应位于交流负载线中点附近' },
+    note:'由输出回路 KVL 确定；为获得最大不失真动态范围，Q 点应位于交流负载线中点附近',
+    derivation:[
+      {text:'输出回路（集电极回路）应用 KVL',latex:'V_{CC}=I_{CQ}R_c+U_{CEQ}'},
+      {text:'解出管压降',latex:'U_{CEQ}=V_{CC}-I_{CQ}R_c'},
+    ] },
 
   { id:'ba-rbe', cat:'basic-amp', title:'发射结等效电阻 r_be',
     "latex":"r_{be}=r_{bb'}+(1+\\beta)\\frac{U_T}{I_{EQ}}",
     symbols:["r_{be}","r_{bb'}",'\\beta','U_T','I_{EQ}'],
-    note:'微变等效模型中 b-e 间输入电阻；常温下第二项≈26 mV/I_{EQ}(mA)→kΩ。r_bb\' 为基区体电阻(低频约 200~300 Ω)' },
+    note:'微变等效模型中 b-e 间输入电阻；常温下第二项≈26 mV/I_{EQ}(mA)→kΩ。r bb\' 为基区体电阻(低频约 200~300 Ω)',
+    derivation:[
+      {text:'r_{be} 由基区体电阻 r_{bb\'} 和发射结等效电阻 r_e 串联组成（r_e 折算到基极）'},
+      {text:'发射结微分电阻 r_e=U_T/I_{EQ}（由 PN 结电流方程求导）'},
+      {text:'折算到基极侧乘 (1+β)（因 I_E=(1+β)I_B）',latex:"r_{be}=r_{bb'}+(1+\\beta)\\frac{U_T}{I_{EQ}}"},
+    ] },
 
   { id:'ba-ce-au', cat:'basic-amp', title:'共射电路动态电压放大倍数',
     latex:'A_u=-\\frac{\\beta\\left(R_c\\parallel R_L\\right)}{r_{be}}',
     symbols:['A_u','\\beta','R_c','R_L','r_{be}'],
-    note:'负号表示输出与输入反相；接负载 R_L 后增益下降(因 R_c∥R_L 变小)' },
+    note:'负号表示输出与输入反相；接负载 R_L 后增益下降(因 R_c∥R_L 变小)',
+    derivation:[
+      {text:'微变等效电路输入回路：u_i=i_b r_{be}'},
+      {text:'输出回路：受控电流源 βi_b 流过并联负载，输出电压取负',latex:'u_o=-\\beta i_b(R_c\\parallel R_L)'},
+      {text:'电压增益',latex:'A_u=\\frac{u_o}{u_i}=-\\frac{\\beta(R_c\\parallel R_L)}{r_{be}}'},
+    ] },
 
   { id:'ba-ce-ri', cat:'basic-amp', title:'共射电路输入电阻',
     latex:'R_i=R_b\\parallel r_{be}',
     symbols:['R_i','R_b','r_{be}'],
-    note:'共射放大输入电阻主要由 r_be 决定(约 1~3 kΩ)，偏置电阻并联使总电阻略降' },
+    note:'共射放大输入电阻主要由 r_be 决定(约 1~3 kΩ)，偏置电阻并联使总电阻略降',
+    derivation:[
+      {text:'从输入端看入，偏置电阻 R_b 与三极管输入电阻 r_{be} 并联'},
+      {text:'输入电阻',latex:'R_i=R_b\\parallel r_{be}'},
+    ] },
 
   { id:'ba-ce-ro', cat:'basic-amp', title:'共射电路输出电阻',
     latex:'R_o\\approx R_c',
@@ -163,22 +200,42 @@ export const MODIAN_FORMULAS: Formula[] = [
   { id:'ba-cc-au', cat:'basic-amp', title:'共集电极(射极跟随器)电压放大倍数',
     latex:'A_u=\\frac{(1+\\beta)(R_e\\parallel R_L)}{r_{be}+(1+\\beta)(R_e\\parallel R_L)}\\approx 1',
     symbols:['A_u','\\beta','R_e','R_L','r_{be}'],
-    note:'输出与输入同相，电压增益略小于 1(无电压放大)；常作输入级/输出级/缓冲级' },
+    note:'输出与输入同相，电压增益略小于 1(无电压放大)；常作输入级/输出级/缓冲级',
+    derivation:[
+      {text:'射随器微变等效：输入电压加在 r_{be} 与发射极负载上',latex:'u_i=i_b r_{be}+(1+\\beta)i_b(R_e\\parallel R_L)'},
+      {text:'输出电压取自发射极',latex:'u_o=(1+\\beta)i_b(R_e\\parallel R_L)'},
+      {text:'电压增益',latex:'A_u=\\frac{(1+\\beta)(R_e\\parallel R_L)}{r_{be}+(1+\\beta)(R_e\\parallel R_L)}\\approx 1'},
+    ] },
 
   { id:'ba-cc-ri', cat:'basic-amp', title:'共集电极电路输入电阻',
     latex:'R_i=R_b\\parallel\\left[r_{be}+(1+\\beta)(R_e\\parallel R_L)\\right]',
     symbols:['R_i','R_b','r_{be}','\\beta','R_e','R_L'],
-    note:'射随器输入电阻很高(受基极偏置电阻 R_b 并联所限)，适合作高阻输入级' },
+    note:'射随器输入电阻很高(受基极偏置电阻 R_b 并联所限)，适合作高阻输入级',
+    derivation:[
+      {text:'从基极看入的等效电阻 = r_{be} + 发射极负载折算到基极'},
+      {text:'发射极电阻 (R_e∥R_L) 折算到基极需乘 (1+β)',latex:'R_i\'=r_{be}+(1+\\beta)(R_e\\parallel R_L)'},
+      {text:'并联偏置电阻',latex:'R_i=R_b\\parallel R_i\''},
+    ] },
 
   { id:'ba-cc-ro', cat:'basic-amp', title:'共集电极电路输出电阻',
     latex:'R_o\\approx\\frac{r_{be}+R_s}{1+\\beta}',
     symbols:['R_o','r_{be}','R_s','\\beta'],
-    note:'射随器输出电阻很小(几十 Ω)，带载能力强；R_s 为信号源内阻' },
+    note:'射随器输出电阻很小(几十 Ω)，带载能力强；R_s 为信号源内阻',
+    derivation:[
+      {text:'求输出电阻：令 u_i=0（信号源短路到地，保留内阻 R_s）'},
+      {text:'从发射极看入，基极回路总电阻 (r_{be}+R_s) 折算到发射极除以 (1+β)'},
+      {text:'输出电阻',latex:'R_o\\approx\\frac{r_{be}+R_s}{1+\\beta}'},
+    ] },
 
   { id:'ba-cb-au', cat:'basic-amp', title:'共基极电路电压放大倍数',
     latex:'A_u=\\frac{\\beta\\left(R_c\\parallel R_L\\right)}{r_{be}}',
     symbols:['A_u','\\beta','R_c','R_L','r_{be}'],
-    note:'数值与共射相同但输出与输入同相(不反相)；频带宽，适合作高频/宽频带放大' },
+    note:'数值与共射相同但输出与输入同相(不反相)；频带宽，适合作高频/宽频带放大',
+    derivation:[
+      {text:'共基电路基极交流接地，输入加在发射极'},
+      {text:'输入电压 u_i=i_b r_{be}，输出 u_o=βi_b(R_c∥R_L)（同相）'},
+      {text:'电压增益',latex:'A_u=\\frac{\\beta(R_c\\parallel R_L)}{r_{be}}'},
+    ] },
 
   { id:'ba-cb-ri', cat:'basic-amp', title:'共基极电路输入电阻',
     latex:'R_i\\approx\\frac{r_{be}}{1+\\beta}',
@@ -194,7 +251,12 @@ export const MODIAN_FORMULAS: Formula[] = [
   { id:'ms-total-db', cat:'multistage', title:'多级增益（分贝相加）',
     latex:'20\\lg|A_u|=20\\lg|A_{u1}|+20\\lg|A_{u2}|+\\cdots',
     symbols:['A_u','A_{u1}','A_{u2}'],
-    note:'增益取分贝后由乘变加，便于工程估算；A_u(dB)=20lg|A_u|' },
+    note:'增益取分贝后由乘变加，便于工程估算；A_u(dB)=20lg|A_u|',
+    derivation:[
+      {text:'多级总增益为各级增益之积',latex:'|A_u|=|A_{u1}|\\cdot|A_{u2}|\\cdots|A_{un}|'},
+      {text:'取 20 倍对数（分贝）',latex:'20\\lg|A_u|=20\\lg(|A_{u1}|\\cdot|A_{u2}|\\cdots)'},
+      {text:'利用对数性质 lg(xy)=lg x+lg y',latex:'20\\lg|A_u|=20\\lg|A_{u1}|+20\\lg|A_{u2}|+\\cdots'},
+    ] },
 
   { id:'ms-ri-ro', cat:'multistage', title:'多级放大输入/输出电阻',
     latex:'R_i=R_{i1},\\quad R_o=R_{on}',
@@ -204,17 +266,30 @@ export const MODIAN_FORMULAS: Formula[] = [
   { id:'ms-divider-bias', cat:'multistage', title:'分压式偏置：基极静态电位',
     latex:'U_{BQ}\\approx\\frac{R_{b2}}{R_{b1}+R_{b2}}V_{CC}',
     symbols:['U_{BQ}','R_{b2}','R_{b1}','V_{CC}'],
-    note:'当基极电流 I_B 远小于分压支路电流时，基极电位由 R_{b1}、R_{b2} 分压近似固定，从而稳定 Q 点' },
+    note:'当基极电流 I_B 远小于分压支路电流时，基极电位由 R_{b1}、R_{b2} 分压近似固定，从而稳定 Q 点',
+    derivation:[
+      {text:'当 I_B≪分压支路电流时，R_{b1}、R_{b2} 可视为纯分压网络'},
+      {text:'由分压关系',latex:'U_{BQ}\\approx\\frac{R_{b2}}{R_{b1}+R_{b2}}V_{CC}'},
+    ] },
 
   { id:'ms-divider-ie', cat:'multistage', title:'分压式偏置：发射极静态电流',
     latex:'I_{EQ}=\\frac{U_{BQ}-U_{BEQ}}{R_e}',
     symbols:['I_{EQ}','U_{BQ}','U_{BEQ}','R_e'],
-    note:'R_e 引入直流负反馈使 I_EQ 受温度影响大大减小；近似 I_{CQ}≈I_{EQ}' },
+    note:'R_e 引入直流负反馈使 I_EQ 受温度影响大大减小；近似 I_{CQ}≈I_{EQ}',
+    derivation:[
+      {text:'发射极回路 KVL',latex:'U_{BQ}=U_{BEQ}+I_{EQ}R_e'},
+      {text:'解出发射极静态电流',latex:'I_{EQ}=\\frac{U_{BQ}-U_{BEQ}}{R_e}'},
+    ] },
 
   { id:'ms-fh-n', cat:'multistage', title:'n 级相同放大级的上限频率',
     latex:'f_{Hn}\\approx f_H\\sqrt{2^{1/n}-1}',
     symbols:['f_{Hn}','f_H','n'],
-    note:'多级级联后总带宽变窄(上限频率下降)；级数越多 f_{Hn} 越小' },
+    note:'多级级联后总带宽变窄(上限频率下降)；级数越多 f_{Hn} 越小',
+    derivation:[
+      {text:'单级归一化高频增益 |A/A_m|=1/√(1+(f/f_H)²)，n 级相同级联取 n 次方'},
+      {text:'总幅频降为 1/√2（−3 dB）处为总上限频率 f_{Hn}',latex:'\\left(\\frac{1}{\\sqrt{1+(f_{Hn}/f_H)^2}}\\right)^{\\!n}=\\frac{1}{\\sqrt{2}}'},
+      {text:'解出',latex:'f_{Hn}=f_H\\sqrt{2^{1/n}-1}'},
+    ] },
 
   { id:'ms-gbp', cat:'multistage', title:'增益带宽积（GBP）',
     latex:'\\mathrm{GBP}=|A_{um}|\\cdot f_H',
@@ -235,17 +310,33 @@ export const MODIAN_FORMULAS: Formula[] = [
   { id:'it-input-decomp', cat:'integrated', title:'任意输入的差/共模分解',
     latex:'u_{i1}=u_{ic}+\\tfrac{1}{2}u_{id},\\quad u_{i2}=u_{ic}-\\tfrac{1}{2}u_{id}',
     symbols:['u_{i1}','u_{i2}','u_{ic}','u_{id}'],
-    note:'任意两路输入恒可分解为共模与差模之和，便于分别分析' },
+    note:'任意两路输入恒可分解为共模与差模之和，便于分别分析',
+    derivation:[
+      {text:'定义差模 u_{id}=u_{i1}-u_{i2}，共模 u_{ic}=(u_{i1}+u_{i2})/2'},
+      {text:'由 u_{id}=u_{i1}-u_{i2} 得 u_{i2}=u_{i1}-u_{id}'},
+      {text:'代入 u_{ic}=(u_{i1}+u_{i1}-u_{id})/2=u_{i1}-u_{id}/2，反解 u_{i1}',latex:'u_{i1}=u_{ic}+\\tfrac{1}{2}u_{id},\\quad u_{i2}=u_{ic}-\\tfrac{1}{2}u_{id}'},
+    ] },
 
   { id:'it-ad-double', cat:'integrated', title:'差放双端输出差模放大倍数',
     latex:'A_d=-\\frac{\\beta R_c}{r_{be}}',
     symbols:['A_d','\\beta','R_c','r_{be}'],
-    note:'双端输出(差动输出)差模增益与单管共射相同，输出取两集电极之差' },
+    note:'双端输出(差动输出)差模增益与单管共射相同，输出取两集电极之差',
+    derivation:[
+      {text:'差模输入时两边对称：一侧 +u_{id}/2，另一侧 −u_{id}/2'},
+      {text:'单管共射增益 A_1=−βR_c/r_{be}，两管输出大小相等、符号相反'},
+      {text:'双端输出 u_{od}=u_{c1}−u_{c2}=A_1·(u_{id}/2)−A_1·(−u_{id}/2)=A_1·u_{id}'},
+      {text:'差模增益',latex:'A_d=\\frac{u_{od}}{u_{id}}=A_1=-\\frac{\\beta R_c}{r_{be}}'},
+    ] },
 
   { id:'it-ad-single', cat:'integrated', title:'差放单端输出差模放大倍数',
     latex:'A_d=-\\frac{\\beta R_c}{2\\,r_{be}}',
     symbols:['A_d','\\beta','R_c','r_{be}'],
-    note:'单端输出(从一个集电极对地)增益为双端的一半，有固定相位(同相或反相取决于输出端)' },
+    note:'单端输出(从一个集电极对地)增益为双端的一半，有固定相位(同相或反相取决于输出端)',
+    derivation:[
+      {text:'单端输出仅取一个集电极对地，输出电压为双端的一半'},
+      {text:'u_{od}=u_{c1}=A_1·u_{id}/2'},
+      {text:'差模增益为双端的一半',latex:'A_d=\\frac{A_1}{2}=-\\frac{\\beta R_c}{2\\,r_{be}}'},
+    ] },
 
   { id:'it-ac-double', cat:'integrated', title:'差放共模放大倍数',
     latex:'A_c\\approx 0\\;\\text{(双端)},\\quad A_c\\approx-\\frac{R_c}{2R_e}\\;\\text{(单端)}',
@@ -275,13 +366,24 @@ export const MODIAN_FORMULAS: Formula[] = [
   { id:'it-mirror', cat:'integrated', title:'镜像电流源',
     latex:'I_{C2}=I_{REF}=\\frac{V_{CC}-U_{BE}}{R}',
     symbols:['I_{C2}','I_{REF}','V_{CC}','U_{BE}','R'],
-    note:'两管参数对称时输出电流 I_{C2} 镜像参考电流 I_{REF}；广泛用作集成运放的偏置与有源负载' },
+    note:'两管参数对称时输出电流 I_{C2} 镜像参考电流 I_{REF}；广泛用作集成运放的偏置与有源负载',
+    derivation:[
+      {text:'两管参数对称且 U_{BE} 相同 → I_{C1}=I_{C2}'},
+      {text:'β≫1 时基极电流可忽略，参考支路 I_{REF}≈I_{C1}'},
+      {text:'由参考回路 KVL：I_{REF}=(V_{CC}−U_{BE})/R',latex:'I_{C2}=I_{REF}=\\frac{V_{CC}-U_{BE}}{R}'},
+    ] },
 
   /* ============== 第 5 章 反馈放大电路 feedback ============== */
   { id:'fb-closed-loop', cat:'feedback', title:'闭环放大倍数',
     latex:'A_f=\\frac{A}{1+AF}',
     symbols:['A_f','A','F'],
-    note:'负反馈的基本方程；1+AF 称为反馈深度，AF 称环路增益' },
+    note:'负反馈的基本方程；1+AF 称为反馈深度，AF 称环路增益',
+    derivation:[
+      {text:'基本放大器输出 x_o=A·x_d（x_d 为净输入），反馈网络 x_f=F·x_o'},
+      {text:'比较环节（负反馈相减）x_d=x_i−x_f=x_i−F·x_o'},
+      {text:'联立：x_o=A(x_i−F·x_o)，整理得',latex:'x_o(1+AF)=A\\cdot x_i'},
+      {text:'闭环增益',latex:'A_f=\\frac{x_o}{x_i}=\\frac{A}{1+AF}'},
+    ] },
 
   { id:'fb-feedback-depth', cat:'feedback', title:'反馈深度',
     latex:'D=1+AF',
@@ -291,53 +393,104 @@ export const MODIAN_FORMULAS: Formula[] = [
   { id:'fb-deep', cat:'feedback', title:'深度负反馈近似',
     latex:'A_f\\approx\\frac{1}{F}\\quad(AF\\gg 1)',
     symbols:['A_f','F','A'],
-    note:'反馈很深时闭环增益几乎只取决于反馈网络 F，与放大器本身参数无关，增益稳定性极高' },
+    note:'反馈很深时闭环增益几乎只取决于反馈网络 F，与放大器本身参数无关，增益稳定性极高',
+    derivation:[
+      {text:'闭环增益',latex:'A_f=\\frac{A}{1+AF}'},
+      {text:'深度负反馈 AF≫1，故 1+AF≈AF'},
+      {text:'代入',latex:'A_f\\approx\\frac{A}{AF}=\\frac{1}{F}'},
+    ] },
 
   { id:'fb-gain-stability', cat:'feedback', title:'闭环增益稳定性',
     latex:'\\frac{dA_f}{A_f}=\\frac{1}{1+AF}\\cdot\\frac{dA}{A}',
     symbols:['A_f','A','F'],
-    note:'闭环增益相对变化量是开环的 1/(1+AF)，即负反馈使增益稳定性提高(1+AF)倍' },
+    note:'闭环增益相对变化量是开环的 1/(1+AF)，即负反馈使增益稳定性提高(1+AF)倍',
+    derivation:[
+      {text:'闭环增益 A_f=A/(1+AF)，对 A 求导',latex:'\\frac{dA_f}{dA}=\\frac{(1+AF)-A\\cdot F}{(1+AF)^2}=\\frac{1}{(1+AF)^2}'},
+      {text:'故 dA_f=dA/(1+AF)²'},
+      {text:'两边除以 A_f=A/(1+AF)',latex:'\\frac{dA_f}{A_f}=\\frac{1}{1+AF}\\cdot\\frac{dA}{A}'},
+    ] },
 
   { id:'fb-fh-widen', cat:'feedback', title:'负反馈展宽上限频率',
     latex:'f_{Hf}=(1+AF)\\,f_H',
     symbols:['f_{Hf}','f_H','A','F'],
-    note:'负反馈使上限频率提高到 (1+AF) 倍(频带展宽)，代价是中频增益下降同样倍数，GBP 近似不变' },
+    note:'负反馈使上限频率提高到 (1+AF) 倍(频带展宽)，代价是中频增益下降同样倍数，GBP 近似不变',
+    derivation:[
+      {text:'开环高频增益 A(jω)=A_m/(1+jf/f_H)'},
+      {text:'加负反馈 A_f=A/(1+AF)，代入整理分母',latex:'(1+jf/f_H)+A_m F=(1+A_m F)\\!\\left(1+jf\\big/((1+A_m F)f_H)\\right)'},
+      {text:'故闭环上限频率展宽',latex:'f_{Hf}=(1+AF)\\,f_H'},
+    ] },
 
   { id:'fb-fl-narrow', cat:'feedback', title:'负反馈降低下限频率',
     latex:'f_{Lf}=\\frac{f_L}{1+AF}',
     symbols:['f_{Lf}','f_L','A','F'],
-    note:'负反馈使下限频率降低到 1/(1+AF)，通频带整体向两端扩展' },
+    note:'负反馈使下限频率降低到 1/(1+AF)，通频带整体向两端扩展',
+    derivation:[
+      {text:'开环低频增益含极点因子 1/(1+f_L/jf)'},
+      {text:'加负反馈后类似高频分析，极点频率降为 1/(1+AF)'},
+      {text:'下限频率降低',latex:'f_{Lf}=\\frac{f_L}{1+AF}'},
+    ] },
 
   { id:'fb-ri-ro', cat:'feedback', title:'负反馈对输入/输出电阻的影响（电压串联）',
     latex:'R_{if}=(1+AF)R_i,\\quad R_{of}=\\frac{R_o}{1+AF}',
     symbols:['R_{if}','R_i','R_{of}','R_o','A','F'],
-    note:'串联负反馈使输入电阻增到 (1+AF) 倍；电压负反馈使输出电阻降到 1/(1+AF)，稳定输出电压。并联/电流组态影响相反' },
+    note:'串联负反馈使输入电阻增到 (1+AF) 倍；电压负反馈使输出电阻降到 1/(1+AF)，稳定输出电压。并联/电流组态影响相反',
+    derivation:[
+      {text:'串联负反馈：输入端反馈电压与输入串联，净输入减小，等效输入电阻增大',latex:'R_{if}=(1+AF)R_i'},
+      {text:'电压负反馈：稳定输出电压（减小负载变化对输出的影响），等效输出电阻减小',latex:'R_{of}=\\frac{R_o}{1+AF}'},
+    ] },
 
   { id:'fb-oscillation', cat:'feedback', title:'负反馈放大器自激振荡条件',
     latex:'|AF|=1\\;\\text{且}\\;\\Delta\\varphi=\\pm(2n+1)\\pi',
     symbols:['A','F','\\Delta','\\varphi','n','\\pi'],
-    note:'负反馈在高频/低频附加相移达 ±180° 时变为正反馈，若再满足幅度 |AF|=1 即自激；需用补偿电容消除' },
+    note:'负反馈在高频/低频附加相移达 ±180° 时变为正反馈，若再满足幅度 |AF|=1 即自激；需用补偿电容消除',
+    derivation:[
+      {text:'负反馈低频时环路相移 180°（负反馈自身反相）'},
+      {text:'高频/低频时放大器与反馈网络产生附加相移 Δφ'},
+      {text:'当 Δφ=±(2n+1)π=±180° 时，总相移 360°，负反馈变为正反馈'},
+      {text:'若此时幅度 |AF|=1，维持等幅自激振荡',latex:'|AF|=1\\;\\text{且}\\;\\Delta\\varphi=\\pm(2n+1)\\pi'},
+    ] },
 
   /* ============== 第 6 章 信号的运算与处理 op-amp ★ ============== */
   { id:'op-inv-scale', cat:'op-amp', title:'反相比例运算',
     latex:'u_o=-\\frac{R_f}{R_1}u_i',
     symbols:['u_o','R_f','R_1','u_i'],
-    note:'反相端输入，输出与输入反相，比例由外接电阻决定；同相端接地，反相端为"虚地"' },
+    note:'反相端输入，输出与输入反相，比例由外接电阻决定；同相端接地，反相端为"虚地"',
+    derivation:[
+      {text:'同相端接地，虚短 → 反相端为虚地 u_-=0'},
+      {text:'虚断：流入反相端电流为零，故流过 R_1 的电流全部流过 R_f'},
+      {text:'i_1=u_i/R_1=(0−u_o)/R_f'},
+      {text:'整理',latex:'u_o=-\\frac{R_f}{R_1}u_i'},
+    ] },
 
   { id:'op-noninv-scale', cat:'op-amp', title:'同相比例运算',
     latex:'u_o=\\left(1+\\frac{R_f}{R_1}\\right)u_i',
     symbols:['u_o','R_f','R_1','u_i'],
-    note:'同相端输入，输出与输入同相，增益≥1；输入电阻高' },
+    note:'同相端输入，输出与输入同相，增益≥1；输入电阻高',
+    derivation:[
+      {text:'同相输入 u_+=u_i，虚短 → u_-=u_+=u_i'},
+      {text:'虚断：反相端无电流流入，R_1 与 R_f 构成分压网络'},
+      {text:'u_-=u_o·R_1/(R_1+R_f)=u_i'},
+      {text:'整理',latex:'u_o=\\left(1+\\frac{R_f}{R_1}\\right)u_i'},
+    ] },
 
   { id:'op-follower', cat:'op-amp', title:'电压跟随器',
     latex:'u_o=u_i',
     symbols:['u_o','u_i'],
-    note:'同相比例 R_f=0、R_1 开路的特例，增益为 1；输入阻抗极高、输出阻抗极低，常作阻抗变换/缓冲隔离' },
+    note:'同相比例 R_f=0、R_1 开路的特例，增益为 1；输入阻抗极高、输出阻抗极低，常作阻抗变换/缓冲隔离',
+    derivation:[
+      {text:'电压跟随器 = 同相比例运算中 R_f=0（输出直连反相端）'},
+      {text:'代入同相比例公式 u_o=(1+R_f/R_1)u_i，R_f=0 时',latex:'u_o=u_i'},
+    ] },
 
   { id:'op-inv-sum', cat:'op-amp', title:'反相求和运算',
     latex:'u_o=-\\left(\\frac{R_f}{R_1}u_{i1}+\\frac{R_f}{R_2}u_{i2}\\right)',
     symbols:['u_o','R_f','R_1','u_{i1}','R_2','u_{i2}'],
-    note:'多路信号在反相端汇合(虚地)实现加权求和；推广 m 路：u_o=−Σ(R_f/R_k)u_{ik}' },
+    note:'多路信号在反相端汇合(虚地)实现加权求和；推广 m 路：u_o=−Σ(R_f/R_k)u_{ik}',
+    derivation:[
+      {text:'反相端虚地 u_-=0，虚断 i_-=0'},
+      {text:'各路输入电流之和等于反馈电流',latex:'\\frac{u_{i1}}{R_1}+\\frac{u_{i2}}{R_2}=\\frac{0-u_o}{R_f}'},
+      {text:'整理',latex:'u_o=-\\left(\\frac{R_f}{R_1}u_{i1}+\\frac{R_f}{R_2}u_{i2}\\right)'},
+    ] },
 
   { id:'op-noninv-sum', cat:'op-amp', title:'同相求和运算（等权）',
     latex:'u_o=\\left(1+\\frac{R_f}{R_1}\\right)\\frac{u_{i1}+u_{i2}}{3}',
@@ -347,27 +500,56 @@ export const MODIAN_FORMULAS: Formula[] = [
   { id:'op-subtractor', cat:'op-amp', title:'减法(差动)运算',
     latex:'u_o=\\frac{R_f}{R_1}\\left(u_{i2}-u_{i1}\\right)\\quad(R_1=R_2)',
     symbols:['u_o','R_f','R_1','u_{i1}','u_{i2}'],
-    note:'同相加 u_{i2}、反相加 u_{i1}，当 R_1=R_2 且反馈对称时输出正比于两输入之差' },
+    note:'同相加 u_{i2}、反相加 u_{i1}，当 R_1=R_2 且反馈对称时输出正比于两输入之差',
+    derivation:[
+      {text:'利用叠加原理。u_{i1} 单独作用（u_{i2}=0，同相端接地）→ 反相比例',latex:'u_{o1}=-\\frac{R_f}{R_1}u_{i1}'},
+      {text:'u_{i2} 单独作用（u_{i1}=0）→ 同相端分压后同相放大（R_1=R_2）',latex:'u_{o2}=\\frac{R_f}{R_1}u_{i2}'},
+      {text:'叠加',latex:'u_o=u_{o1}+u_{o2}=\\frac{R_f}{R_1}(u_{i2}-u_{i1})'},
+    ] },
 
   { id:'op-integrator', cat:'op-amp', title:'积分运算',
     latex:'u_o=-\\frac{1}{RC}\\int u_i\\,dt',
     symbols:['u_o','R','C','u_i','t'],
-    note:'电容作反馈元件，输出是输入的积分(反相)；输入方波时输出三角波' },
+    note:'电容作反馈元件，输出是输入的积分(反相)；输入方波时输出三角波',
+    derivation:[
+      {text:'反相端虚地 u_-=0，虚断 i_-=0'},
+      {text:'输入电流 i=u_i/R 全部流入电容 C'},
+      {text:'电容电流-电压关系 i=C·d(u_--u_o)/dt=−C·du_o/dt'},
+      {text:'联立 u_i/R=−C·du_o/dt，积分得',latex:'u_o=-\\frac{1}{RC}\\int u_i\\,dt'},
+    ] },
 
   { id:'op-differentiator', cat:'op-amp', title:'微分运算',
     latex:'u_o=-RC\\,\\frac{du_i}{dt}',
     symbols:['u_o','R','C','u_i','t'],
-    note:'电容作输入元件，输出正比于输入的变化率(反相)；高频噪声易被放大，实用中需限幅' },
+    note:'电容作输入元件，输出正比于输入的变化率(反相)；高频噪声易被放大，实用中需限幅',
+    derivation:[
+      {text:'电容作输入元件接反相端，反相端虚地 u_-=0'},
+      {text:'电容电流 i=C·du_i/dt（输入电压全部加在电容上）'},
+      {text:'虚断：i 全部流过反馈电阻 R，u_o=−iR'},
+      {text:'代入',latex:'u_o=-RC\\,\\frac{du_i}{dt}'},
+    ] },
 
   { id:'op-lp-filter', cat:'op-amp', title:'一阶有源低通滤波器截止频率',
     latex:'f_H=\\frac{1}{2\\pi RC}',
     symbols:['f_H','R','C','\\pi'],
-    note:'RC 低通网络加同相放大构成一阶有源低通；低于 f_H 的信号通过，高于 f_H 的被衰减(−20 dB/十倍频)' },
+    note:'RC 低通网络加同相放大构成一阶有源低通；低于 f_H 的信号通过，高于 f_H 的被衰减(−20 dB/十倍频)',
+    derivation:[
+      {text:'RC 低通网络传输函数',latex:'H=\\frac{1}{1+j\\omega RC}'},
+      {text:'截止频率定义 |H|=1/√2（增益降 3 dB）'},
+      {text:'|H|²=1/(1+(ωRC)²)=1/2 → ωRC=1'},
+      {text:'解出',latex:'f_H=\\frac{1}{2\\pi RC}'},
+    ] },
 
   { id:'op-hp-filter', cat:'op-amp', title:'一阶有源高通滤波器截止频率',
     latex:'f_L=\\frac{1}{2\\pi RC}',
     symbols:['f_L','R','C','\\pi'],
-    note:'高通网络加放大构成一阶有源高通；高于 f_L 的信号通过，直流和低频被阻挡' },
+    note:'高通网络加放大构成一阶有源高通；高于 f_L 的信号通过，直流和低频被阻挡',
+    derivation:[
+      {text:'RC 高通网络传输函数',latex:'H=\\frac{j\\omega RC}{1+j\\omega RC}'},
+      {text:'截止频率定义 |H|=1/√2（增益降 3 dB）'},
+      {text:'|H|²=(ωRC)²/(1+(ωRC)²)=1/2 → ωRC=1'},
+      {text:'解出',latex:'f_L=\\frac{1}{2\\pi RC}'},
+    ] },
 
   { id:'op-notch', cat:'op-amp', title:'带阻(双 T 陷波)中心频率',
     latex:'f_0=\\frac{1}{2\\pi RC}',
@@ -378,7 +560,12 @@ export const MODIAN_FORMULAS: Formula[] = [
   { id:'os-balance', cat:'oscillator', title:'正弦振荡平衡条件',
     latex:'|AF|=1\\;\\text{且}\\;\\sum\\varphi=2n\\pi',
     symbols:['A','F','\\varphi','n','\\pi'],
-    note:'幅度平衡 |AF|=1、相位平衡 Σφ=2nπ(正反馈)，两者同时满足才能维持等幅振荡' },
+    note:'幅度平衡 |AF|=1、相位平衡 Σφ=2nπ(正反馈)，两者同时满足才能维持等幅振荡',
+    derivation:[
+      {text:'振荡器为正反馈闭环系统，环路增益 AF(jω)'},
+      {text:'维持等幅振荡要求信号经环路一周后幅度不变、相位同相'},
+      {text:'幅度平衡 |AF|=1；相位平衡（正反馈）Σφ=∠A+∠F=2nπ',latex:'|AF|=1\\;\\text{且}\\;\\sum\\varphi=2n\\pi'},
+    ] },
 
   { id:'os-startup', cat:'oscillator', title:'起振条件',
     latex:'|AF|>1',
@@ -388,17 +575,32 @@ export const MODIAN_FORMULAS: Formula[] = [
   { id:'os-rc-bridge', cat:'oscillator', title:'RC 桥式(文氏)振荡频率',
     latex:'f_0=\\frac{1}{2\\pi RC}',
     symbols:['f_0','R','C','\\pi'],
-    note:'RC 串并联选频网络相移为零、反馈系数 1/3，起振需放大器增益 ≥3；用于产生几十 Hz~几百 kHz 正弦波' },
+    note:'RC 串并联选频网络相移为零、反馈系数 1/3，起振需放大器增益 ≥3；用于产生几十 Hz~几百 kHz 正弦波',
+    derivation:[
+      {text:'RC 串并联选频网络的反馈系数',latex:'F(j\\omega)=\\frac{1}{3+j\\!\\left(\\omega RC-\\frac{1}{\\omega RC}\\right)}'},
+      {text:'当 ωRC=1/(ωRC) 即 ω=1/RC 时，F 为实数且最大 F=1/3，相移为零'},
+      {text:'此频率下振荡',latex:'f_0=\\frac{1}{2\\pi RC}'},
+    ] },
 
   { id:'os-lc', cat:'oscillator', title:'LC 振荡频率',
     latex:'f_0=\\frac{1}{2\\pi\\sqrt{LC}}',
     symbols:['f_0','L','C','\\pi'],
-    note:'LC 回路谐振频率；用于产生几十 kHz~几百 MHz 高频正弦波' },
+    note:'LC 回路谐振频率；用于产生几十 kHz~几百 MHz 高频正弦波',
+    derivation:[
+      {text:'LC 并联谐振回路阻抗',latex:'Z=\\frac{j\\omega L}{1-\\omega^2 LC}'},
+      {text:'谐振时阻抗为纯电阻，虚部为零',latex:'1-\\omega_0^2 LC=0'},
+      {text:'解出谐振频率',latex:'f_0=\\frac{1}{2\\pi\\sqrt{LC}}'},
+    ] },
 
   { id:'os-lc-3point', cat:'oscillator', title:'电容三点式(考毕兹)振荡频率',
     latex:'f_0=\\frac{1}{2\\pi\\sqrt{L\\dfrac{C_1 C_2}{C_1+C_2}}}',
     symbols:['f_0','L','C_1','C_2','\\pi'],
-    note:'回路等效电容为 C_1∥C_2；改进型(克拉泼/西勒)在回路串/并小电容以提高频率稳定度' },
+    note:'回路等效电容为 C_1∥C_2；改进型(克拉泼/西勒)在回路串/并小电容以提高频率稳定度',
+    derivation:[
+      {text:'电容三点式回路电容为 C_1 与 C_2 串联'},
+      {text:'串联等效电容',latex:'C=\\frac{C_1 C_2}{C_1+C_2}'},
+      {text:'代入 LC 谐振频率公式',latex:'f_0=\\frac{1}{2\\pi\\sqrt{L\\dfrac{C_1 C_2}{C_1+C_2}}}'},
+    ] },
 
   { id:'os-quartz', cat:'oscillator', title:'石英晶体串联谐振频率',
     latex:'f_s=\\frac{1}{2\\pi\\sqrt{LC}}',
@@ -408,7 +610,13 @@ export const MODIAN_FORMULAS: Formula[] = [
   { id:'os-square-period', cat:'oscillator', title:'方波发生器周期',
     latex:'T=2RC\\ln\\frac{1+F}{1-F}',
     symbols:['T','R','C','F'],
-    note:'比较器+RC+正反馈构成的多谐振荡器，F=R_2/(R_1+R_2) 为正反馈分压比；充放电对称时为方波' },
+    note:'比较器+RC+正反馈构成的多谐振荡器，F=R_2/(R_1+R_2) 为正反馈分压比；充放电对称时为方波',
+    derivation:[
+      {text:'比较器输出 ±U_Z，正反馈阈值电压 ±F·U_Z（F=R_2/(R_1+R_2)）'},
+      {text:'电容从 −FU_Z 充电趋向 +U_Z：u_c(t)=U_Z−U_Z(1+F)e^{−t/(RC)}'},
+      {text:'令 u_c 达到 +FU_Z 求半周期',latex:'t_1=RC\\ln\\frac{1+F}{1-F}'},
+      {text:'对称充放电，总周期',latex:'T=2t_1=2RC\\ln\\frac{1+F}{1-F}'},
+    ] },
 
   /* ============== 第 8 章 功率放大电路 power-amp ★ ============== */
   { id:'pa-po-def', cat:'power-amp', title:'输出功率（定义）',
@@ -419,53 +627,107 @@ export const MODIAN_FORMULAS: Formula[] = [
   { id:'pa-ocl-pom', cat:'power-amp', title:'OCL 乙类互补功放最大输出功率',
     latex:'P_{om}=\\frac{V_{CC}^2}{2R_L}',
     symbols:['P_{om}','V_{CC}','R_L'],
-    note:'双电源(U_om≈V_CC)互补对称电路理想最大输出功率；V_CC 越大、R_L 越小则 P_om 越大' },
+    note:'双电源(U_om≈V_CC)互补对称电路理想最大输出功率；V_CC 越大、R_L 越小则 P_om 越大',
+    derivation:[
+      {text:'负载电压 u_o=U_{om}\\sin\\omega t，电流 i_o=(U_{om}/R_L)\\sin\\omega t'},
+      {text:'一周期平均功率',latex:'P_o=\\frac{1}{T}\\int_0^T u_o i_o\\,dt=\\frac{U_{om}^2}{R_L}\\cdot\\frac{1}{T}\\int_0^T\\sin^2\\omega t\\,dt'},
+      {text:'∫₀ᵀ sin²(ωt)dt=T/2，且 U_{om}≈V_{CC}',latex:'P_{om}=\\frac{V_{CC}^2}{2R_L}'},
+    ] },
 
   { id:'pa-ocl-pv', cat:'power-amp', title:'OCL 最大输出时直流电源功率',
     latex:'P_V=\\frac{2V_{CC}^2}{\\pi R_L}',
     symbols:['P_V','V_{CC}','R_L','\\pi'],
-    note:'两路电源提供的平均功率(输出最大时)；正负电源各承担一半' },
+    note:'两路电源提供的平均功率(输出最大时)；正负电源各承担一半',
+    derivation:[
+      {text:'每路电源提供半波电流，单路平均电流',latex:'I_{avg}=\\frac{1}{2\\pi}\\int_0^{\\pi}\\frac{V_{CC}}{R_L}\\sin\\theta\\,d\\theta=\\frac{V_{CC}}{\\pi R_L}'},
+      {text:'两路电源总功率 P_V=2·V_{CC}·I_{avg}'},
+      {text:'代入',latex:'P_V=\\frac{2V_{CC}^2}{\\pi R_L}'},
+    ] },
 
   { id:'pa-ocl-eta', cat:'power-amp', title:'OCL 乙类最大效率',
     latex:'\\eta_{max}=\\frac{P_{om}}{P_V}=\\frac{\\pi}{4}\\approx 78.5\\%',
     symbols:['\\eta','P_{om}','P_V','\\pi'],
-    note:'理想乙类互补功放最高效率 π/4≈78.5%，远高于甲类；实际受饱和压降影响约 60~70%' },
+    note:'理想乙类互补功放最高效率 π/4≈78.5%，远高于甲类；实际受饱和压降影响约 60~70%',
+    derivation:[
+      {text:'最大输出时 P_{om}=V_{CC}²/(2R_L)，P_V=2V_{CC}²/(πR_L)'},
+      {text:'效率 η=P_{om}/P_V',latex:'\\eta=\\frac{V_{CC}^2/(2R_L)}{2V_{CC}^2/(\\pi R_L)}=\\frac{\\pi}{4}\\approx 78.5\\%'},
+    ] },
 
   { id:'pa-ocl-ptmax', cat:'power-amp', title:'单管最大管耗',
     latex:'P_T=\\frac{V_{CC}^2}{\\pi^2 R_L}\\approx 0.2\\,P_{om}',
     symbols:['P_T','V_{CC}','R_L','\\pi','P_{om}'],
-    note:'每管最大耗散出现在 U_om=2V_CC/π 时(非最大输出时)，约为最大输出功率的 1/5；据此选散热器与功放管' },
+    note:'每管最大耗散出现在 U_om=2V_CC/π 时(非最大输出时)，约为最大输出功率的 1/5；据此选散热器与功放管',
+    derivation:[
+      {text:'单管管耗 P_T=（电源供能 − 负载所得）/2，积分整理得',latex:'P_T=\\frac{1}{R_L}\\!\\left(\\frac{V_{CC}U_{om}}{\\pi}-\\frac{U_{om}^2}{4}\\right)'},
+      {text:'对 U_{om} 求极值 dP_T/dU_{om}=0',latex:'\\frac{V_{CC}}{\\pi}-\\frac{U_{om}}{2}=0\\;\\Rightarrow\\;U_{om}=\\frac{2V_{CC}}{\\pi}'},
+      {text:'代回得最大管耗',latex:'P_{Tmax}=\\frac{V_{CC}^2}{\\pi^2 R_L}'},
+      {text:'与 P_{om}=V_{CC}²/(2R_L) 比较',latex:'\\frac{P_{Tmax}}{P_{om}}=\\frac{2}{\\pi^2}\\approx 0.2'},
+    ] },
 
   { id:'pa-otl-pom', cat:'power-amp', title:'OTL 单电源功放最大输出功率',
     latex:'P_{om}=\\frac{V_{CC}^2}{8R_L}',
     symbols:['P_{om}','V_{CC}','R_L'],
-    note:'单电源+输出电容(等效电源 V_CC/2)，最大输出功率为 OCL 的 1/4；输出端需接大耦合电容' },
+    note:'单电源+输出电容(等效电源 V_CC/2)，最大输出功率为 OCL 的 1/4；输出端需接大耦合电容',
+    derivation:[
+      {text:'OTL 单电源 + 大耦合电容，等效电源电压 V_{CC}/2'},
+      {text:'代入 OCL 最大输出功率公式（V_{CC}→V_{CC}/2）',latex:'P_{om}=\\frac{(V_{CC}/2)^2}{2R_L}'},
+      {text:'化简',latex:'P_{om}=\\frac{V_{CC}^2}{8R_L}'},
+    ] },
 
   { id:'pa-classa-eta', cat:'power-amp', title:'甲类放大最大效率（电阻负载）',
     latex:'\\eta_{max}=25\\%',
     symbols:['\\eta'],
-    note:'甲类功放全周期导通，Q 点设在交流负载线中点，电阻负载时最高效率仅 25%(管耗大)' },
+    note:'甲类功放全周期导通，Q 点设在交流负载线中点，电阻负载时最高效率仅 25%(管耗大)',
+    derivation:[
+      {text:'甲类电阻负载，Q 点在交流负载线中点：I_{CQ}=V_{CC}/(2R_L)'},
+      {text:'直流电源功率（与信号无关）',latex:'P_V=V_{CC}\\cdot I_{CQ}=\\frac{V_{CC}^2}{2R_L}'},
+      {text:'最大交流输出 P_{om}=½·(V_{CC}/2)·I_{CQ}=V_{CC}²/(8R_L)'},
+      {text:'最高效率',latex:'\\eta_{max}=\\frac{P_{om}}{P_V}=\\frac{1}{4}=25\\%'},
+    ] },
 
   { id:'pa-classa-eta-tr', cat:'power-amp', title:'甲类放大最大效率（变压器耦合）',
     latex:'\\eta_{max}=50\\%',
     symbols:['\\eta'],
-    note:'变压器耦合(理想)实现阻抗匹配、消除直流电阻损耗，甲类最高效率可达 50%' },
+    note:'变压器耦合(理想)实现阻抗匹配、消除直流电阻损耗，甲类最高效率可达 50%',
+    derivation:[
+      {text:'变压器耦合消除直流电阻压降，输出电压幅值可达 U_{om}=V_{CC}（全摆幅）'},
+      {text:'最大交流输出 P_{om}=½·V_{CC}·I_{CQ}'},
+      {text:'直流功率 P_V=V_{CC}·I_{CQ}'},
+      {text:'最高效率',latex:'\\eta_{max}=\\frac{P_{om}}{P_V}=\\frac{1}{2}=50\\%'},
+    ] },
 
   /* ============== 第 9 章 直流稳压电源 power-supply ============== */
   { id:'ps-half-rect', cat:'power-supply', title:'半波整流输出直流电压',
     latex:'U_{o(AV)}\\approx 0.45\\,U_2',
     symbols:['U_{o(AV)}','U_2'],
-    note:'U_2 为变压器次级电压有效值；半波整流只利用正(或负)半周，纹波大' },
+    note:'U_2 为变压器次级电压有效值；半波整流只利用正(或负)半周，纹波大',
+    derivation:[
+      {text:'半波整流输出为正弦半波 u_o=√2 U_2 sin(ωt)（仅正半周）'},
+      {text:'取一周期平均值',latex:'U_{o(AV)}=\\frac{1}{2\\pi}\\int_0^{\\pi}\\sqrt{2}\\,U_2\\sin\\theta\\,d\\theta'},
+      {text:'计算定积分',latex:'U_{o(AV)}=\\frac{\\sqrt{2}\\,U_2}{2\\pi}[-\\cos\\theta]_0^{\\pi}=\\frac{\\sqrt{2}\\,U_2}{\\pi}'},
+      {text:'数值',latex:'U_{o(AV)}\\approx 0.45\\,U_2'},
+    ] },
 
   { id:'ps-full-rect', cat:'power-supply', title:'桥式(全波)整流输出直流电压',
     latex:'U_{o(AV)}\\approx 0.9\\,U_2',
     symbols:['U_{o(AV)}','U_2'],
-    note:'桥式整流利用了整个周期，输出直流电压为半波的两倍；每只二极管承受反向峰值 √2·U_2' },
+    note:'桥式整流利用了整个周期，输出直流电压为半波的两倍；每只二极管承受反向峰值 √2·U_2',
+    derivation:[
+      {text:'全波整流输出为 |√2 U_2 sin(ωt)|，两半周都利用'},
+      {text:'取一周期平均值（全波周期为 π）',latex:'U_{o(AV)}=\\frac{1}{\\pi}\\int_0^{\\pi}\\sqrt{2}\\,U_2\\sin\\theta\\,d\\theta'},
+      {text:'计算定积分',latex:'U_{o(AV)}=\\frac{\\sqrt{2}\\,U_2}{\\pi}[-\\cos\\theta]_0^{\\pi}=\\frac{2\\sqrt{2}\\,U_2}{\\pi}'},
+      {text:'数值',latex:'U_{o(AV)}\\approx 0.9\\,U_2'},
+    ] },
 
   { id:'ps-cap-noload', cat:'power-supply', title:'电容滤波输出电压（空载）',
     latex:'U_o\\approx\\sqrt{2}\\,U_2\\approx 1.414\\,U_2',
     symbols:['U_o','U_2'],
-    note:'空载时电容充电至峰值且无放电通路，输出等于交流峰值 √2·U_2' },
+    note:'空载时电容充电至峰值且无放电通路，输出等于交流峰值 √2·U_2',
+    derivation:[
+      {text:'空载时电容在电压峰值时刻充电至变压器次级电压峰值'},
+      {text:'无放电通路（负载开路），输出保持峰值不变'},
+      {text:'输出电压',latex:'U_o=\\sqrt{2}\\,U_2\\approx 1.414\\,U_2'},
+    ] },
 
   { id:'ps-cap-load', cat:'power-supply', title:'电容滤波输出电压（带载估算）',
     latex:'U_o\\approx 1.2\\,U_2',
@@ -485,12 +747,23 @@ export const MODIAN_FORMULAS: Formula[] = [
   { id:'ps-series-reg', cat:'power-supply', title:'串联型稳压输出电压',
     latex:'U_o=\\frac{R_1+R_2}{R_2}\\,U_Z',
     symbols:['U_o','R_1','R_2','U_Z'],
-    note:'取样比决定输出：U_o=U_Z/取样比；调节 R_1/R_2(电位器)即可改变输出，输出恒大于 U_Z' },
+    note:'取样比决定输出：U_o=U_Z/取样比；调节 R_1/R_2(电位器)即可改变输出，输出恒大于 U_Z',
+    derivation:[
+      {text:'取样电路 R_1、R_2 对输出分压，反馈到比较放大器反相端'},
+      {text:'运放虚短 U_-=U_+=U_Z，取样电压',latex:'U_-=U_o\\cdot\\frac{R_2}{R_1+R_2}=U_Z'},
+      {text:'解出输出电压',latex:'U_o=\\frac{R_1+R_2}{R_2}\\,U_Z'},
+    ] },
 
   { id:'ps-three-terminal', cat:'power-supply', title:'可调三端稳压器输出（LM317）',
     latex:'U_o=U_{REF}\\left(1+\\frac{R_2}{R_1}\\right)',
     symbols:['U_o','U_{REF}','R_2','R_1'],
-    note:'LM317 基准 U_REF≈1.25 V 接于输出与调整端之间，调节 R_2 可得 1.25~37 V 连续可调输出' },
+    note:'LM317 基准 U_REF≈1.25 V 接于输出与调整端之间，调节 R_2 可得 1.25~37 V 连续可调输出',
+    derivation:[
+      {text:'LM317 内部基准 U_{REF}≈1.25 V 恒定接于输出端与调整端之间'},
+      {text:'R_1 上电流为 U_{REF}/R_1，调整端电流 I_{ADJ}≈0（可忽略）'},
+      {text:'R_2 上压降为 (U_{REF}/R_1)·R_2，输出电压为基准加 R_2 压降'},
+      {text:'整理',latex:'U_o=U_{REF}\\left(1+\\frac{R_2}{R_1}\\right)'},
+    ] },
 
 ];
 

@@ -37,7 +37,7 @@ export interface Chapter {
   /** 题型分布 */
   topics: TopicRef[];
   /** 重要度 1~3 星 */
-  importance: 1 | 2 | 3;
+  importance: 1 | 2 | 3 | 4 | 5;
 }
 
 /** 科目 */
@@ -60,6 +60,14 @@ export interface FormulaCategory {
   brief: string;
 }
 
+/** 公式推导单步 */
+export interface DerivationStep {
+  /** 该步的文字说明（中文，简明描述这步在做什么） */
+  text: string;
+  /** 该步的数学式 KaTeX 源码（inline 渲染，双反斜杠转义）。可省略（纯文字步骤） */
+  latex?: string;
+}
+
 /** 公式条目 */
 export interface Formula {
   /** 唯一 id */
@@ -74,6 +82,8 @@ export interface Formula {
   symbols: string[];
   /** 说明（可选） */
   note?: string;
+  /** 推导步骤（可选）：仅推导性公式有，2-5 步 */
+  derivation?: DerivationStep[];
 }
 
 /** 符号定义 */

@@ -6,6 +6,8 @@ Thumbs.db
 *~
 # 依赖（零构建，防御性）
 node_modules/
+# Python 虚拟环境（电路图生成脚本 scripts/gen_circuits.py 用）
+.venv/
 # 日志/临时
 *.log
 .tmp/

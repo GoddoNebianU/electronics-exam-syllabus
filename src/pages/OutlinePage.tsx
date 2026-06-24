@@ -23,7 +23,7 @@ function Stars({ n }: { n: number }) {
   return (
     <span className="chapter__stars">
       {'★'.repeat(n)}
-      <span className="dim">{'★'.repeat(3 - n)}</span>
+      <span className="dim">{'★'.repeat(5 - n)}</span>
     </span>
   );
 }

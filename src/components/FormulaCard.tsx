@@ -8,6 +8,7 @@ import { useMemo } from 'react';
 import type { Formula, SymbolDict } from '../data/types';
 import { markupSymbols } from '../lib/markupSymbols';
 import { renderDisplay } from '../lib/katex';
+import { DerivationSteps } from './DerivationSteps';
 import {
   useFavoriteStore,
   formulaFavKey,
@@ -61,6 +62,9 @@ export function FormulaCard({ formula, symbols, viewId }: FormulaCardProps) {
         dangerouslySetInnerHTML={{ __html: mathHtml }}
       />
       {formula.note && <p className="formula__note">{formula.note}</p>}
+      {formula.derivation && formula.derivation.length > 0 && (
+        <DerivationSteps steps={formula.derivation} symbols={symbols} />
+      )}
     </article>
   );
 }
