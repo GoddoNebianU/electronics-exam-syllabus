@@ -1,11 +1,13 @@
 /* ==========================================================================
- * Sidebar.tsx — 侧边栏（科目 Tab + 进度条 + 章节列表 + 移动端抽屉）
+ * Sidebar.tsx — 侧边栏（科目 Tab + 进度条 + 章节列表 + 收藏章节快捷列表 +
+ *                移动端抽屉）
  * 迁移自 legacy/js/sidebar.js。
  * activeSubjectId 来自 store（由路由同步设置）；点击 Tab 切换科目并跳首章。
+ * 统计入口在 Header（全局可见，含公式页），此处不重复。
  * ========================================================================== */
 import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { SYLLABUS, getSubject } from '../data/syllabus';
+import { Link, useNavigate } from 'react-router-dom';
+import { SYLLABUS, getSubject, getChapter } from '../data/syllabus';
 import { useSyllabusStore } from '../store/useSyllabusStore';
 import { useFavoriteStore } from '../store/useFavoriteStore';
 import { ChapterList } from './ChapterList';
@@ -17,11 +19,10 @@ export function Sidebar() {
   const setActiveSubject = useSyllabusStore((s) => s.setActiveSubject);
   const sidebarOpen = useSyllabusStore((s) => s.sidebarOpen);
   const closeSidebar = useSyllabusStore((s) => s.closeSidebar);
-  const favCount = useFavoriteStore((s) => Object.keys(s.items).length);
+  const favChapters = useFavoriteStore((s) => s.chapterList());
 
   const subject = getSubject(activeSubjectId);
 
-  // ESC 关闭抽屉
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
       if (e.key === 'Escape') closeSidebar();
@@ -34,7 +35,6 @@ export function Sidebar() {
     if (!SYLLABUS.some((s) => s.id === id)) return;
     setActiveSubject(id);
     const subj = getSubject(id);
-    // 切科目跳首章
     if (subj && subj.chapters.length) {
       navigate(`/${id}/${subj.chapters[0].id}`);
     }
@@ -80,15 +80,36 @@ export function Sidebar() {
           )}
         </nav>
 
-        {/* 收藏区预留：有收藏时才显示 */}
-        {favCount > 0 && (
+        {favChapters.length > 0 && (
           <div className="sidebar__favorites">
-            <div className="sidebar__fav-label">收藏 · {favCount}</div>
+            <div className="sidebar__fav-label">收藏章节 · {favChapters.length}</div>
+            <ul className="sidebar__fav-list">
+              {favChapters.map(({ subjectId, chapterId }) => {
+                const pair = getChapter(subjectId, chapterId);
+                if (!pair) return null;
+                const subjShort = getSubject(subjectId)?.short ?? subjectId;
+                return (
+                  <li key={`${subjectId}/${chapterId}`}>
+                    <Link
+                      to={`/${subjectId}/${chapterId}`}
+                      className="sidebar__fav-item"
+                      data-subject={subjectId}
+                      onClick={closeSidebar}
+                      title={`${subjShort} · ${pair.chapter.title}`}
+                    >
+                      <span className="sidebar__fav-subject">{subjShort}</span>
+                      <span className="sidebar__fav-title">
+                        {pair.chapter.title}
+                      </span>
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
           </div>
         )}
       </aside>
 
-      {/* 移动端遮罩 */}
       <div
         className={`sidebar__overlay ${sidebarOpen ? 'is-visible' : ''}`}
         onClick={closeSidebar}

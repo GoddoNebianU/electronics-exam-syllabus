@@ -110,6 +110,13 @@ export function MarkdownView({ chapter }: MarkdownViewProps) {
 
 /** marked 后处理：表格包一层 .table-wrap 以便横向滚动；外链新窗口打开 */
 function postProcess(root: HTMLElement): void {
+  // ContentBar 已统一显示章节标题/章号/题型徽标/重要度星标，
+  // md 正文开头的 h1（章名）和 blockquote（题型分布/重要度）与之重复且可能数据不一致，此处移除。
+  const firstH1 = root.querySelector('h1');
+  if (firstH1) firstH1.remove();
+  root.querySelectorAll('blockquote').forEach((bq) => {
+    if (/题型分布|重要度/.test(bq.textContent || '')) bq.remove();
+  });
   root.querySelectorAll('table').forEach((t) => {
     const parent = t.parentElement;
     if (parent && parent.classList.contains('table-wrap')) return;

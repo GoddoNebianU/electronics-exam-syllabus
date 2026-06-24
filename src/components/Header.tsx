@@ -4,12 +4,15 @@
  *   - 大纲页：显示汉堡按钮（移动端）+ 搜索框
  *   - 公式页：隐藏汉堡按钮与搜索框（避免误触发大纲抽屉遮罩盖住公式页）
  * 公式入口按钮始终显示，当前视图对应高亮。
+ * 统计按钮始终显示（大纲页与公式页均可查看复习统计）。
  * ========================================================================== */
+import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { FORMULA_VIEWS } from '../data/formula-registry';
 import { useSyllabusStore } from '../store/useSyllabusStore';
 import { SearchBox } from './SearchBox';
 import { ThemeToggle } from './ThemeToggle';
+import { StatsPanel } from './StatsPanel';
 
 /** 判断当前路径是否命中某公式视图（返回视图 id 或 null） */
 function matchFormulaView(pathname: string): string | null {
@@ -23,10 +26,10 @@ export function Header() {
   const openSidebar = useSyllabusStore((s) => s.openSidebar);
   const formulaViewId = matchFormulaView(location.pathname);
   const isFormula = formulaViewId !== null;
+  const [statsOpen, setStatsOpen] = useState(false);
 
   return (
     <header className="header">
-      {/* 汉堡按钮：仅大纲页 + 移动端显示（CSS 控制 display） */}
       {!isFormula && (
         <button
           type="button"
@@ -47,7 +50,6 @@ export function Header() {
       </div>
 
       <div className="header__tools">
-        {/* 公式入口按钮 */}
         {FORMULA_VIEWS.map((v) => (
           <Link
             key={v.id}
@@ -64,11 +66,22 @@ export function Header() {
           </Link>
         ))}
 
-        {/* 搜索框：仅大纲页 */}
         {!isFormula && <SearchBox />}
+
+        <button
+          type="button"
+          className="icon-btn"
+          title="复习统计"
+          aria-label="打开复习统计面板"
+          onClick={() => setStatsOpen(true)}
+        >
+          ▥
+        </button>
 
         <ThemeToggle />
       </div>
+
+      <StatsPanel open={statsOpen} onClose={() => setStatsOpen(false)} />
     </header>
   );
 }
