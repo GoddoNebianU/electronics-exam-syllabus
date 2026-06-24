@@ -102,6 +102,12 @@ export function createFormulaView(cfg) {
     const content = document.getElementById('content');
     if (content) content.hidden = true;
 
+    // 关闭移动端大纲抽屉及其遮罩，防止残留 overlay（全屏 blur）盖住公式页
+    const sidebar = document.querySelector('.sidebar');
+    if (sidebar) sidebar.classList.remove('is-open');
+    const sidebarOverlay = document.querySelector('.sidebar__overlay');
+    if (sidebarOverlay) sidebarOverlay.classList.remove('is-visible');
+
     const root = document.getElementById(rootId);
     mountFormulaPage({
       rootEl: root, categories, formulas, symbols,
@@ -126,6 +132,10 @@ export function createFormulaView(cfg) {
     if (content) content.hidden = false;
     const entryEl = document.getElementById(entryId);
     if (entryEl) entryEl.classList.remove('is-active');
+    const sidebar = document.querySelector('.sidebar');
+    if (sidebar) sidebar.classList.remove('is-open');
+    const sidebarOverlay = document.querySelector('.sidebar__overlay');
+    if (sidebarOverlay) sidebarOverlay.classList.remove('is-visible');
     popover.close();
     active = false;
   }
