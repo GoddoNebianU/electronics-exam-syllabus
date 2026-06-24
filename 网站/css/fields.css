@@ -1,0 +1,501 @@
+/* ==========================================================================
+   fields.css — 《电磁场与电磁波》公式手册页样式
+   风格：沿用全局素雅低饱和令牌；新增 data-subject="fields" 紫灰主题。
+   无渐变、小圆角（3-4px）、细边框。所有视觉属性引用全局变量。
+   ========================================================================== */
+
+/* ---- 局部变量 ---- */
+:root {
+  --fields-toolbar-h: 52px;
+  --fields-nav-w: 244px;
+}
+
+/* ==========================================================================
+   科目主题色 —— 电磁场（低饱和紫灰 / 与 --tag-judge 同调）
+   ========================================================================== */
+:root[data-subject="fields"] {
+  --accent:        #6b6f8a;   /* 哑光紫灰 */
+  --accent-2:      #7e83a0;
+  --accent-strong: #4a4e6a;   /* 深一档 */
+  --accent-soft:   rgba(107, 111, 138, 0.10);
+  --accent-line:   #4a4e6a;   /* 纯色填充，白字可读 */
+  --accent-glow:   var(--glow);
+  --accent-contrast:#ffffff;
+  --accent-text:   #6b6f8a;
+}
+
+:root[data-theme="dark"][data-subject="fields"] {
+  --accent:        #9298b3;   /* 暗色提亮 */
+  --accent-2:      #9298b3;
+  --accent-strong: #cbd0e5;
+  --accent-soft:   rgba(146, 152, 179, 0.12);
+  --accent-line:   #4a4e6a;   /* 保持深色 */
+  --accent-text:   #9298b3;
+}
+
+/* ==========================================================================
+   进入公式页：隐藏侧边栏 + 大纲主区，主区跨满全宽
+   ========================================================================== */
+.app--fields,
+.app--modian-formulas {
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "header"
+    "main";
+}
+.app--fields .sidebar,
+.app--modian-formulas .sidebar { display: none; }
+
+/* ==========================================================================
+   挂载根容器
+   ========================================================================== */
+.fields-root {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+.fields-root[hidden] { display: none; }
+
+/* ==========================================================================
+   工具条（sticky 于顶栏下方）：标题 + 返回 + 筛选
+   ========================================================================== */
+.fields-toolbar {
+  position: sticky;
+  top: var(--header-h);
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: 0 var(--space-7);
+  height: var(--fields-toolbar-h);
+  background: color-mix(in srgb, var(--surface) 90%, transparent);
+  backdrop-filter: blur(12px) saturate(140%);
+  -webkit-backdrop-filter: blur(12px) saturate(140%);
+  border-bottom: 1px solid var(--border);
+}
+.fields-toolbar__left {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  min-width: 0;
+}
+.fields-back {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-md);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--text-muted);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  white-space: nowrap;
+  transition: all var(--transition-fast);
+}
+.fields-back:hover {
+  color: var(--accent-strong);
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+.fields-toolbar__title { min-width: 0; }
+.fields-toolbar__name {
+  display: block;
+  font-size: var(--fs-md);
+  font-weight: 800;
+  letter-spacing: -0.3px;
+  line-height: 1.15;
+  color: var(--text);
+}
+.fields-toolbar__sub {
+  display: block;
+  font-size: var(--fs-xs);
+  color: var(--text-faint);
+  letter-spacing: 0.3px;
+  margin-top: 1px;
+}
+.fields-toolbar__right {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+/* 筛选框（复用搜索视觉语言，窄一些） */
+.fields-search {
+  position: relative;
+  width: 260px;
+  max-width: 42vw;
+}
+.fields-search__icon {
+  position: absolute;
+  left: var(--space-3);
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-faint);
+  pointer-events: none;
+  font-size: var(--fs-md);
+}
+.fields-search__input {
+  width: 100%;
+  height: 34px;
+  padding: 0 var(--space-3) 0 var(--space-8);
+  border-radius: var(--radius-md);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-size: var(--fs-sm);
+  transition: all var(--transition-fast);
+}
+.fields-search__input::placeholder { color: var(--text-faint); }
+.fields-search__input:focus {
+  outline: none;
+  background: var(--surface);
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+/* ==========================================================================
+   主体两栏：左分类导航 + 右公式区
+   ========================================================================== */
+.fields-body {
+  flex: 1;
+  display: grid;
+  grid-template-columns: var(--fields-nav-w) minmax(0, 1fr);
+  align-items: start;
+}
+
+/* ---- 左：分类导航 ---- */
+.fields-nav {
+  position: sticky;
+  top: calc(var(--header-h) + var(--fields-toolbar-h));
+  align-self: start;
+  max-height: calc(100vh - var(--header-h) - var(--fields-toolbar-h));
+  overflow-y: auto;
+  padding: var(--space-5) var(--space-3) var(--space-7);
+  border-right: 1px solid var(--border);
+}
+.fields-nav__label {
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  padding: 0 var(--space-3) var(--space-2);
+}
+.fields-nav__item {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-areas:
+    "name count"
+    "brief count";
+  align-items: center;
+  column-gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  margin-bottom: var(--space-1);
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+.fields-nav__item:hover {
+  background: var(--surface-hover);
+}
+.fields-nav__item.is-active {
+  background: var(--accent-soft);
+  border-color: color-mix(in srgb, var(--accent) 35%, transparent);
+}
+.fields-nav__name {
+  grid-area: name;
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.25;
+}
+.fields-nav__item.is-active .fields-nav__name { color: var(--accent-strong); }
+.fields-nav__brief {
+  grid-area: brief;
+  font-size: var(--fs-xs);
+  color: var(--text-faint);
+  line-height: 1.4;
+  margin-top: 1px;
+}
+.fields-nav__count {
+  grid-area: count;
+  align-self: center;
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  color: var(--text-muted);
+  background: var(--surface-2);
+  border-radius: var(--radius-sm);
+  padding: 1px 7px;
+  min-width: 24px;
+  text-align: center;
+}
+.fields-nav__item.is-active .fields-nav__count {
+  background: var(--accent-line);
+  color: var(--accent-contrast);
+}
+
+/* ---- 右：公式主区 ---- */
+.fields-main {
+  min-width: 0;
+  padding: var(--space-6) var(--space-7) var(--space-9);
+  max-width: 920px;
+}
+
+/* 分类区块 */
+.fields-section {
+  scroll-margin-top: calc(var(--header-h) + var(--fields-toolbar-h) + var(--space-4));
+  margin-bottom: var(--space-9);
+}
+.fields-section__head {
+  padding-bottom: var(--space-3);
+  margin-bottom: var(--space-5);
+  border-bottom: 1px dashed var(--border);
+}
+.fields-section__title {
+  font-size: var(--fs-lg);
+  font-weight: 800;
+  letter-spacing: -0.3px;
+  color: var(--text);
+}
+.fields-section__brief {
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+  margin-top: var(--space-1);
+}
+
+/* 公式卡片 */
+.formula {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4) var(--space-5) var(--space-4);
+  margin-bottom: var(--space-3);
+  transition:
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast),
+    transform var(--transition-fast);
+}
+.formula:hover {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow);
+  transform: translateY(-1px);
+}
+.formula__title {
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  color: var(--accent-strong);
+  margin-bottom: var(--space-3);
+  letter-spacing: 0.1px;
+}
+.formula__math {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: var(--space-3) var(--space-2);
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+.formula__math .katex-display {
+  margin: 0;
+}
+/* KaTeX 在窄屏下可能溢出，允许横向滚动且不显示横向滚动条突兀 */
+.formula__math::-webkit-scrollbar { height: 6px; }
+
+.formula__note {
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+  line-height: var(--lh-normal);
+  margin-top: var(--space-3);
+  padding-top: var(--space-2);
+  border-top: 1px solid var(--border);
+}
+
+/* ==========================================================================
+   可点击符号：点状下划线提示 + hover 高亮
+   KaTeX 渲染 \class{sym sym-KID}{...} 生成 <span class="sym sym-KID">
+   ========================================================================== */
+.formula__math .sym {
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  padding: 0 2px;
+  margin: 0 -2px;
+  border-bottom: 1px dotted color-mix(in srgb, var(--accent) 55%, transparent);
+  transition: background var(--transition-fast), border-color var(--transition-fast);
+}
+.formula__math .sym:hover {
+  background: var(--accent-soft);
+  border-bottom-color: var(--accent);
+}
+
+/* ==========================================================================
+   符号定义弹窗（popover）
+   ========================================================================== */
+.fields-popover-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-overlay);
+  background: rgba(15, 23, 42, 0.18);
+  backdrop-filter: blur(1px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-fast);
+}
+.fields-popover-backdrop.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.fields-popover {
+  position: fixed;
+  z-index: calc(var(--z-overlay) + 1);
+  top: 0;
+  left: 0;
+  width: 300px;
+  max-width: calc(100vw - 24px);
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  padding: var(--space-4) var(--space-5);
+  opacity: 0;
+  transform: translateY(4px) scale(0.98);
+  pointer-events: none;
+  transition: opacity var(--transition-fast), transform var(--transition-fast);
+}
+.fields-popover.is-open {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+.fields-popover__close {
+  position: absolute;
+  top: var(--space-2);
+  right: var(--space-2);
+  width: 26px;
+  height: 26px;
+  border-radius: var(--radius-sm);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-faint);
+  font-size: var(--fs-sm);
+  transition: all var(--transition-fast);
+}
+.fields-popover__close:hover {
+  background: var(--surface-hover);
+  color: var(--text);
+}
+.fields-popover__sym {
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  padding: var(--space-1) var(--space-3);
+  margin-bottom: var(--space-3);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+}
+.fields-popover__name {
+  font-size: var(--fs-base);
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: var(--space-1);
+}
+.fields-popover__desc {
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+  line-height: var(--lh-normal);
+}
+.fields-popover__unit {
+  margin-top: var(--space-3);
+  padding-top: var(--space-2);
+  border-top: 1px dashed var(--border);
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  color: var(--accent);
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+/* ==========================================================================
+   顶栏入口按钮
+   ========================================================================== */
+.header__fields-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  height: 34px;
+  padding: 0 var(--space-3);
+  border-radius: var(--radius-md);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--text-muted);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  white-space: nowrap;
+  transition: all var(--transition-fast);
+}
+.header__fields-btn:hover {
+  color: var(--accent-strong);
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+.header__fields-btn.is-active {
+  color: var(--accent-contrast);
+  background: var(--accent-line);
+  border-color: transparent;
+  box-shadow: 0 3px 10px var(--accent-glow);
+}
+.header__fields-icon {
+  font-size: var(--fs-md);
+  line-height: 1;
+}
+
+/* ==========================================================================
+   响应式
+   ========================================================================== */
+@media (max-width: 1100px) {
+  .fields-main { padding: var(--space-5) var(--space-5) var(--space-9); }
+  .fields-toolbar { padding: 0 var(--space-5); }
+}
+
+@media (max-width: 900px) {
+  .fields-body {
+    grid-template-columns: 1fr;
+  }
+  .fields-nav {
+    position: static;
+    max-height: none;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+    padding: var(--space-4);
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+  .fields-nav__label { width: 100%; padding: 0; margin-bottom: var(--space-1); }
+  .fields-nav__item {
+    grid-template-columns: auto auto;
+    grid-template-areas: "name count";
+    align-items: center;
+    column-gap: var(--space-2);
+    flex: 0 0 auto;
+  }
+  .fields-nav__brief { display: none; }
+  .fields-search { width: 200px; }
+}
+
+@media (max-width: 560px) {
+  .header__fields-text { display: none; }
+  .header__fields-btn { padding: 0 var(--space-2); width: 34px; justify-content: center; }
+  .fields-toolbar { padding: 0 var(--space-3); gap: var(--space-2); }
+  .fields-toolbar__sub { display: none; }
+  .fields-search { width: 150px; max-width: 40vw; }
+  .fields-main { padding: var(--space-4) var(--space-3) var(--space-9); }
+  .formula { padding: var(--space-3); }
+}

@@ -1,0 +1,279 @@
+/* ==========================================================================
+   markdown.css — marked 渲染出的 Markdown 内容样式
+   容器：.markdown
+   ========================================================================== */
+
+.markdown {
+  font-size: var(--fs-base);
+  line-height: var(--lh-loose);
+  color: var(--text);
+  animation: fadeUp 320ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ---- 标题层级 ---- */
+.markdown > h1 {
+  font-size: var(--fs-xl);
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  padding-bottom: var(--space-4);
+  margin-bottom: var(--space-6);
+  border-bottom: 2px solid var(--border);
+  position: relative;
+}
+.markdown > h1::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 64px;
+  height: 2px;
+  background: var(--accent-line);
+  border-radius: var(--radius-pill);
+}
+
+.markdown h2 {
+  font-size: var(--fs-lg);
+  font-weight: 700;
+  margin: var(--space-8) 0 var(--space-4);
+  padding-left: var(--space-4);
+  position: relative;
+  letter-spacing: -0.2px;
+}
+.markdown h2::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 6px;
+  bottom: 6px;
+  width: 4px;
+  border-radius: var(--radius-pill);
+  background: var(--accent-line);
+}
+
+.markdown h3 {
+  font-size: var(--fs-md);
+  font-weight: 700;
+  margin: var(--space-7) 0 var(--space-3);
+  color: var(--accent-strong);
+}
+
+.markdown h4 {
+  font-size: var(--fs-base);
+  font-weight: 700;
+  margin: var(--space-5) 0 var(--space-2);
+  color: var(--text);
+}
+
+/* ---- 段落 ---- */
+.markdown p {
+  margin: var(--space-3) 0;
+}
+.markdown > p:first-of-type { margin-top: 0; }
+
+/* ---- 行内强调 ---- */
+.markdown strong {
+  font-weight: 700;
+  color: var(--text);
+}
+.markdown em {
+  font-style: italic;
+  color: var(--accent-strong);
+}
+
+/* ---- 行内代码 ---- */
+.markdown code {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+  padding: 2px 6px;
+  border-radius: var(--radius-sm);
+  background: var(--code-bg);
+  color: var(--accent-text);
+  border: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+/* ---- 代码块 ---- */
+.markdown pre {
+  margin: var(--space-5) 0;
+  padding: var(--space-5);
+  border-radius: var(--radius-md);
+  background: var(--code-bg);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  overflow-x: auto;
+  position: relative;
+}
+.markdown pre::before {
+  content: "CODE";
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: var(--text-faint);
+  padding: 3px var(--space-3);
+  border-left: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  border-radius: 0 var(--radius-md) 0 var(--radius-sm);
+  background: var(--surface-2);
+}
+.markdown pre code {
+  background: none;
+  border: none;
+  color: var(--code-text);
+  padding: 0;
+  font-size: var(--fs-sm);
+  line-height: 1.7;
+  white-space: pre;
+  display: block;
+}
+
+/* ---- 引用块（题型分布 / 重要度）---- */
+.markdown blockquote {
+  margin: var(--space-5) 0;
+  padding: var(--space-4) var(--space-5);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  border-left: 4px solid var(--accent);
+  background: var(--accent-soft);
+  color: var(--text);
+  position: relative;
+}
+.markdown blockquote p { margin: var(--space-1) 0; }
+.markdown blockquote strong { color: var(--accent-strong); }
+/* 多个引用段连排：第二个起收紧 */
+.markdown blockquote + blockquote { margin-top: calc(var(--space-5) * -1 + var(--space-2)); }
+
+/* ---- 列表 ---- */
+.markdown ul,
+.markdown ol {
+  margin: var(--space-3) 0;
+  padding-left: var(--space-6);
+}
+.markdown li {
+  margin: var(--space-2) 0;
+  line-height: var(--lh-loose);
+}
+.markdown ul > li { list-style: none; position: relative; }
+.markdown ul > li::before {
+  content: "";
+  position: absolute;
+  left: calc(var(--space-6) * -1 + 14px);
+  top: 0.7em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+.markdown ol { counter-reset: ol-item; }
+.markdown ol > li {
+  list-style: none;
+  counter-increment: ol-item;
+  position: relative;
+}
+.markdown ol > li::before {
+  content: counter(ol-item);
+  position: absolute;
+  left: calc(var(--space-6) * -1 + 6px);
+  top: 3px;
+  width: 20px;
+  height: 20px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--accent-contrast);
+  background: var(--accent-line);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+}
+
+/* 嵌套列表收紧 */
+.markdown ul ul,
+.markdown ol ol,
+.markdown ul ol,
+.markdown ol ul { margin: var(--space-1) 0; }
+
+/* ---- 表格 ---- */
+.markdown .table-wrap {
+  margin: var(--space-5) 0;
+  overflow-x: auto;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+}
+.markdown table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--fs-sm);
+}
+.markdown thead {
+  background: var(--accent-line);
+}
+.markdown thead th {
+  padding: var(--space-3) var(--space-4);
+  text-align: left;
+  font-weight: 700;
+  color: var(--accent-contrast);
+  white-space: nowrap;
+  letter-spacing: 0.3px;
+}
+.markdown tbody tr {
+  border-top: 1px solid var(--border);
+  transition: background var(--transition-fast);
+}
+.markdown tbody tr:nth-child(even) {
+  background: var(--surface-2);
+}
+.markdown tbody tr:hover {
+  background: var(--accent-soft);
+}
+.markdown tbody td {
+  padding: var(--space-3) var(--space-4);
+  vertical-align: top;
+}
+
+/* ---- 分隔线 ---- */
+.markdown hr {
+  margin: var(--space-7) 0;
+  border: none;
+  height: 1px;
+  background: var(--border-strong);
+}
+
+/* ---- 图片 ---- */
+.markdown img {
+  border-radius: var(--radius-md);
+  margin: var(--space-4) auto;
+  box-shadow: var(--shadow);
+}
+
+/* ---- 链接 ---- */
+.markdown a {
+  color: var(--accent-text);
+  text-decoration: underline;
+  text-decoration-color: var(--accent-soft);
+  text-underline-offset: 3px;
+  text-decoration-thickness: 2px;
+  transition: text-decoration-color var(--transition-fast);
+}
+.markdown a:hover { text-decoration-color: var(--accent); }
+
+/* ---- 键盘按键样式（如有 kbd）---- */
+.markdown kbd {
+  font-family: var(--font-mono);
+  font-size: 0.8em;
+  padding: 2px 6px;
+  border-radius: var(--radius-sm);
+  background: var(--kbd-bg);
+  border: 1px solid var(--border-strong);
+  border-bottom-width: 2px;
+  box-shadow: 0 1px 0 var(--border-strong);
+}

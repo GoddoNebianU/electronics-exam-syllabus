@@ -1,0 +1,11 @@
+# OS / 编辑器
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+# 依赖（零构建，防御性）
+node_modules/
+# 日志/临时
+*.log
+.tmp/

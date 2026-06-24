@@ -1,0 +1,185 @@
+/* ==========================================================================
+   variables.css — 设计令牌（Design Tokens）
+   风格：素雅 / 低饱和 / 中性。亮暗双模式 + 科目主题色（数电灰蓝 / 模电暖灰）。
+   所有视觉属性一律引用此处变量，禁止硬编码。
+   ========================================================================== */
+
+:root {
+  /* ---- 字体族 ---- */
+  --font-sans: system-ui, "PingFang SC", "Microsoft YaHei", "Hiragino Sans GB", sans-serif;
+  --font-mono: "SF Mono", "Cascadia Code", "JetBrains Mono", "Fira Code", Consolas, "Liberation Mono", monospace;
+
+  /* ---- 间距（4px 基准网格）---- */
+  --space-1: 0.25rem;   /*  4px */
+  --space-2: 0.5rem;    /*  8px */
+  --space-3: 0.75rem;   /* 12px */
+  --space-4: 1rem;      /* 16px */
+  --space-5: 1.25rem;   /* 20px */
+  --space-6: 1.5rem;    /* 24px */
+  --space-7: 2rem;      /* 32px */
+  --space-8: 2.5rem;    /* 40px */
+  --space-9: 3rem;      /* 48px */
+
+  /* ---- 圆角（全部小圆角 / 接近直角，无胶囊形）---- */
+  --radius-sm:   3px;   /* 小元素：徽标、内联代码、kbd */
+  --radius-md:   4px;   /* 按钮、输入框、章节项、代码块 */
+  --radius-lg:   4px;   /* 卡片、面板、搜索结果、欢迎卡片 */
+  --radius-pill: 3px;   /* 原 999px 胶囊统一降为小圆角 */
+
+  /* ---- 字号阶（Type Scale）---- */
+  --fs-xs: 0.75rem;     /* 12px */
+  --fs-sm: 0.875rem;    /* 14px */
+  --fs-base: 1rem;      /* 16px */
+  --fs-md: 1.125rem;    /* 18px */
+  --fs-lg: 1.375rem;    /* 22px */
+  --fs-xl: 1.75rem;     /* 28px */
+  --fs-2xl: 2.25rem;    /* 36px */
+
+  /* ---- 行高 ---- */
+  --lh-tight: 1.25;
+  --lh-normal: 1.55;
+  --lh-loose: 1.8;
+
+  /* ---- 层级 ---- */
+  --z-sidebar: 30;
+  --z-header: 40;
+  --z-overlay: 50;
+  --z-search: 60;
+
+  /* ---- 过渡 ---- */
+  --transition-fast: 120ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* ---- 尺寸 ---- */
+  --sidebar-w: 290px;
+  --header-h: 60px;
+  --content-max: 880px;
+}
+
+/* ==========================================================================
+   亮色主题（默认）—— 暖白浅灰底 + 深灰文字
+   ========================================================================== */
+:root,
+:root[data-theme="light"] {
+  --bg:           #fafaf9;
+  --bg-grid:      #ededeb;
+  --surface:      #ffffff;
+  --surface-2:    #f5f5f4;
+  --surface-hover:#efeeec;
+  --text:         #1f2937;
+  --text-muted:   #6b7280;
+  --text-faint:   #9ca3af;
+  --border:       #e5e7eb;
+  --border-strong:#d6d8db;
+  --shadow-sm:    0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow:       0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-lg:    0 6px 18px rgba(0, 0, 0, 0.08);
+  --code-bg:      #f5f5f4;
+  --code-text:    #1f2937;
+  --kbd-bg:       #ffffff;
+  --selection:    rgba(75, 85, 99, 0.16);
+  --glow:         rgba(0, 0, 0, 0.08);
+}
+
+/* ==========================================================================
+   暗色主题 —— 纯中性深灰（无蓝紫调）+ 浅灰文字
+   ========================================================================== */
+:root[data-theme="dark"] {
+  --bg:           #1c1c1e;
+  --bg-grid:      #262628;
+  --surface:      #242426;
+  --surface-2:    #2e2e30;
+  --surface-hover:#363638;
+  --text:         #e5e5e5;
+  --text-muted:   #9a9a9c;
+  --text-faint:   #6b6b6e;
+  --border:       #333335;
+  --border-strong:#444446;
+  --shadow-sm:    0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow:       0 1px 3px rgba(0, 0, 0, 0.5);
+  --shadow-lg:    0 6px 18px rgba(0, 0, 0, 0.55);
+  --code-bg:      #18181a;
+  --code-text:    #d4d4d4;
+  --kbd-bg:       #2e2e30;
+  --selection:    rgba(220, 220, 220, 0.18);
+  --glow:         rgba(0, 0, 0, 0.4);
+}
+
+/* ==========================================================================
+   科目主题色 —— 数电（低饱和灰蓝 / slate）
+   accent       : 图标/边框/链接等文字态
+   accent-strong: 标题/激活文字（深一档）
+   accent-line  : 填充态（Tab/Logo/进度条/表头），始终深色以保证白字对比
+   ========================================================================== */
+:root[data-subject="shudian"] {
+  --accent:         #475569;   /* slate-600 灰蓝 */
+  --accent-2:       #64748b;   /* slate-500 */
+  --accent-strong:  #334155;   /* slate-700 */
+  --accent-soft:    rgba(71, 85, 105, 0.10);
+  --accent-line:    #334155;   /* 纯色填充，原渐变 */
+  --accent-glow:    var(--glow);
+  --accent-contrast:#ffffff;
+  --accent-text:    #475569;
+}
+
+:root[data-theme="dark"][data-subject="shudian"] {
+  --accent:         #94a3b8;   /* slate-400，暗色下提亮便于辨识 */
+  --accent-2:       #94a3b8;
+  --accent-strong:  #cbd5e1;   /* slate-300，暗色文字态 */
+  --accent-soft:    rgba(148, 163, 184, 0.12);
+  --accent-line:    #475569;   /* 保持深色，白字可读 */
+  --accent-text:    #94a3b8;
+}
+
+/* ==========================================================================
+   科目主题色 —— 模电（低饱和暖灰 / stone）
+   与数电同明度区间，冷暖互补、互相协调。
+   ========================================================================== */
+:root[data-subject="modian"] {
+  --accent:         #78716c;   /* stone-500 暖灰 */
+  --accent-2:       #8a827b;
+  --accent-strong:  #57534e;   /* stone-600 */
+  --accent-soft:    rgba(120, 113, 108, 0.10);
+  --accent-line:    #57534e;   /* 纯色填充，原渐变 */
+  --accent-glow:    var(--glow);
+  --accent-contrast:#ffffff;
+  --accent-text:    #78716c;
+}
+
+:root[data-theme="dark"][data-subject="modian"] {
+  --accent:         #a8a29e;   /* stone-400 */
+  --accent-2:       #a8a29e;
+  --accent-strong:  #d6d3d1;   /* stone-300，暗色文字态 */
+  --accent-soft:    rgba(168, 162, 158, 0.12);
+  --accent-line:    #57534e;   /* 保持深色，白字可读 */
+  --accent-text:    #a8a29e;
+}
+
+/* ==========================================================================
+   题型徽标语义色 —— 莫兰迪 / 哑光色系（全部降饱和，不鲜艳）
+   ========================================================================== */
+:root {
+  --tag-judge:  #6b6f8a;   /* 哑光紫灰  判断 */
+  --tag-fill:   #5b8278;   /* 哑光青绿  填空 */
+  --tag-short:  #b08958;   /* 哑光琥珀  简答 */
+  --tag-comp:   #a7697f;   /* 哑光玫红  综合 */
+  --tag-calc:   #7568a0;   /* 哑光靛    计算 */
+  --tag-design: #5c7a8c;   /* 哑光青蓝  设计 */
+}
+
+:root[data-theme="dark"] {
+  --tag-judge:  #9298b3;
+  --tag-fill:   #84a89c;
+  --tag-short:  #c9a673;
+  --tag-comp:   #b88a9e;
+  --tag-calc:   #9a8db8;
+  --tag-design: #7e9aab;
+}
+
+/* 状态色（降饱和）*/
+:root {
+  --success: #5b8266;
+  --warning: #b08968;
+  --danger:  #a5565e;
+  --info:    #5b7393;
+}
