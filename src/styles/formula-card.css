@@ -1,0 +1,70 @@
+/* 公式卡片 */
+.formula {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4) var(--space-5);
+  margin-bottom: var(--space-3);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast), transform var(--transition-fast);
+}
+.formula:hover {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow);
+  transform: translateY(-1px);
+}
+.formula__title {
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  color: var(--accent-strong);
+  margin-bottom: var(--space-3);
+  letter-spacing: 0.1px;
+}
+.formula-math {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: var(--space-3) var(--space-2);
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+.formula-math .katex-display { margin: 0; }
+.formula-math::-webkit-scrollbar { height: 6px; }
+.formula__note {
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+  line-height: var(--lh-normal);
+  margin-top: var(--space-3);
+  padding-top: var(--space-2);
+  border-top: 1px solid var(--border);
+}
+
+/* 公式卡片收藏星标（右上角） */
+.formula__fav {
+  position: absolute;
+  top: var(--space-2);
+  right: var(--space-2);
+  width: 28px; height: 28px;
+  border-radius: var(--radius-sm);
+  display: inline-flex;
+  align-items: center; justify-content: center;
+  color: var(--text-faint);
+  opacity: 0.5;
+  transition: color var(--transition-fast),
+              background var(--transition-fast),
+              transform var(--transition-fast),
+              opacity var(--transition-fast);
+  z-index: 1;
+}
+.formula__fav:hover,
+.formula__fav:focus-visible {
+  color: var(--accent);
+  background: var(--accent-soft);
+  opacity: 1;
+  transform: scale(1.12);
+}
+.formula__fav[data-fav='true'] {
+  color: #b08958;
+  opacity: 1;
+}
+.formula__fav-path { transition: d var(--transition); }
+.formula { position: relative; }

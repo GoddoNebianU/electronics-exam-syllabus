@@ -3,104 +3,16 @@
  * 展示：总体完成率（环形 SVG）/ 各科目完成率（横向条形 SVG）/
  *       公式收藏数 / 收藏章节数 / 最近复习记录（时间倒序）。
  * 纯 SVG/CSS 绘图，不引图表库。素雅配色，无渐变。
+ * 图表子组件：StatsDonut.tsx / StatsBar.tsx。
  * 受控组件：open + onClose。
  * ========================================================================== */
 import { useEffect } from 'react';
-import {
-  useProgressStore,
-  type SubjectStat,
-} from '../store/useProgressStore';
+import { useProgressStore } from '../store/useProgressStore';
 import { useFavoriteStore } from '../store/useFavoriteStore';
 import { SYLLABUS, getChapter } from '../data/syllabus';
 import { FORMULA_VIEWS } from '../data/formula-registry';
-
-/** 总体环形进度（SVG donut） */
-function Donut({
-  value,
-  total,
-  label,
-}: {
-  value: number;
-  total: number;
-  label: string;
-}) {
-  const r = 42;
-  const c = 2 * Math.PI * r;
-  const pct = total > 0 ? Math.min(value / total, 1) : 0;
-  const dash = c * pct;
-  return (
-    <div className="stats__donut">
-      <svg viewBox="0 0 100 100" width="108" height="108">
-        <circle
-          cx="50"
-          cy="50"
-          r={r}
-          fill="none"
-          stroke="var(--border)"
-          strokeWidth="9"
-        />
-        <circle
-          cx="50"
-          cy="50"
-          r={r}
-          fill="none"
-          stroke="var(--accent-line)"
-          strokeWidth="9"
-          strokeLinecap="round"
-          strokeDasharray={`${dash} ${c - dash}`}
-          transform="rotate(-90 50 50)"
-          style={{ transition: 'stroke-dasharray 500ms cubic-bezier(0.4,0,0.2,1)' }}
-        />
-        <text
-          x="50"
-          y="48"
-          textAnchor="middle"
-          dominantBaseline="central"
-          className="stats__donut-pct"
-          fill="var(--text)"
-        >
-          {Math.round(pct * 100)}%
-        </text>
-        <text
-          x="50"
-          y="64"
-          textAnchor="middle"
-          dominantBaseline="central"
-          className="stats__donut-sub"
-          fill="var(--text-faint)"
-        >
-          {value}/{total}
-        </text>
-      </svg>
-      <div className="stats__donut-label">{label}</div>
-    </div>
-  );
-}
-
-/** 单科目横向条形 */
-function SubjectBar({ stat }: { stat: SubjectStat }) {
-  const pct = stat.total > 0 ? Math.round((stat.reviewed / stat.total) * 100) : 0;
-  return (
-    <div className="stats__bar-row">
-      <div className="stats__bar-head">
-        <span className="stats__bar-name">{stat.name}</span>
-        <span className="stats__bar-count">
-          <em>{stat.reviewed}</em>/{stat.total} · {pct}%
-        </span>
-      </div>
-      <div className="stats__bar-track">
-        <div
-          className="stats__bar-fill"
-          data-subject={stat.subjectId}
-          style={{
-            width: `${pct}%`,
-            transition: 'width 500ms cubic-bezier(0.4,0,0.2,1)',
-          }}
-        />
-      </div>
-    </div>
-  );
-}
+import { StatsDonut } from './StatsDonut';
+import { StatsBar } from './StatsBar';
 
 function formatTime(at: number): string {
   const d = new Date(at);
@@ -176,14 +88,14 @@ export function StatsPanel({ open, onClose }: StatsPanelProps) {
 
         <div className="stats-drawer__body">
           <section className="stats__section">
-            <Donut value={totalReviewed} total={totalChapters} label="总体复习进度" />
+            <StatsDonut value={totalReviewed} total={totalChapters} label="总体复习进度" />
           </section>
 
           <section className="stats__section">
             <h3 className="stats__section-title">各科目完成率</h3>
             <div className="stats__bars">
               {perSubject.map((s) => (
-                <SubjectBar key={s.subjectId} stat={s} />
+                <StatsBar key={s.subjectId} stat={s} />
               ))}
             </div>
           </section>

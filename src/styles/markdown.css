@@ -1,0 +1,141 @@
+/* ==========================================================================
+   Markdown 正文样式（marked 渲染产物，类名 .md-body）—— 迁移自 markdown.css
+   ========================================================================== */
+@layer components {
+  .md-body {
+    font-size: var(--fs-base);
+    line-height: var(--lh-loose);
+    color: var(--text);
+    word-wrap: break-word;
+  }
+  .md-body > :first-child { margin-top: 0; }
+  .md-body > :last-child { margin-bottom: 0; }
+  .md-body h1,
+  .md-body h2,
+  .md-body h3,
+  .md-body h4,
+  .md-body h5,
+  .md-body h6 {
+    font-weight: 800;
+    letter-spacing: -0.3px;
+    line-height: var(--lh-tight);
+    color: var(--text);
+    margin: 1.6em 0 0.6em;
+  }
+  .md-body h1 { font-size: var(--fs-xl); margin-top: 0; }
+  .md-body h2 {
+    font-size: var(--fs-lg);
+    padding-bottom: 0.3em;
+    border-bottom: 1px solid var(--border);
+  }
+  .md-body h3 { font-size: var(--fs-md); }
+  .md-body h4 { font-size: var(--fs-base); color: var(--accent-strong); }
+  .md-body h5, .md-body h6 { font-size: var(--fs-sm); color: var(--text-muted); }
+
+  .md-body p { margin: 0.75em 0; }
+  .md-body a {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+    transition: border-color var(--transition-fast), color var(--transition-fast);
+  }
+  .md-body a:hover { border-bottom-color: var(--accent); }
+
+  .md-body strong { font-weight: 700; color: var(--text); }
+  .md-body em { font-style: italic; }
+
+  .md-body ul, .md-body ol { margin: 0.75em 0; padding-left: 1.5em; }
+  .md-body li { margin: 0.3em 0; }
+  .md-body li > p { margin: 0.3em 0; }
+  .md-body ul li::marker { color: var(--accent); }
+  .md-body ol li::marker { color: var(--text-muted); font-variant-numeric: tabular-nums; }
+
+  .md-body blockquote {
+    margin: 1em 0;
+    padding: 0.5em 1em;
+    border-left: 3px solid var(--accent);
+    background: var(--accent-soft);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    color: var(--text-muted);
+  }
+  .md-body blockquote > :first-child { margin-top: 0; }
+  .md-body blockquote > :last-child { margin-bottom: 0; }
+
+  .md-body code {
+    font-family: var(--font-mono);
+    font-size: 0.875em;
+    background: var(--code-bg);
+    color: var(--code-text);
+    padding: 0.15em 0.4em;
+    border-radius: var(--radius-sm);
+  }
+  .md-body pre {
+    background: var(--code-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: var(--space-4);
+    overflow-x: auto;
+    margin: 1em 0;
+    font-size: var(--fs-sm);
+    line-height: var(--lh-normal);
+  }
+  .md-body pre code {
+    background: none;
+    padding: 0;
+    border-radius: 0;
+    font-size: inherit;
+  }
+
+  .md-body .table-wrap {
+    overflow-x: auto;
+    margin: 1em 0;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+  }
+  .md-body table {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: var(--fs-sm);
+  }
+  .md-body th, .md-body td {
+    padding: var(--space-2) var(--space-3);
+    border-bottom: 1px solid var(--border);
+    text-align: left;
+    vertical-align: top;
+  }
+  .md-body thead th {
+    background: var(--surface-2);
+    font-weight: 700;
+    color: var(--text);
+    border-bottom: 2px solid var(--border-strong);
+  }
+  .md-body tbody tr:last-child td { border-bottom: none; }
+  .md-body tbody tr:nth-child(even) { background: var(--surface-2); }
+
+  .md-body hr {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 1.5em 0;
+  }
+  .md-body img { max-width: 100%; border-radius: var(--radius-md); }
+  .md-body mark { background: var(--accent-soft); color: var(--accent-strong); border-radius: 2px; padding: 0 2px; }
+
+  /* KaTeX 在窄屏可横向滚动 */
+  .md-body .katex-display { overflow-x: auto; overflow-y: hidden; padding: 0.3em 0; }
+
+  /* ==========================================================================
+     可点击符号（公式卡片内）—— KaTeX 渲染 \htmlClass{sym sym-KID}{...}
+     ========================================================================== */
+  .formula-math .sym {
+    cursor: pointer;
+    border-radius: var(--radius-sm);
+    padding: 0 2px;
+    margin: 0 -2px;
+    border-bottom: 1px dotted color-mix(in srgb, var(--accent) 55%, transparent);
+    transition: background var(--transition-fast), border-color var(--transition-fast);
+  }
+  .formula-math .sym:hover {
+    background: var(--accent-soft);
+    border-bottom-color: var(--accent);
+  }
+}

@@ -9,57 +9,24 @@
  *   - 滚动联动高亮（FormulaNav scrollspy）
  *   - 搜索范围：标题 / 说明 / 符号 name+desc（symbolsDict）；命中高亮
  *   - ★收藏 模式：跨所有公式视图展示已收藏公式，按视图分组
+ * 列表/分组/空态渲染见 components/FormulaSections.tsx。
  * 迁移自 legacy/js/formula-view.js + formula-core.js 的 mountFormulaPage。
  * ========================================================================== */
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { getFormulaView, FORMULA_VIEWS } from '../data/formula-registry';
-import type { Formula, SymbolDef, SymbolDict } from '../data/types';
+import type { SymbolDef } from '../data/types';
 import { getRegistry } from '../lib/markupSymbols';
-import { FormulaCard } from '../components/FormulaCard';
 import { FormulaNav } from '../components/FormulaNav';
 import { SymbolPopover } from '../components/SymbolPopover';
+import {
+  FormulaSectionList,
+  FavoriteSectionList,
+} from '../components/FormulaSections';
 import { useFavoriteStore } from '../store/useFavoriteStore';
 
 interface FormulaPageProps {
   routeName: string;
-}
-
-function regEscape(s: string): string {
-  return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-}
-
-function escapeHtml(s: string): string {
-  return String(s).replace(
-    /[&<>]/g,
-    (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' })[c] as string,
-  );
-}
-
-function highlightHtml(text: string, query: string): string {
-  const escaped = escapeHtml(text);
-  if (!query) return escaped;
-  const re = new RegExp(`(${regEscape(query)})`, 'gi');
-  return escaped.replace(re, '<mark>$1</mark>');
-}
-
-/** 公式是否匹配查询（标题 / 说明 / 符号 name+desc） */
-function matchFormula(f: Formula, symbols: SymbolDict, q: string): boolean {
-  if (!q) return true;
-  const hay = (f.title + ' ' + (f.note ?? '')).toLowerCase();
-  if (hay.includes(q)) return true;
-  for (const tok of f.symbols) {
-    const def = symbols[tok];
-    if (!def) continue;
-    if (
-      def.name.toLowerCase().includes(q) ||
-      def.desc.toLowerCase().includes(q) ||
-      tok.toLowerCase().includes(q)
-    ) {
-      return true;
-    }
-  }
-  return false;
 }
 
 export function FormulaPage({ routeName }: FormulaPageProps) {
@@ -245,82 +212,16 @@ export function FormulaPage({ routeName }: FormulaPageProps) {
           onClick={onContainerClick}
         >
           {favMode ? (
-            <>
-              {favGroups.length === 0 && (
-                <div className="state">
-                  <div className="state__title">还没有收藏的公式</div>
-                  <div className="state__desc">
-                    在公式卡片右上角点 ☆ 即可收藏，便于跨科目速查。
-                  </div>
-                </div>
-              )}
-              {favGroups.map(({ view: v, formulas: fs }) => (
-                <section
-                  key={v.id}
-                  className="fields-section"
-                  data-cat={v.id}
-                >
-                  <header className="fields-section__head">
-                    <h3 className="fields-section__title">{v.title}</h3>
-                    <p className="fields-section__brief">{v.subtitle}</p>
-                  </header>
-                  {fs.map((f) => (
-                    <FormulaCard
-                      key={`${v.id}-${f.id}`}
-                      formula={f}
-                      symbols={v.data.symbols}
-                      viewId={v.id}
-                    />
-                  ))}
-                </section>
-              ))}
-            </>
+            <FavoriteSectionList groups={favGroups} />
           ) : (
-            <>
-              {categories.map((c) => {
-                const fs = formulas.filter(
-                  (f) => f.cat === c.id && matchFormula(f, symbols, q),
-                );
-                if (!fs.length) return null;
-                return (
-                  <section
-                    key={c.id}
-                    className="fields-section"
-                    id={`cat-${c.id}`}
-                    data-cat={c.id}
-                  >
-                    <header className="fields-section__head">
-                      <h3
-                        className="fields-section__title"
-                        dangerouslySetInnerHTML={{
-                          __html: highlightHtml(c.name, trimmedFilter),
-                        }}
-                      />
-                      <p className="fields-section__brief">{c.brief}</p>
-                    </header>
-                    {fs.map((f) => (
-                      <FormulaCard
-                        key={f.id}
-                        formula={f}
-                        symbols={symbols}
-                        viewId={view.id}
-                      />
-                    ))}
-                  </section>
-                );
-              })}
-              {q &&
-                !categories.some((c) =>
-                  formulas.some((f) => f.cat === c.id && matchFormula(f, symbols, q)),
-                ) && (
-                  <div className="state">
-                    <div className="state__title">没有匹配的公式</div>
-                    <div className="state__desc">
-                      试试其他关键词（标题、说明或符号名），或清空筛选。
-                    </div>
-                  </div>
-                )}
-            </>
+            <FormulaSectionList
+              categories={categories}
+              formulas={formulas}
+              symbols={symbols}
+              viewId={view.id}
+              query={q}
+              filterText={trimmedFilter}
+            />
           )}
         </div>
       </div>

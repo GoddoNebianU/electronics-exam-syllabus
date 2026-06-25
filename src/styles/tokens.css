@@ -1,0 +1,160 @@
+/* ==========================================================================
+   设计令牌（Design Tokens）—— 迁移自 legacy/css/variables.css
+   风格：素雅 / 低饱和 / 中性。亮暗双模式 + 科目主题色（数电灰蓝 / 模电暖灰 / 电磁场紫灰）。
+   无渐变、小圆角（3-4px）、细边框。
+   ========================================================================== */
+:root {
+  /* 字体族 */
+  --font-sans: system-ui, "PingFang SC", "Microsoft YaHei", "Hiragino Sans GB", sans-serif;
+  --font-mono: "SF Mono", "Cascadia Code", "JetBrains Mono", "Fira Code", Consolas, "Liberation Mono", monospace;
+
+  /* 间距（4px 基准网格） */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-7: 2rem;
+  --space-8: 2.5rem;
+  --space-9: 3rem;
+
+  /* 圆角（全部小圆角 / 接近直角，无胶囊形） */
+  --radius-sm: 3px;
+  --radius-md: 4px;
+  --radius-lg: 4px;
+  --radius-pill: 3px;
+
+  /* 字号阶 */
+  --fs-xs: 0.75rem;
+  --fs-sm: 0.875rem;
+  --fs-base: 1rem;
+  --fs-md: 1.125rem;
+  --fs-lg: 1.375rem;
+  --fs-xl: 1.75rem;
+  --fs-2xl: 2.25rem;
+
+  --lh-tight: 1.25;
+  --lh-normal: 1.55;
+  --lh-loose: 1.8;
+
+  /* 层级 */
+  --z-sidebar: 30;
+  --z-header: 40;
+  --z-overlay: 50;
+  --z-search: 60;
+
+  --transition-fast: 120ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  --sidebar-w: 290px;
+  --header-h: 60px;
+  --content-max: 880px;
+  --fields-toolbar-h: 52px;
+  --fields-nav-w: 244px;
+}
+
+/* 亮色主题（默认）—— 暖白浅灰底 + 深灰文字 */
+:root,
+:root[data-theme='light'] {
+  --bg: #fafaf9;
+  --bg-grid: #ededeb;
+  --surface: #ffffff;
+  --surface-2: #f5f5f4;
+  --surface-hover: #efeeec;
+  --text: #1f2937;
+  --text-muted: #6b7280;
+  --text-faint: #9ca3af;
+  --border: #e5e7eb;
+  --border-strong: #d6d8db;
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-lg: 0 6px 18px rgba(0, 0, 0, 0.08);
+  --code-bg: #f5f5f4;
+  --code-text: #1f2937;
+  --kbd-bg: #ffffff;
+  --selection: rgba(75, 85, 99, 0.16);
+  --glow: rgba(0, 0, 0, 0.08);
+}
+
+/* 暗色主题 —— 纯中性深灰（无蓝紫调） + 浅灰文字 */
+:root[data-theme='dark'] {
+  --bg: #1c1c1e;
+  --bg-grid: #262628;
+  --surface: #242426;
+  --surface-2: #2e2e30;
+  --surface-hover: #363638;
+  --text: #e5e5e5;
+  --text-muted: #9a9a9c;
+  --text-faint: #6b6b6e;
+  --border: #333335;
+  --border-strong: #444446;
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 6px 18px rgba(0, 0, 0, 0.55);
+  --code-bg: #18181a;
+  --code-text: #d4d4d4;
+  --kbd-bg: #2e2e30;
+  --selection: rgba(220, 220, 220, 0.18);
+  --glow: rgba(0, 0, 0, 0.4);
+}
+
+/* 科目主题色 —— 数电（低饱和灰蓝 / slate） */
+:root[data-subject='shudian'] {
+  --accent: #475569;
+  --accent-2: #64748b;
+  --accent-strong: #334155;
+  --accent-soft: rgba(71, 85, 105, 0.10);
+  --accent-line: #334155;
+  --accent-glow: var(--glow);
+  --accent-contrast: #ffffff;
+  --accent-text: #475569;
+}
+:root[data-theme='dark'][data-subject='shudian'] {
+  --accent: #94a3b8;
+  --accent-2: #94a3b8;
+  --accent-strong: #cbd5e1;
+  --accent-soft: rgba(148, 163, 184, 0.12);
+  --accent-line: #475569;
+  --accent-text: #94a3b8;
+}
+
+/* 科目主题色 —— 模电（低饱和暖灰 / stone） */
+:root[data-subject='modian'] {
+  --accent: #78716c;
+  --accent-2: #8a827b;
+  --accent-strong: #57534e;
+  --accent-soft: rgba(120, 113, 108, 0.10);
+  --accent-line: #57534e;
+  --accent-glow: var(--glow);
+  --accent-contrast: #ffffff;
+  --accent-text: #78716c;
+}
+:root[data-theme='dark'][data-subject='modian'] {
+  --accent: #a8a29e;
+  --accent-2: #a8a29e;
+  --accent-strong: #d6d3d1;
+  --accent-soft: rgba(168, 162, 158, 0.12);
+  --accent-line: #57534e;
+  --accent-text: #a8a29e;
+}
+
+/* 科目主题色 —— 电磁场（低饱和紫灰） */
+:root[data-subject='fields'] {
+  --accent: #6b6f8a;
+  --accent-2: #7e83a0;
+  --accent-strong: #4a4e6a;
+  --accent-soft: rgba(107, 111, 138, 0.10);
+  --accent-line: #4a4e6a;
+  --accent-glow: var(--glow);
+  --accent-contrast: #ffffff;
+  --accent-text: #6b6f8a;
+}
+:root[data-theme='dark'][data-subject='fields'] {
+  --accent: #9298b3;
+  --accent-2: #9298b3;
+  --accent-strong: #cbd0e5;
+  --accent-soft: rgba(146, 152, 179, 0.12);
+  --accent-line: #4a4e6a;
+  --accent-text: #9298b3;
+}

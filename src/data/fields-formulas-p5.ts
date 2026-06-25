@@ -1,0 +1,45 @@
+/* 公式分片 5：第 8 章 电磁波辐射 radiation */
+import type { Formula } from './types';
+
+export const FIELDS_FORMULAS_P5: Formula[] = [
+  /* ============== 第 8 章 电磁波辐射 radiation ============== */
+  { id:'rad-retarded', cat:'radiation', title:'滞后位（推迟位）概念',
+    latex:'\\dot{\\mathbf{A}}(\\mathbf{r})=\\frac{\\mu}{4\\pi}\\int_{V}\\frac{\\dot{\\mathbf{J}}\\,e^{-jkr}}{r}\\,dV',
+    symbols:['A','\\mu','\\int','V','J','r','k','j','dV'],
+    note:'源对场的影响以有限光速传播，相位滞后 e^(−jkr)；r 为源到场点距离' },
+
+  { id:'rad-dipole-far', cat:'radiation', title:'赫兹偶极子远区辐射场',
+    latex:'\\dot{E}_{\\theta}=j\\eta\\frac{kI_0 l}{4\\pi r}\\sin\\theta\\,e^{-jkr},\\quad \\dot{H}_{\\phi}=\\frac{\\dot{E}_{\\theta}}{\\eta}',
+    symbols:['E','\\eta','k','I_0','l','r','\\theta','j','H','\\phi'],
+    note:'短偶极子(l≪λ)远区场：E_θ 与 H_φ 同相、互相垂直、含 sinθ 方向因子' },
+
+  { id:'rad-power', cat:'radiation', title:'赫兹偶极子辐射功率',
+    latex:'P=40\\pi^{2}\\!\\left(\\frac{I_0 l}{\\lambda}\\right)^{2}',
+    symbols:['P','I_0','l','\\lambda'],
+    note:'I₀ 为电流幅值（峰值）；由坡印廷矢量在远区球面积分得到' },
+
+  { id:'rad-resistance', cat:'radiation', title:'赫兹偶极子辐射电阻',
+    latex:'R_r=80\\pi^{2}\\!\\left(\\frac{l}{\\lambda}\\right)^{2}',
+    symbols:['R_r','l','\\lambda'],
+    note:'辐射电阻表征天线辐射能力；R_r=P/(½I₀²)，l≪λ 时很小',
+    derivation:[
+      {text:'辐射电阻定义 $R_r=P/(\\tfrac{1}{2}I_0^2)$，$I_0$ 为电流幅值'},
+      {text:'赫兹偶极子辐射功率 $P=40\\pi^2\\!\\left(\\frac{I_0 l}{\\lambda}\\right)^2$（远区坡印廷球面积分）'},
+      {text:'代入',latex:'R_r=\\frac{2P}{I_0^2}=80\\pi^2\\!\\left(\\frac{l}{\\lambda}\\right)^{2}'},
+    ] },
+
+  { id:'rad-halfwave', cat:'radiation', title:'半波振子辐射电阻',
+    latex:'R_r\\approx 73\\,\\Omega\\quad(2l=\\lambda/2)',
+    symbols:['R_r','\\lambda','l'],
+    note:'半波对称振子辐射电阻约 73 Ω（工程常用基准天线）' },
+
+  { id:'rad-gain', cat:'radiation', title:'方向性与增益',
+    latex:'D=\\frac{4\\pi}{\\Omega_A},\\quad G=\\eta_{a}D',
+    symbols:['D','G'],
+    note:'D 方向性系数(Ω_A 为波束立体角)，G 增益 = 效率 ηₐ × 方向性' },
+
+  { id:'rad-effective-area', cat:'radiation', title:'有效面积与方向性关系',
+    latex:'A_e=\\frac{\\lambda^{2}}{4\\pi}\\,D',
+    symbols:['A_e','\\lambda','D'],
+    note:'接收天线有效面积与方向性系数成反比关系（适用任意天线）' },
+];

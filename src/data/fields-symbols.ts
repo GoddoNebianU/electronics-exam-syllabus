@@ -1,0 +1,123 @@
+/* 符号定义字典 ------------------------------------------------------ */
+import type { SymbolDict } from './types';
+
+export const FIELDS_SYMBOLS: SymbolDict = {
+  /* —— 算子 —— */
+  '\\nabla':         { name:'梯度算子 ∇',    desc:'哈密顿算子(nabla)，作用于标量场得梯度矢量', unit:'1/m' },
+  '\\nabla\\cdot':   { name:'散度算子 ∇·',   desc:'作用于矢量场得标量，量度通量源强度', unit:'−' },
+  '\\nabla\\times':  { name:'旋度算子 ∇×',   desc:'作用于矢量场得矢量，量度涡旋源强度', unit:'−' },
+  '\\nabla^2':       { name:'拉普拉斯算子 ∇²', desc:'∇·∇，标量场二阶空间导数之和', unit:'1/m²' },
+  '\\partial':       { name:'偏导 ∂',         desc:'多元函数对某变量求偏导数', unit:'−' },
+  '\\oint':          { name:'闭合积分 ∮',     desc:'沿闭合曲线或闭合曲面的积分', unit:'−' },
+  '\\int':           { name:'积分 ∫',         desc:'定/体/面积分符号', unit:'−' },
+
+  /* —— 场量（矢量）—— */
+  'E':               { name:'电场强度',       desc:'单位试探电荷所受电场力；矢量分析中亦泛指矢量场分量', unit:'V/m' },
+  'D':               { name:'电位移矢量',     desc:'D=εE，与介质无关的辅助电场量；辐射章亦表方向性系数 D', unit:'C/m²' },
+  'B':               { name:'磁感应强度',     desc:'即磁通密度，B=μH；矢量恒等式中亦泛指矢量', unit:'T (Wb/m²)' },
+  'H':               { name:'磁场强度',       desc:'与介质无关的辅助磁场量，旋度源于自由电流', unit:'A/m' },
+  'A':               { name:'矢量磁位',       desc:'B=∇×A；矢量恒等式中亦泛指矢量', unit:'Wb/m (T·m)' },
+  'J':               { name:'体电流密度',     desc:'单位面积传导电流，J=σE', unit:'A/m²' },
+  'J_d':             { name:'位移电流密度',   desc:'J_d=∂D/∂t，变化电场等效电流', unit:'A/m²' },
+  'J_s':             { name:'面电流密度',     desc:'分界面单位宽度上的电流', unit:'A/m' },
+  'F':               { name:'力',             desc:'电荷/电流所受电磁力；矢量分析中泛指矢量场', unit:'N' },
+  'v':               { name:'速度',           desc:'电荷运动速度', unit:'m/s' },
+  '\\mathbf{S}':     { name:'坡印廷矢量',     desc:'S=E×H，瞬时电磁能流密度', unit:'W/m²' },
+
+  /* —— 标量位 / 通量 —— */
+  '\\varphi':        { name:'电位 φ',         desc:'标量电位，E=−∇φ', unit:'V' },
+  '\\Phi':           { name:'磁通量 Φ',       desc:'Φ=∫B·dS', unit:'Wb' },
+
+  /* —— 电荷 / 电流标量 —— */
+  'Q':               { name:'总自由电荷',     desc:'闭合面内自由电荷代数和', unit:'C' },
+  'q':               { name:'点电荷',         desc:'试探电荷或源点电荷量', unit:'C' },
+  'I':               { name:'电流',           desc:'传导电流（标量）', unit:'A' },
+  'I_0':             { name:'电流幅值',       desc:'时谐电流的振幅(峰值)', unit:'A' },
+  'E_m':             { name:'场振幅',         desc:'电场强度峰值', unit:'V/m' },
+
+  /* —— 源密度 —— */
+  '\\rho':           { name:'体电荷密度',     desc:'单位体积自由电荷', unit:'C/m³' },
+  '\\rho_s':         { name:'面电荷密度',     desc:'分界面单位面积电荷', unit:'C/m²' },
+
+  /* —— 介质参数 —— */
+  '\\varepsilon':    { name:'介电常数',       desc:'ε=ε₀εᵣ，媒质电容率', unit:'F/m' },
+  '\\varepsilon_0':  { name:'真空介电常数',   desc:'ε₀≈8.854×10⁻¹² F/m', unit:'F/m' },
+  '\\varepsilon_r':  { name:'相对介电常数',   desc:'εᵣ=ε/ε₀，无量纲', unit:'−' },
+  '\\mu':            { name:'磁导率',         desc:'μ=μ₀μᵣ，媒质磁导率', unit:'H/m' },
+  '\\mu_0':          { name:'真空磁导率',     desc:'μ₀=4π×10⁻⁷ H/m', unit:'H/m' },
+  '\\mu_r':          { name:'相对磁导率',     desc:'μᵣ=μ/μ₀，无量纲', unit:'−' },
+  '\\sigma':         { name:'电导率',         desc:'σ 越大导电越好；良导体 σ≫ωε', unit:'S/m' },
+
+  /* —— 能量 / 电路参量 —— */
+  'p':               { name:'功率密度 / 偶极矩', desc:'焦耳功率密度 p=J·E；亦表电偶极矩 p=ql', unit:'W/m³ 或 C·m' },
+  'P':               { name:'功率',           desc:'总(辐射/焦耳)功率', unit:'W' },
+  'W_e':             { name:'电场能量',       desc:'静电场总储能', unit:'J' },
+  'W_m':             { name:'磁场能量',       desc:'恒定磁场总储能', unit:'J' },
+  'w_e':             { name:'电场能量密度',   desc:'w_e=½D·E', unit:'J/m³' },
+  'w_m':             { name:'磁场能量密度',   desc:'w_m=½B·H', unit:'J/m³' },
+  'C':               { name:'电容',           desc:'C=Q/U；传输线中为单位长电容', unit:'F (或 F/m)' },
+  'L':               { name:'自感',           desc:'L=Φ/I；传输线中为单位长电感', unit:'H (或 H/m)' },
+  'M':               { name:'互感',           desc:'两回路间磁耦合', unit:'H' },
+  'm':               { name:'磁偶极矩 / 模式指数', desc:'电流环磁矩 m=IS；波导中为模式指数(m,n)', unit:'A·m² 或 −' },
+
+  /* —— 波参量 —— */
+  '\\beta':          { name:'相位常数',       desc:'单位距离相位滞后(β=ω√με)', unit:'rad/m' },
+  '\\alpha':         { name:'衰减常数',       desc:'单位距离振幅衰减', unit:'Np/m' },
+  '\\gamma':         { name:'传播常数',       desc:'γ=α+jβ', unit:'1/m' },
+  'k':               { name:'波数',           desc:'k=ω√με=2π/λ（无耗即 β）', unit:'rad/m' },
+  '\\eta':           { name:'本征阻抗',       desc:'媒质波阻抗 η=√(μ/ε)，|E|/|H|=η', unit:'Ω' },
+  '\\eta_0':         { name:'真空波阻抗',     desc:'η₀=√(μ₀/ε₀)≈120π≈377 Ω', unit:'Ω' },
+  '\\lambda':        { name:'波长',           desc:'λ=2π/β（自由空间波长）', unit:'m' },
+  '\\lambda_c':      { name:'截止波长',       desc:'波导能传播的最大自由空间波长', unit:'m' },
+  '\\lambda_g':      { name:'波导波长',       desc:'导行波沿轴向波长 λ_g=λ/√(1−(f_c/f)²)', unit:'m' },
+  '\\omega':         { name:'角频率',         desc:'ω=2πf', unit:'rad/s' },
+  'f':               { name:'频率',           desc:'时谐场振荡频率', unit:'Hz' },
+  'f_c':             { name:'截止频率',       desc:'波导/谐振腔某模式能传播的最低频率', unit:'Hz' },
+  'c':               { name:'光速',           desc:'真空中 c=1/√(μ₀ε₀)≈3×10⁸ m/s', unit:'m/s' },
+  'v_p':             { name:'相速',           desc:'等相面推进速度', unit:'m/s' },
+  'v_g':             { name:'群速',           desc:'波包/能量传播速度', unit:'m/s' },
+  '\\delta':         { name:'趋肤深度',       desc:'δ=√(2/(ωμσ))，振幅衰减到 1/e 的距离', unit:'m' },
+  '\\Gamma':         { name:'反射系数',       desc:'Γ=(η₂−η₁)/(η₂+η₁)，界面反射/入射电场比', unit:'−' },
+  '\\tau':           { name:'透射系数',       desc:'τ=2η₂/(η₂+η₁)=1+Γ', unit:'−' },
+  'Z_0':             { name:'特性阻抗',       desc:'传输线行波电压/电流比', unit:'Ω' },
+  'U':               { name:'电压',           desc:'传输线沿线电压', unit:'V' },
+
+  /* —— 天线参量 —— */
+  'G':               { name:'增益 / 电导',    desc:'天线增益 G=ηₐD；传输线中为单位长并联电导', unit:'− 或 S/m' },
+  'A_e':             { name:'有效面积',       desc:'接收天线等效吸波面积 A_e=λ²D/(4π)', unit:'m²' },
+  'R_r':             { name:'辐射电阻',       desc:'R_r=P/(½I₀²)，表征辐射能力', unit:'Ω' },
+  'R':               { name:'单位长电阻',     desc:'传输线单位长串联电阻', unit:'Ω/m' },
+
+  /* —— 几何 / 坐标 —— */
+  'S':               { name:'积分曲面',       desc:'闭合或开放积分面（∮_S、∫_S）', unit:'m²' },
+  'dS':              { name:'有向面元',       desc:'dS（矢量），面积分微元', unit:'m²' },
+  'V':               { name:'体积',           desc:'积分区域体积', unit:'m³' },
+  'dV':              { name:'体元',           desc:'体积分微元', unit:'m³' },
+  'l':               { name:'长度',           desc:'线段/偶极子长度', unit:'m' },
+  'dl':              { name:'线元',           desc:'d𝐥（矢量），线积分微元', unit:'m' },
+  'r':               { name:'距离 / 矢径',    desc:'源到场点距离或径向坐标', unit:'m' },
+  '\\hat{r}':        { name:'径向单位向量',   desc:'指向 r 增大方向的单位矢', unit:'−' },
+  'x':               { name:'x 坐标',         desc:'直角坐标分量', unit:'m' },
+  'y':               { name:'y 坐标',         desc:'直角坐标分量', unit:'m' },
+  'z':               { name:'z 坐标',         desc:'直角/柱坐标轴向分量', unit:'m' },
+  '\\theta':         { name:'极角 θ',         desc:'球坐标极角(与 z 轴夹角)', unit:'rad' },
+  '\\phi':           { name:'方位角 φ',       desc:'球/柱坐标方位角(注意：非电位)', unit:'rad' },
+  't':               { name:'时间',           desc:'时间变量', unit:'s' },
+  'a':               { name:'波导宽边',       desc:'矩形波导宽壁尺寸', unit:'m' },
+  'b':               { name:'波导窄边',       desc:'矩形波导窄壁尺寸', unit:'m' },
+  'd':               { name:'谐振腔长度',     desc:'矩形谐振腔第三维（轴向）尺寸', unit:'m' },
+  'n':               { name:'模式指数 n',     desc:'波导/谐振腔模式指数(整数)', unit:'−' },
+  '\\hat{n}':        { name:'法向单位向量',   desc:'分界面法线方向单位矢', unit:'−' },
+
+  /* —— 单位向量 —— */
+  '\\hat{x}':        { name:'x̂ 单位向量',     desc:'直角坐标 x 方向单位矢', unit:'−' },
+  '\\hat{y}':        { name:'ŷ 单位向量',     desc:'直角坐标 y 方向单位矢', unit:'−' },
+  '\\hat{z}':        { name:'ẑ 单位向量',     desc:'直角/柱坐标 z 方向单位矢', unit:'−' },
+  '\\hat{\\theta}':  { name:'θ̂ 单位向量',     desc:'球坐标 θ 方向单位矢', unit:'−' },
+  '\\hat{\\phi}':    { name:'φ̂ 单位向量',     desc:'球/柱坐标 φ 方向单位矢', unit:'−' },
+
+  /* —— 复数 / 其他 —— */
+  'j':               { name:'虚数单位',       desc:'j²=−1（工程记法）', unit:'−' },
+  '\\mathrm{Re}':    { name:'取实部',         desc:'复数取实部运算', unit:'−' },
+  '\\mathrm{VSWR}':  { name:'驻波比',         desc:'电压驻波比(VSWR)，反映匹配程度', unit:'−' },
+};

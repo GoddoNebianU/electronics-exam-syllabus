@@ -2,12 +2,14 @@
  * SearchBox.tsx — 全文搜索
  * 首次搜索惰性 fetch 全部 md 建索引；输入防抖；结果按科目分组；
  * 命中片段高亮；点击跳转。迁移自 legacy/js/search.js。
+ * 单条结果渲染见 SearchResultItem.tsx。
  * ========================================================================== */
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { SYLLABUS, flattenChapters } from '../data/syllabus';
 import type { Chapter, Subject } from '../data/types';
 import { assetUrl } from '../lib/assets';
+import { SearchResultItem, escapeHtml } from './SearchResultItem';
 
 interface IndexEntry {
   subject: Subject;
@@ -58,10 +60,6 @@ async function buildIndex(): Promise<IndexEntry[]> {
   return building;
 }
 
-function regEscape(s: string): string {
-  return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-}
-
 function snippet(plain: string, query: string, len = 60): string {
   const lower = plain.toLowerCase();
   const at = lower.indexOf(query.toLowerCase());
@@ -72,25 +70,6 @@ function snippet(plain: string, query: string, len = 60): string {
   if (start > 0) s = '…' + s;
   if (end < plain.length) s = s + '…';
   return s;
-}
-
-function escapeHtml(s: string): string {
-  return String(s).replace(
-    /[&<>]/g,
-    (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' })[c] as string,
-  );
-}
-
-function highlightHtml(text: string, query: string): string {
-  if (!text) return '';
-  const re = new RegExp(`(${regEscape(query)})`, 'gi');
-  return text
-    .replace(re, '\u0000$1\u0001')
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/\u0000/g, '<mark>')
-    .replace(/\u0001/g, '</mark>');
 }
 
 export function SearchBox() {
@@ -223,30 +202,14 @@ export function SearchBox() {
                     {subj.name}（{group.length}）
                   </div>
                   {group.map((h) => (
-                    <a
+                    <SearchResultItem
                       key={`${h.subject.id}-${h.chapter.id}`}
-                      className="search__item"
+                      title={h.chapter.title}
+                      snippet={h.snippet}
+                      query={value.trim()}
                       href={`#/${h.subject.id}/${h.chapter.id}`}
-                      onClick={(e) => {
-                        e.preventDefault();
-                        go(h.subject.id, h.chapter.id);
-                      }}
-                    >
-                      <div
-                        className="search__item-title"
-                        dangerouslySetInnerHTML={{
-                          __html: highlightHtml(h.chapter.title, value.trim()),
-                        }}
-                      />
-                      {h.snippet && (
-                        <div
-                          className="search__item-preview"
-                          dangerouslySetInnerHTML={{
-                            __html: highlightHtml(h.snippet, value.trim()),
-                          }}
-                        />
-                      )}
-                    </a>
+                      onSelect={() => go(h.subject.id, h.chapter.id)}
+                    />
                   ))}
                 </div>
               );
