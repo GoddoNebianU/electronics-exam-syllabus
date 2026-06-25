@@ -35,7 +35,7 @@ function calcImportance(topics: TopicRef[]): { importance: 1|2|3|4|5; importance
 
 type RawChapter = Omit<Chapter, 'importance' | 'importanceReason'>;
 
-const RAW = [
+const RAW: { id: string; name: string; short: string; dir: string; chapters: RawChapter[] }[] = [
   {
     id: 'shudian', name: '数字电子技术', short: '数电', dir: '大纲/数电',
     chapters: [
