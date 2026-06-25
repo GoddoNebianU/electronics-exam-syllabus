@@ -38,6 +38,7 @@ export interface Chapter {
   topics: TopicRef[];
   /** 重要度 1~3 星 */
   importance: 1 | 2 | 3 | 4 | 5;
+  importanceReason?: string;
 }
 
 /** 科目 */

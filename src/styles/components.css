@@ -159,3 +159,4 @@
   color: var(--text);
   border-color: var(--border);
 }
+.chapter__importance-reason { font-size: 0.72rem; color: var(--text-muted); line-height: 1.4; }

@@ -98,7 +98,7 @@ function ContentBar({
   chapter,
 }: {
   subject: { id: string };
-  chapter: { id: string; title: string; importance: number; topics: TopicRef[] };
+  chapter: { id: string; title: string; importance: number; importanceReason?: string; topics: TopicRef[] };
 }) {
   const map = useProgressStore((s) => s.map);
   const setReviewed = useProgressStore((s) => s.setReviewed);
@@ -113,6 +113,9 @@ function ContentBar({
         </div>
         <div className="chapter__meta" style={{ marginTop: 6 }}>
           <Stars n={chapter.importance} />
+          {chapter.importanceReason && (
+            <span className="chapter__importance-reason">{chapter.importanceReason}</span>
+          )}
           <Badges topics={chapter.topics} />
         </div>
       </div>
