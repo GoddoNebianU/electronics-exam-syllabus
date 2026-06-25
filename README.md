@@ -1,61 +1,8 @@
-# 电子技术基础考纲 · 离线备考工具
+# 电子技术基础考纲 · 备考工具
 
-数电 + 模电**考试大纲**与**公式手册**的纯前端、零构建、完全离线浏览工具。
-- 大纲：本地 markdown 经 `marked.js` 渲染成可读页面（数电 9 章 + 模电 10 章）
-- 公式手册：电磁场与电磁波（111 式）+ 模拟电子技术（86 式），`KaTeX` 渲染，**公式里每个符号可点击弹窗显示定义**
+数电 + 模电**考试大纲**与**公式手册**，React + Vite + TypeScript 构建，PWA 离线可用。
 
-仓库根目录即 Web 根目录，可直接部署到 GitHub Pages。
-
----
-
-## 目录结构
-
-```
-电子技术基础考纲/
-├── index.html                ← 单入口
-├── .nojekyll                 ← 禁用 GitHub Pages 的 Jekyll，确保 .md 被 fetch 而非转换
-├── css/                      ← 按职责拆分的样式
-│   ├── variables.css         ← 设计令牌：亮/暗主题 + 数电灰蓝/模电暖灰/电磁场紫灰
-│   ├── base.css  layout.css  components.css  markdown.css  fields.css
-├── js/
-│   ├── main.js               ← 入口编排
-│   ├── config.js             ← 大纲数据（科目/章节/题量）单一数据源
-│   ├── router.js  sidebar.js  content.js  search.js  theme.js  progress.js
-│   ├── formula-core.js       ← 公式页共享核心（markupSymbols 区间调度 + 弹窗 + 渲染）
-│   ├── formula-view.js       ← createFormulaView 工厂（数据驱动的可注册公式视图）
-│   ├── formula-views.js      ← 公式视图注册点（电磁场 + 模电）
-│   ├── fields-data.js        ← 电磁场公式数据（111 式 / 95 符号）
-│   └── modian-formulas-data.js ← 模电公式数据（86 式 / 102 符号）
-├── vendor/                   ← 本地依赖（离线）
-│   ├── marked.min.js         ← markdown 渲染
-│   └── katex/                ← LaTeX 渲染（katex.min.js + auto-render + 60 字体）
-└── 大纲/                      ← 原始 markdown（数电 9 + 模电 10）
-```
-
----
-
-## 本地启动
-
-> 浏览器安全策略要求 `fetch` 本地 `.md` 必须走 http 协议——直接双击 `index.html`（`file://`）会被 CORS 拦截。请用任意静态服务器：
-
-```bash
-cd 电子技术基础考纲          # 进入仓库根目录（本 README 所在目录）
-python3 -m http.server 8000
-```
-
-浏览器打开 <http://localhost:8000/> 即可。
-
----
-
-## 部署到 GitHub Pages
-
-仓库根即 Web 根，部署零配置：
-
-1. 把本仓库 push 到 GitHub。
-2. 仓库 **Settings → Pages → Source** 选 `Deploy from a branch`，分支选 `main`、目录选 `/(root)`。
-3. 保存后等 1~2 分钟，访问 `https://<用户名>.github.io/<仓库名>/`。
-
-`.nojekyll` 已确保 GitHub Pages 不用 Jekyll 处理——`大纲/*.md` 会作为纯文本被 `fetch` 到，不会被转换成 HTML 导致 404。
+🔗 **在线访问**：<https://goddonebianu.github.io/electronics-exam-syllabus/>
 
 ---
 
@@ -63,27 +10,90 @@ python3 -m http.server 8000
 
 | 功能 | 说明 |
 |------|------|
-| **大纲浏览** | 侧边栏「数电 / 模电」Tab + 章节树（题量徽标 + 重要度星标）；`marked.js` 渲染，表格/代码/引用美化 |
-| **公式手册** | 顶栏「📐 电磁场公式」「📐 模电公式」入口；按章节分类的公式卡片，`KaTeX` 渲染 |
-| **符号点击弹窗** | 公式里每个符号可点击 → 弹窗显示名称/释义/单位（符号本身行内 KaTeX 渲染） |
-| **全文搜索** | 顶部搜索框（按 `/` 聚焦）；惰性建内存索引，命中高亮、按科目分组 |
-| **复习进度** | 每章可标记已复习；localStorage 记忆；侧边栏打勾 + 进度条 |
-| **主题** | 亮/暗双模式，localStorage 记忆，跟随系统 `prefers-color-scheme` |
-| **响应式** | 桌面侧边栏常驻；移动端抽屉化 |
+| **大纲浏览** | 数电 9 章 + 模电 10 章，markdown 渲染（表格/代码/引用美化），题型徽标 |
+| **重要度评级** | 从题型分布**动态计算**（公式：题数×权重→星级），非手写 |
+| **公式手册** | 电磁场 111 式 + 模电 86 式，KaTeX 渲染，按章节分类 |
+| **公式推导** | 101 个推导性公式附分步推导（折叠展开，每步 KaTeX 渲染） |
+| **符号点击弹窗** | 公式/推导里每个符号可点击 → 弹窗显示名称/释义/单位 |
+| **公式搜索** | 按标题/说明/符号名释义模糊搜索，命中高亮 |
+| **收藏夹** | 收藏公式（跨科目「★ 收藏」筛选）+ 收藏章节快捷访问 |
+| **复习统计** | SVG 环形/条形图，各科目完成率 + 最近复习时间线 |
+| **全文搜索** | 惰性建内存索引，命中高亮、按科目分组 |
+| **复习进度** | 每章标记已复习，localStorage 持久化 |
+| **亮/暗主题** | localStorage 记忆，跟随系统 `prefers-color-scheme` |
+| **PWA** | 可安装到手机桌面，Service Worker 缓存全部资源离线运行 |
+| **响应式** | 桌面侧边栏常驻，移动端抽屉化 |
 
 ---
 
-## 技术栈与架构
+## 技术栈
 
-- 纯原生 **HTML + CSS + ES Modules**（`<script type="module">`），**零构建**（无 Vite/Webpack/React/Vue），**零联网**（marked + KaTeX 均在 `vendor/`）。
-- **视图注册架构**：公式页由 `createFormulaView(config)` 工厂生成，统一注册到 `formula-views.js`，`main.js` 路由遍历注册表派发。**新增一个公式科目只需「数据文件 + 一行注册」**，`main.js` / `index.html` 零改动（入口按钮与容器由工厂动态注入）。
-- 符号可点击：公式 LaTeX 经 `markupSymbols` 区间调度算法把符号 token 包裹成 `\htmlClass{sym sym-KID}{...}`，`KaTeX` 以 `trust:true, strict:false` 渲染，点击 `.sym` 反查定义弹窗。
+- **React 18** + **Vite 5** + **TypeScript**
+- **Tailwind CSS v3**（素雅配色，CSS 变量 + Tailwind config）
+- **Zustand**（主题/进度/收藏/路由 状态管理）
+- **React Router v6** HashRouter（GitHub Pages 子路径友好）
+- **KaTeX**（LaTeX 渲染）+ **marked**（markdown 渲染）
+- **vite-plugin-pwa**（Service Worker + manifest，离线缓存）
+- **pnpm**（包管理）
 
 ---
 
-## 维护
+## 项目结构
 
-- **新增大纲章节**：`js/config.js` 对应科目 `chapters` 追加一项，md 放进 `大纲/`。
-- **新增公式科目**（如数电公式）：新建 `js/xxx-formulas-data.js`（导出 `XXX_CATEGORIES/FORMULAS/SYMBOLS`），在 `js/formula-views.js` 加一行 `createFormulaView({ id, routeBase, data, subject, ... })`。
-- LaTeX 字符串里所有反斜杠必须双写（`\\frac` 等），否则 `\f` 会被 JS 解析成换页符损坏公式。
-- 清空复习进度：浏览器控制台 `localStorage.removeItem('ezt-reviewed')` 后刷新。
+```
+电子技术基础考纲/
+├── index.html                 ← Vite 入口
+├── .nojekyll                  ← 禁用 GitHub Pages Jekyll
+├── package.json               ← pnpm 管理
+├── vite.config.ts             ← base=/electronics-exam-syllabus/ + PWA
+├── tailwind.config.js
+├── .github/workflows/deploy.yml  ← pnpm build → GitHub Pages 自动部署
+├── src/
+│   ├── main.tsx  App.tsx  routes.tsx  index.css
+│   ├── components/             ← Header Sidebar ChapterList FormulaCard
+│   │                             FormulaNav FormulaSections MarkdownView
+│   │                             DerivationSteps SymbolPopover SearchBox
+│   │                             StatsPanel StatsDonut StatsBar ...
+│   ├── pages/                  ← OutlinePage FormulaPage
+│   ├── store/                  ← useThemeStore useProgressStore
+│   │                             useFavoriteStore useSyllabusStore
+│   ├── lib/                    ← markupSymbols protect-math render katex assets
+│   ├── data/                   ← syllabus fields(+推导) modian-formulas(+推导)
+│   │                             formula-registry types
+│   └── styles/                 ← tokens base layout components markdown
+│                                 formula-page derivation stats search ...
+├── public/
+│   ├── 大纲/                   ← 19 份 markdown（数电 9 + 模电 10）
+│   └── pwa-*.png               ← PWA 图标
+└── legacy/                     ← 旧原生前端（归档参考）
+```
+
+---
+
+## 本地开发
+
+```bash
+pnpm install
+pnpm dev          # http://localhost:5173/electronics-exam-syllabus/
+```
+
+## 构建
+
+```bash
+pnpm build       # tsc --noEmit + vite build → dist/
+pnpm preview     # 本地预览构建产物
+```
+
+## 部署
+
+push 到 `main` → GitHub Actions 自动 `pnpm build` → 部署 `dist/` 到 GitHub Pages。
+
+---
+
+## 维护说明
+
+- **新增大纲章节**：`src/data/syllabus.ts` 的 RAW 数组追加一项（topics 含题型/题数），importance 自动计算。
+- **新增公式科目**：新建 `src/data/xxx-formulas` 数据（categories + formulas + symbols），在 `src/data/formula-registry.ts` 加一行注册。
+- **importance 评级**：从 topics 动态计算（`calcImportance`），公式：`Σ(题数 × 权重) / 45 × 4 + 1`，权重：判断1/填空1.5/简答4/计算4/综合7/设计9。
+- **LaTeX 转义**：数据里反斜杠双写（`\\frac`），否则 `\f` 被 JS 解析成换页符。
+- **推导 text**：数学段用 `$...$` 标记，前端 `renderTextWithMath` 自动 KaTeX 渲染。
