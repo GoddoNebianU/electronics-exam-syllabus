@@ -7,6 +7,7 @@
  * 受控组件：open + onClose。
  * ========================================================================== */
 import { useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { useProgressStore } from '../store/useProgressStore';
 import { useFavoriteStore } from '../store/useFavoriteStore';
 import { SYLLABUS, getChapter } from '../data/syllabus';
@@ -60,7 +61,8 @@ export function StatsPanel({ open, onClose }: StatsPanelProps) {
     return () => document.removeEventListener('keydown', onKey);
   }, [open, onClose]);
 
-  return (
+  if (typeof document === 'undefined') return null;
+  return createPortal(
     <>
       <div
         className={`stats-backdrop ${open ? 'is-open' : ''}`}
@@ -154,6 +156,7 @@ export function StatsPanel({ open, onClose }: StatsPanelProps) {
           </section>
         </div>
       </aside>
-    </>
+    </>,
+    document.body,
   );
 }
