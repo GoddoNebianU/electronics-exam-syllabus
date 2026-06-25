@@ -187,7 +187,7 @@ export const FIELDS_FORMULAS: Formula[] = [
     derivation:[
       {text:'静电场沿任意闭合路径做功为零（保守场）',latex:'\\nabla\\times\\mathbf{E}=0'},
       {text:'矢量恒等式：标量梯度的旋度恒为零',latex:'\\nabla\\times(\\nabla\\varphi)=0'},
-      {text:'故 E 必可表为某标量的梯度，取负号使场指向电位降低方向',latex:'\\mathbf{E}=-\\nabla\\varphi'},
+      {text:'故 $E$ 必可表为某标量的梯度，取负号使场指向电位降低方向',latex:'\\mathbf{E}=-\\nabla\\varphi'},
     ] },
 
   { id:'se-pot-point', cat:'static-e', title:'点电荷电位',
@@ -195,8 +195,8 @@ export const FIELDS_FORMULAS: Formula[] = [
     symbols:['\\varphi','q','\\varepsilon','r'],
     note:'取无穷远为电位参考点（φ(∞)=0）',
     derivation:[
-      {text:'由电位定义（取无穷远 φ(∞)=0）',latex:"\\varphi=-\\int_{\\infty}^{r}\\mathbf{E}\\cdot d\\mathbf{l}=\\int_{r}^{\\infty}\\mathbf{E}\\cdot d\\mathbf{l}"},
-      {text:'代入点电荷电场 E=q/(4πεr²)，沿径向积分',latex:"\\varphi=\\int_{r}^{\\infty}\\frac{q}{4\\pi\\varepsilon r'^{2}}\\,dr'"},
+      {text:'由电位定义（取无穷远 $\\varphi(\\infty)=0$）',latex:"\\varphi=-\\int_{\\infty}^{r}\\mathbf{E}\\cdot d\\mathbf{l}=\\int_{r}^{\\infty}\\mathbf{E}\\cdot d\\mathbf{l}"},
+      {text:'代入点电荷电场 $E=\\frac{q}{4\\pi\\varepsilon r^2}$，沿径向积分',latex:"\\varphi=\\int_{r}^{\\infty}\\frac{q}{4\\pi\\varepsilon r'^{2}}\\,dr'"},
       {text:'计算定积分',latex:"\\varphi=\\frac{q}{4\\pi\\varepsilon}\\left[-\\frac{1}{r'}\\right]_{r}^{\\infty}=\\frac{q}{4\\pi\\varepsilon r}"},
     ] },
 
@@ -205,8 +205,8 @@ export const FIELDS_FORMULAS: Formula[] = [
     symbols:['\\nabla^2','\\varphi','\\rho','\\varepsilon'],
     note:'有源区电位满足的微分方程',
     derivation:[
-      {text:'高斯定理微分形式与本构关系 D=εE 联立',latex:'\\nabla\\cdot(\\varepsilon\\mathbf{E})=\\rho'},
-      {text:'均匀介质 ε 为常数，提到散度外；代入 E=-∇φ',latex:'\\varepsilon\\,\\nabla\\cdot(-\\nabla\\varphi)=\\rho'},
+      {text:'高斯定理微分形式与本构关系 $D=\\varepsilon E$ 联立',latex:'\\nabla\\cdot(\\varepsilon\\mathbf{E})=\\rho'},
+      {text:'均匀介质 $\\varepsilon$ 为常数，提到散度外；代入 $E=-\\nabla\\varphi$',latex:'\\varepsilon\\,\\nabla\\cdot(-\\nabla\\varphi)=\\rho'},
       {text:'梯度的散度即拉普拉斯算子',latex:'\\nabla^2\\varphi=-\\frac{\\rho}{\\varepsilon}'},
     ] },
 
@@ -216,7 +216,7 @@ export const FIELDS_FORMULAS: Formula[] = [
     note:'无源区(ρ=0)电位满足的方程；边值问题的核心',
     derivation:[
       {text:'泊松方程',latex:'\\nabla^2\\varphi=-\\frac{\\rho}{\\varepsilon}'},
-      {text:'无源区域 ρ=0',latex:'\\nabla^2\\varphi=0'},
+      {text:'无源区域 $\\rho=0$',latex:'\\nabla^2\\varphi=0'},
     ] },
 
   { id:'se-dipole-p', cat:'static-e', title:'电偶极矩',
@@ -229,9 +229,9 @@ export const FIELDS_FORMULAS: Formula[] = [
     symbols:['\\varphi','p','\\theta','\\varepsilon','r'],
     note:'远区电位按 1/r² 衰减，比点电荷(1/r)更快',
     derivation:[
-      {text:'电偶极子由 ±q（相距 l）构成，远区 P 点电位为两点电荷电位叠加',latex:'\\varphi=\\frac{q}{4\\pi\\varepsilon}\\!\\left(\\frac{1}{r_+}-\\frac{1}{r_-}\\right)'},
-      {text:'远区近似（r≫l）：r_+≈r-\\tfrac{l}{2}\\cos\\theta，r_-≈r+\\tfrac{l}{2}\\cos\\theta',latex:'\\frac{1}{r_+}-\\frac{1}{r_-}\\approx\\frac{l\\cos\\theta}{r^2}'},
-      {text:'代入电偶极矩 p=ql',latex:'\\varphi=\\frac{p\\cos\\theta}{4\\pi\\varepsilon r^2}'},
+      {text:'电偶极子由 $\\pm q$（相距 $l$）构成，远区 $P$ 点电位为两点电荷电位叠加',latex:'\\varphi=\\frac{q}{4\\pi\\varepsilon}\\!\\left(\\frac{1}{r_+}-\\frac{1}{r_-}\\right)'},
+      {text:'远区近似（$r\\gg l$）：$r_+\\approx r-\\tfrac{l}{2}\\cos\\theta$，$r_-\\approx r+\\tfrac{l}{2}\\cos\\theta$',latex:'\\frac{1}{r_+}-\\frac{1}{r_-}\\approx\\frac{l\\cos\\theta}{r^2}'},
+      {text:'代入电偶极矩 $p=ql$',latex:'\\varphi=\\frac{p\\cos\\theta}{4\\pi\\varepsilon r^2}'},
     ] },
 
   { id:'se-energy', cat:'static-e', title:'电场能量',
@@ -244,9 +244,9 @@ export const FIELDS_FORMULAS: Formula[] = [
     symbols:['w_e','D','E','\\varepsilon'],
     note:'单位体积电场储能，W_e=∫w_e dV',
     derivation:[
-      {text:'平行板电容器储能 W=½QU，极板面积 S、间距 d',latex:'W=\\tfrac{1}{2}QU=\\tfrac{1}{2}(\\varepsilon E\\cdot S)(Ed)'},
-      {text:'体积 V=Sd',latex:'W=\\tfrac{1}{2}\\varepsilon E^{2}\\cdot Sd'},
-      {text:'除以体积得能量密度，并代入 D=εE',latex:'w_e=\\frac{W}{V}=\\tfrac{1}{2}\\varepsilon E^{2}=\\tfrac{1}{2}\\mathbf{D}\\cdot\\mathbf{E}'},
+      {text:'平行板电容器储能 $W=\\tfrac{1}{2}QU$，极板面积 $S$、间距 $d$',latex:'W=\\tfrac{1}{2}QU=\\tfrac{1}{2}(\\varepsilon E\\cdot S)(Ed)'},
+      {text:'体积 $V=Sd$',latex:'W=\\tfrac{1}{2}\\varepsilon E^{2}\\cdot Sd'},
+      {text:'除以体积得能量密度，并代入 $D=\\varepsilon E$',latex:'w_e=\\frac{W}{V}=\\tfrac{1}{2}\\varepsilon E^{2}=\\tfrac{1}{2}\\mathbf{D}\\cdot\\mathbf{E}'},
     ] },
 
   { id:'se-capacitance', cat:'static-e', title:'电容',
@@ -259,9 +259,9 @@ export const FIELDS_FORMULAS: Formula[] = [
     symbols:['D','\\rho_s','\\hat{n}'],
     note:'分界面两侧电位移法向分量之差等于面电荷密度',
     derivation:[
-      {text:'在分界面取扁平柱形高斯面（pillbox），上下底面平行界面、面积 S，侧面高→0'},
-      {text:'应用高斯定理 ∮D·dS=ρ_s·S，侧面通量趋于零',latex:'D_{1n}S-D_{2n}S=\\rho_s\\cdot S'},
-      {text:'消去 S',latex:'D_{1n}-D_{2n}=\\rho_s'},
+      {text:'在分界面取扁平柱形高斯面（pillbox），上下底面平行界面、面积 $S$，侧面高 $\\to 0$'},
+      {text:'应用高斯定理 $\\oint\\mathbf{D}\\cdot d\\mathbf{S}=\\rho_s\\cdot S$，侧面通量趋于零',latex:'D_{1n}S-D_{2n}S=\\rho_s\\cdot S'},
+      {text:'消去 $S$',latex:'D_{1n}-D_{2n}=\\rho_s'},
     ] },
 
   { id:'se-bc-e', cat:'static-e', title:'边界条件：切向 E',
@@ -269,8 +269,8 @@ export const FIELDS_FORMULAS: Formula[] = [
     symbols:['E'],
     note:'分界面两侧电场切向分量连续（静电场无旋的直接结果）',
     derivation:[
-      {text:'在分界面取窄矩形回路，上下边平行界面、长 l，侧边高→0'},
-      {text:'静电场无旋 ∮E·dl=0，侧边贡献趋于零',latex:'E_{1t}\\cdot l-E_{2t}\\cdot l=0'},
+      {text:'在分界面取窄矩形回路，上下边平行界面、长 $l$，侧边高 $\\to 0$'},
+      {text:'静电场无旋 $\\oint\\mathbf{E}\\cdot d\\mathbf{l}=0$，侧边贡献趋于零',latex:'E_{1t}\\cdot l-E_{2t}\\cdot l=0'},
       {text:'电场切向分量连续',latex:'E_{1t}=E_{2t}'},
     ] },
 
@@ -285,9 +285,9 @@ export const FIELDS_FORMULAS: Formula[] = [
     symbols:['J','\\sigma','E'],
     note:'导体中电流密度与电场成正比，σ 为电导率',
     derivation:[
-      {text:'一段均匀导体长 l、截面 S，电阻 R=l/(σS)'},
-      {text:'两端电压 U=El，电流 I=JS，代入欧姆定律 U=IR',latex:'El=\\frac{l}{\\sigma S}\\cdot JS'},
-      {text:'消去 l、S',latex:'\\mathbf{J}=\\sigma\\mathbf{E}'},
+      {text:'一段均匀导体长 $l$、截面 $S$，电阻 $R=\\frac{l}{\\sigma S}$'},
+      {text:'两端电压 $U=El$，电流 $I=JS$，代入欧姆定律 $U=IR$',latex:'El=\\frac{l}{\\sigma S}\\cdot JS'},
+      {text:'消去 $l$、$S$',latex:'\\mathbf{J}=\\sigma\\mathbf{E}'},
     ] },
 
   { id:'st-current', cat:'steady-e', title:'电流（积分关系）',
@@ -300,9 +300,9 @@ export const FIELDS_FORMULAS: Formula[] = [
     symbols:['p','J','E','\\sigma'],
     note:'单位体积损耗的焦耳热功率',
     derivation:[
-      {text:'一段导体体积 V=Sl，两端电压 U、电流 I，焦耳功率 P=UI'},
-      {text:'功率密度 p=P/V，代入 U=El、I=JS',latex:'p=\\frac{UI}{Sl}=\\frac{(El)(JS)}{Sl}'},
-      {text:'化简，并代入 J=σE',latex:'p=\\mathbf{J}\\cdot\\mathbf{E}=\\sigma E^{2}'},
+      {text:'一段导体体积 $V=Sl$，两端电压 $U$、电流 $I$，焦耳功率 $P=UI$'},
+      {text:'功率密度 $p=P/V$，代入 $U=El$、$I=JS$',latex:'p=\\frac{UI}{Sl}=\\frac{(El)(JS)}{Sl}'},
+      {text:'化简，并代入 $J=\\sigma E$',latex:'p=\\mathbf{J}\\cdot\\mathbf{E}=\\sigma E^{2}'},
     ] },
 
   { id:'st-joule-pwr', cat:'steady-e', title:'焦耳总功率',
@@ -335,7 +335,7 @@ export const FIELDS_FORMULAS: Formula[] = [
     symbols:['J','\\sigma','E','\\hat{n}'],
     note:'分界面两侧电流密度法向分量连续（无电荷堆积时）',
     derivation:[
-      {text:'恒定电流时 ∂ρ/∂t=0，连续性方程退化为 ∇·J=0 即 ∮J·dS=0'},
+      {text:'恒定电流时 $\\frac{\\partial\\rho}{\\partial t}=0$，连续性方程退化为 $\\nabla\\cdot\\mathbf{J}=0$ 即 $\\oint\\mathbf{J}\\cdot d\\mathbf{S}=0$'},
       {text:'分界面取 pillbox 高斯面',latex:'J_{1n}S-J_{2n}S=0'},
       {text:'电流密度法向分量连续',latex:'J_{1n}=J_{2n}'},
     ] },
@@ -401,8 +401,8 @@ export const FIELDS_FORMULAS: Formula[] = [
     symbols:['\\nabla^2','A','\\mu','J'],
     note:'库仑规范下矢量磁位满足的方程（类比静电泊松方程）',
     derivation:[
-      {text:'由 B=∇×A 及安培定律 ∇×H=J，本构 B=μH',latex:'\\nabla\\times(\\nabla\\times\\mathbf{A})=\\mu\\mathbf{J}'},
-      {text:'矢量恒等式 ∇×(∇×A)=∇(∇·A)-∇²A，库仑规范 ∇·A=0',latex:'-\\nabla^2\\mathbf{A}=\\mu\\mathbf{J}'},
+      {text:'由 $\\mathbf{B}=\\nabla\\times\\mathbf{A}$ 及安培定律 $\\nabla\\times\\mathbf{H}=\\mathbf{J}$，本构 $\\mathbf{B}=\\mu\\mathbf{H}$',latex:'\\nabla\\times(\\nabla\\times\\mathbf{A})=\\mu\\mathbf{J}'},
+      {text:'矢量恒等式 $\\nabla\\times(\\nabla\\times\\mathbf{A})=\\nabla(\\nabla\\cdot\\mathbf{A})-\\nabla^2\\mathbf{A}$，库仑规范 $\\nabla\\cdot\\mathbf{A}=0$',latex:'-\\nabla^2\\mathbf{A}=\\mu\\mathbf{J}'},
       {text:'整理',latex:'\\nabla^2\\mathbf{A}=-\\mu\\mathbf{J}'},
     ] },
 
@@ -421,7 +421,7 @@ export const FIELDS_FORMULAS: Formula[] = [
     symbols:['B','\\hat{n}'],
     note:'分界面两侧磁感应法向分量连续（磁通连续的结果）',
     derivation:[
-      {text:'磁通连续 ∮B·dS=0'},
+      {text:'磁通连续 $\\oint\\mathbf{B}\\cdot d\\mathbf{S}=0$'},
       {text:'分界面取 pillbox 高斯面',latex:'B_{1n}S-B_{2n}S=0'},
       {text:'磁感应法向分量连续',latex:'B_{1n}=B_{2n}'},
     ] },
@@ -431,8 +431,8 @@ export const FIELDS_FORMULAS: Formula[] = [
     symbols:['H','J_s'],
     note:'分界面两侧磁场切向分量之差等于面电流密度',
     derivation:[
-      {text:'安培环路定律 ∮H·dl=I（包围的传导电流）'},
-      {text:'分界面取矩形回路，上下边长 l 平行界面',latex:'H_{1t}\\cdot l-H_{2t}\\cdot l=J_s\\cdot l'},
+      {text:'安培环路定律 $\\oint\\mathbf{H}\\cdot d\\mathbf{l}=I$（包围的传导电流）'},
+      {text:'分界面取矩形回路，上下边长 $l$ 平行界面',latex:'H_{1t}\\cdot l-H_{2t}\\cdot l=J_s\\cdot l'},
       {text:'磁场切向分量之差等于面电流密度',latex:'H_{1t}-H_{2t}=J_s'},
     ] },
 
@@ -456,9 +456,9 @@ export const FIELDS_FORMULAS: Formula[] = [
     symbols:['w_m','B','H','\\mu'],
     note:'单位体积磁场储能，W_m=∫w_m dV',
     derivation:[
-      {text:'长直螺线管自感 L=μn²Sl，电流 I 时磁能 W=½LI²',latex:'W_m=\\tfrac{1}{2}\\mu n^{2}Sl\\cdot I^{2}'},
-      {text:'体积 V=Sl，内部 H=nI',latex:'\\frac{W_m}{V}=\\tfrac{1}{2}\\mu n^{2}I^{2}'},
-      {text:'代入 B=μH=μnI',latex:'w_m=\\tfrac{1}{2}\\mu H^{2}=\\frac{B^{2}}{2\\mu}=\\tfrac{1}{2}\\mathbf{B}\\cdot\\mathbf{H}'},
+      {text:'长直螺线管自感 $L=\\mu n^2 Sl$，电流 $I$ 时磁能 $W=\\tfrac{1}{2}LI^2$',latex:'W_m=\\tfrac{1}{2}\\mu n^{2}Sl\\cdot I^{2}'},
+      {text:'体积 $V=Sl$，内部 $H=nI$',latex:'\\frac{W_m}{V}=\\tfrac{1}{2}\\mu n^{2}I^{2}'},
+      {text:'代入 $B=\\mu H=\\mu nI$',latex:'w_m=\\tfrac{1}{2}\\mu H^{2}=\\frac{B^{2}}{2\\mu}=\\tfrac{1}{2}\\mathbf{B}\\cdot\\mathbf{H}'},
     ] },
 
   { id:'sm-dipole-m', cat:'static-m', title:'磁偶极矩',
@@ -477,9 +477,9 @@ export const FIELDS_FORMULAS: Formula[] = [
     symbols:['J_d','\\partial','D','t'],
     note:'麦克斯韦重要贡献：变化的电场等效一种电流',
     derivation:[
-      {text:'原安培定律 ∇×H=J 两边取散度应为零（旋度无散 ∇·(∇×H)=0）'},
-      {text:'但电流连续性方程 ∇·J=-∂ρ/∂t 一般不为零，矛盾'},
-      {text:'引入位移电流 J_d=∂D/∂t，使 ∇·(J+∂D/∂t)=0（用高斯 ∇·D=ρ 验证自洽）'},
+      {text:'原安培定律 $\\nabla\\times\\mathbf{H}=\\mathbf{J}$ 两边取散度应为零（旋度无散 $\\nabla\\cdot(\\nabla\\times\\mathbf{H})=0$）'},
+      {text:'但电流连续性方程 $\\nabla\\cdot\\mathbf{J}=-\\frac{\\partial\\rho}{\\partial t}$ 一般不为零，矛盾'},
+      {text:'引入位移电流 $J_d=\\frac{\\partial\\mathbf{D}}{\\partial t}$，使 $\\nabla\\cdot\\!\\left(\\mathbf{J}+\\frac{\\partial\\mathbf{D}}{\\partial t}\\right)=0$（用高斯 $\\nabla\\cdot\\mathbf{D}=\\rho$ 验证自洽）'},
       {text:'修正安培定律',latex:'\\nabla\\times\\mathbf{H}=\\mathbf{J}+\\frac{\\partial\\mathbf{D}}{\\partial t}'},
     ] },
 
@@ -553,8 +553,8 @@ export const FIELDS_FORMULAS: Formula[] = [
     symbols:['\\oint','S','E','H','dS','\\partial','t','\\int','V','w_e','w_m','dV','J'],
     note:'流入闭合面净能流 = 储能增加率 + 焦耳损耗（电磁能守恒）',
     derivation:[
-      {text:'矢量恒等式 ∇·(E×H)=H·(∇×E)-E·(∇×H)'},
-      {text:'代入麦克斯韦旋度方程 ∇×E=-∂B/∂t、∇×H=J+∂D/∂t',latex:'\\nabla\\cdot(\\mathbf{E}\\times\\mathbf{H})=-\\!\\left[\\mathbf{J}\\cdot\\mathbf{E}+\\frac{\\partial}{\\partial t}(w_e+w_m)\\right]'},
+      {text:'矢量恒等式 $\\nabla\\cdot(\\mathbf{E}\\times\\mathbf{H})=\\mathbf{H}\\cdot(\\nabla\\times\\mathbf{E})-\\mathbf{E}\\cdot(\\nabla\\times\\mathbf{H})$'},
+      {text:'代入麦克斯韦旋度方程 $\\nabla\\times\\mathbf{E}=-\\frac{\\partial\\mathbf{B}}{\\partial t}$、$\\nabla\\times\\mathbf{H}=\\mathbf{J}+\\frac{\\partial\\mathbf{D}}{\\partial t}$',latex:'\\nabla\\cdot(\\mathbf{E}\\times\\mathbf{H})=-\\!\\left[\\mathbf{J}\\cdot\\mathbf{E}+\\frac{\\partial}{\\partial t}(w_e+w_m)\\right]'},
       {text:'两边体积分，左边用散度定理',latex:'-\\oint_{S}(\\mathbf{E}\\times\\mathbf{H})\\cdot d\\mathbf{S}=\\frac{\\partial}{\\partial t}\\!\\int_{V}(w_e+w_m)dV+\\int_{V}\\mathbf{J}\\cdot\\mathbf{E}\\,dV'},
     ] },
 
@@ -563,9 +563,9 @@ export const FIELDS_FORMULAS: Formula[] = [
     symbols:['\\mathbf{S}','\\mathrm{Re}','E','H'],
     note:'时谐场一个周期内平均能流密度，Ė、Ḣ 为复数振幅（有效值式不含 ½）',
     derivation:[
-      {text:'时谐场 E=Re(Ẽe^{jωt})，H=Re(Ḣe^{jωt})'},
-      {text:'瞬时坡印廷 S(t)=E(t)×H(t)，取一周期时间平均'},
-      {text:'利用恒等式 ⟨Re(ḟe^{jωt})×Re(ḡe^{jωt})⟩=½Re(ḟ×ḡ*)',latex:'\\mathbf{S}_{av}=\\tfrac{1}{2}\\,\\mathrm{Re}\\!\\left(\\dot{\\mathbf{E}}\\times\\dot{\\mathbf{H}}^{*}\\right)'},
+      {text:'时谐场 $E=\\mathrm{Re}(\\tilde{E}e^{j\\omega t})$，$H=\\mathrm{Re}(\\tilde{H}e^{j\\omega t})$'},
+      {text:'瞬时坡印廷 $\\mathbf{S}(t)=\\mathbf{E}(t)\\times\\mathbf{H}(t)$，取一周期时间平均'},
+      {text:'利用恒等式 $\\langle\\mathrm{Re}(\\tilde{f}e^{j\\omega t})\\times\\mathrm{Re}(\\tilde{g}e^{j\\omega t})\\rangle=\\frac{1}{2}\\mathrm{Re}(\\tilde{f}\\times\\tilde{g}^*)$',latex:'\\mathbf{S}_{av}=\\tfrac{1}{2}\\,\\mathrm{Re}\\!\\left(\\dot{\\mathbf{E}}\\times\\dot{\\mathbf{H}}^{*}\\right)'},
     ] },
 
   { id:'tv-wave-eq', cat:'time-varying', title:'波动方程（无源区）',
@@ -573,9 +573,9 @@ export const FIELDS_FORMULAS: Formula[] = [
     symbols:['\\nabla^2','E','\\mu','\\varepsilon','\\partial','t'],
     note:'无源、均匀各向同性媒质中电场满足的齐次波动方程（H 同形）',
     derivation:[
-      {text:'无源区麦克斯韦旋度方程 ∇×E=-μ∂H/∂t，∇×H=ε∂E/∂t'},
-      {text:'对第一式取旋度 ∇×(∇×E)=-μ∂/∂t(∇×H)=-με∂²E/∂t²'},
-      {text:'恒等式 ∇×(∇×E)=∇(∇·E)-∇²E，无源区 ∇·E=0',latex:'\\nabla^2\\mathbf{E}=\\mu\\varepsilon\\frac{\\partial^2\\mathbf{E}}{\\partial t^2}'},
+      {text:'无源区麦克斯韦旋度方程 $\\nabla\\times\\mathbf{E}=-\\mu\\frac{\\partial\\mathbf{H}}{\\partial t}$，$\\nabla\\times\\mathbf{H}=\\varepsilon\\frac{\\partial\\mathbf{E}}{\\partial t}$'},
+      {text:'对第一式取旋度 $\\nabla\\times(\\nabla\\times\\mathbf{E})=-\\mu\\frac{\\partial}{\\partial t}(\\nabla\\times\\mathbf{H})=-\\mu\\varepsilon\\frac{\\partial^2\\mathbf{E}}{\\partial t^2}$'},
+      {text:'恒等式 $\\nabla\\times(\\nabla\\times\\mathbf{E})=\\nabla(\\nabla\\cdot\\mathbf{E})-\\nabla^2\\mathbf{E}$，无源区 $\\nabla\\cdot\\mathbf{E}=0$',latex:'\\nabla^2\\mathbf{E}=\\mu\\varepsilon\\frac{\\partial^2\\mathbf{E}}{\\partial t^2}'},
       {text:'移项得齐次波动方程',latex:'\\nabla^2\\mathbf{E}-\\mu\\varepsilon\\frac{\\partial^2\\mathbf{E}}{\\partial t^2}=0'},
     ] },
 
@@ -584,9 +584,9 @@ export const FIELDS_FORMULAS: Formula[] = [
     symbols:['\\nabla\\times','H','J','j','\\omega','\\varepsilon','E'],
     note:'时谐场 ∂/∂t→jω，复振幅记号上加“·”',
     derivation:[
-      {text:'时谐场 D(t)=Re(Ẽe^{jωt})，对 t 求导 → ∂D/∂t=Re(jωẼe^{jωt})'},
-      {text:'复数形式下偏导替换 ∂/∂t→jω'},
-      {text:'代入 ∇×H=J+∂D/∂t',latex:'\\nabla\\times\\dot{\\mathbf{H}}=\\dot{\\mathbf{J}}+j\\omega\\varepsilon\\dot{\\mathbf{E}}'},
+      {text:'时谐场 $D(t)=\\mathrm{Re}(\\tilde{E}e^{j\\omega t})$，对 $t$ 求导 $\\to\\frac{\\partial D}{\\partial t}=\\mathrm{Re}(j\\omega\\tilde{E}e^{j\\omega t})$'},
+      {text:'复数形式下偏导替换 $\\frac{\\partial}{\\partial t}\\to j\\omega$'},
+      {text:'代入 $\\nabla\\times\\mathbf{H}=\\mathbf{J}+\\frac{\\partial\\mathbf{D}}{\\partial t}$',latex:'\\nabla\\times\\dot{\\mathbf{H}}=\\dot{\\mathbf{J}}+j\\omega\\varepsilon\\dot{\\mathbf{E}}'},
     ] },
 
   { id:'tv-phasor2', cat:'time-varying', title:'时谐场复数形式②（法拉第）',
@@ -594,8 +594,8 @@ export const FIELDS_FORMULAS: Formula[] = [
     symbols:['\\nabla\\times','E','j','\\omega','\\mu','H'],
     note:'时谐场复数形式的法拉第定律（无源时 J=0）',
     derivation:[
-      {text:'复数形式下 ∂B/∂t→jωḂ=jωμḢ'},
-      {text:'代入 ∇×E=-∂B/∂t',latex:'\\nabla\\times\\dot{\\mathbf{E}}=-j\\omega\\mu\\dot{\\mathbf{H}}'},
+      {text:'复数形式下 $\\frac{\\partial\\mathbf{B}}{\\partial t}\\to j\\omega\\dot{\\mathbf{B}}=j\\omega\\mu\\dot{\\mathbf{H}}$'},
+      {text:'代入 $\\nabla\\times\\mathbf{E}=-\\frac{\\partial\\mathbf{B}}{\\partial t}$',latex:'\\nabla\\times\\dot{\\mathbf{E}}=-j\\omega\\mu\\dot{\\mathbf{H}}'},
     ] },
 
   /* ============== 第 6 章 平面电磁波 plane-wave ============== */
@@ -609,8 +609,8 @@ export const FIELDS_FORMULAS: Formula[] = [
     symbols:['\\beta','\\omega','\\mu','\\varepsilon'],
     note:'单位距离相位滞后量，又称波数(无耗)，单位 rad/m',
     derivation:[
-      {text:'无源无耗波动方程 ∇²E-με∂²E/∂t²=0'},
-      {text:'代入沿 +z 传播的解 E=E_m e^{j(ωt-βz)}'},
+      {text:'无源无耗波动方程 $\\nabla^2\\mathbf{E}-\\mu\\varepsilon\\frac{\\partial^2\\mathbf{E}}{\\partial t^2}=0$'},
+      {text:'代入沿 $+z$ 传播的解 $E=E_m e^{j(\\omega t-\\beta z)}$'},
       {text:'解代入波动方程得色散关系',latex:'\\beta^2=\\omega^2\\mu\\varepsilon\\;\\Rightarrow\\;\\beta=\\omega\\sqrt{\\mu\\varepsilon}'},
     ] },
 
@@ -624,9 +624,9 @@ export const FIELDS_FORMULAS: Formula[] = [
     symbols:['v_p','\\omega','\\beta','\\mu','\\varepsilon'],
     note:'等相面推进速度；真空中 v_p=c=3×10⁸ m/s',
     derivation:[
-      {text:'等相面 ωt-βz=常数，对 t 求导',latex:'\\omega-\\beta\\frac{dz}{dt}=0'},
+      {text:'等相面 $\\omega t-\\beta z=\\text{常数}$，对 $t$ 求导',latex:'\\omega-\\beta\\frac{dz}{dt}=0'},
       {text:'等相面速度',latex:'v_p=\\frac{dz}{dt}=\\frac{\\omega}{\\beta}'},
-      {text:'代入 β=ω√με',latex:'v_p=\\frac{1}{\\sqrt{\\mu\\varepsilon}}'},
+      {text:'代入 $\\beta=\\omega\\sqrt{\\mu\\varepsilon}$',latex:'v_p=\\frac{1}{\\sqrt{\\mu\\varepsilon}}'},
     ] },
 
   { id:'pw-speed-light', cat:'plane-wave', title:'真空中电磁波速度（光速）',
@@ -635,7 +635,7 @@ export const FIELDS_FORMULAS: Formula[] = [
     note:'麦克斯韦理论预言电磁波速等于光速，揭示光的电磁本质',
     derivation:[
       {text:'相速公式',latex:'c=\\frac{1}{\\sqrt{\\mu_0\\varepsilon_0}}'},
-      {text:'代入 μ₀=4π×10⁻⁷、ε₀≈8.854×10⁻¹²'},
+      {text:'代入 $\\mu_0=4\\pi\\times10^{-7}$、$\\varepsilon_0\\approx 8.854\\times10^{-12}$'},
       {text:'数值计算',latex:'c\\approx 3\\times10^{8}\\,\\mathrm{m/s}'},
     ] },
 
@@ -644,9 +644,9 @@ export const FIELDS_FORMULAS: Formula[] = [
     symbols:['\\eta','\\mu','\\varepsilon'],
     note:'均匀平面波 E 与 H 振幅之比 |E|/|H|=η',
     derivation:[
-      {text:'平面波 Ẽ=x̂E_0 e^{-jβz} 代入 ∇×Ẽ=-jωμḢ'},
-      {text:'由 y 分量：jβE_0=-jωμH_y',latex:'\\frac{|E|}{|H|}=\\frac{\\omega\\mu}{\\beta}'},
-      {text:'代入 β=ω√με',latex:'\\eta=\\frac{|E|}{|H|}=\\sqrt{\\frac{\\mu}{\\varepsilon}}'},
+      {text:'平面波 $\\tilde{E}=\\hat{x}E_0 e^{-j\\beta z}$ 代入 $\\nabla\\times\\tilde{E}=-j\\omega\\mu\\tilde{H}$'},
+      {text:'由 $y$ 分量：$j\\beta E_0=-j\\omega\\mu H_y$',latex:'\\frac{|E|}{|H|}=\\frac{\\omega\\mu}{\\beta}'},
+      {text:'代入 $\\beta=\\omega\\sqrt{\\mu\\varepsilon}$',latex:'\\eta=\\frac{|E|}{|H|}=\\sqrt{\\frac{\\mu}{\\varepsilon}}'},
     ] },
 
   { id:'pw-impedance-vac', cat:'plane-wave', title:'真空本征阻抗',
@@ -654,9 +654,9 @@ export const FIELDS_FORMULAS: Formula[] = [
     symbols:['\\eta_0','\\mu_0','\\varepsilon_0'],
     note:'自由空间波阻抗 ≈ 377 Ω',
     derivation:[
-      {text:'波阻抗公式 η=√(μ/ε)'},
-      {text:'真空中 μ=μ₀、ε=ε₀',latex:'\\eta_0=\\sqrt{\\frac{\\mu_0}{\\varepsilon_0}}'},
-      {text:'代入 μ₀、ε₀ 数值',latex:'\\eta_0\\approx 120\\pi\\approx 377\\,\\Omega'},
+      {text:'波阻抗公式 $\\eta=\\sqrt{\\mu/\\varepsilon}$'},
+      {text:'真空中 $\\mu=\\mu_0$、$\\varepsilon=\\varepsilon_0$',latex:'\\eta_0=\\sqrt{\\frac{\\mu_0}{\\varepsilon_0}}'},
+      {text:'代入 $\\mu_0$、$\\varepsilon_0$ 数值',latex:'\\eta_0\\approx 120\\pi\\approx 377\\,\\Omega'},
     ] },
 
   { id:'pw-eh-rel', cat:'plane-wave', title:'E 与 H 的关系',
@@ -664,9 +664,9 @@ export const FIELDS_FORMULAS: Formula[] = [
     symbols:['H','\\eta','E'],
     note:'E、H、传播方向 k̂ 三者两两正交，构成右手系',
     derivation:[
-      {text:'平面波 Ẽ=x̂E_0e^{-jβz}，传播方向 k̂=ẑ'},
-      {text:'由 ∇×Ẽ=-jωμḢ 得 Ḣ=ŷ(E_0/η)e^{-jβz}'},
-      {text:'验证 ŷ=ẑ×x̂=k̂×x̂',latex:'\\mathbf{H}=\\frac{1}{\\eta}\\hat{k}\\times\\mathbf{E}'},
+      {text:'平面波 $\\tilde{E}=\\hat{x}E_0 e^{-j\\beta z}$，传播方向 $\\hat{k}=\\hat{z}$'},
+      {text:'由 $\\nabla\\times\\tilde{E}=-j\\omega\\mu\\tilde{H}$ 得 $\\tilde{H}=\\hat{y}(E_0/\\eta)e^{-j\\beta z}$'},
+      {text:'验证 $\\hat{y}=\\hat{z}\\times\\hat{x}=\\hat{k}\\times\\hat{x}$',latex:'\\mathbf{H}=\\frac{1}{\\eta}\\hat{k}\\times\\mathbf{E}'},
     ] },
 
   { id:'pw-prop-const-lossy', cat:'plane-wave', title:'有耗媒质传播常数',
@@ -674,9 +674,9 @@ export const FIELDS_FORMULAS: Formula[] = [
     symbols:['\\gamma','\\alpha','\\beta','j','\\omega','\\mu','\\sigma','\\varepsilon'],
     note:'γ=α+jβ，α 衰减、β 相移；电场按 e^(−αz) 衰减',
     derivation:[
-      {text:'有耗媒质复麦克斯韦方程 ∇×Ẽ=-jωμḢ，∇×Ḣ=(σ+jωε)Ẽ'},
-      {text:'消去 Ḣ：∇×(∇×Ẽ)=-jωμ(σ+jωε)Ẽ，无源∇·Ẽ=0 故 -∇²Ẽ=-jωμ(σ+jωε)Ẽ'},
-      {text:'即 ∇²Ẽ=jωμ(σ+jωε)Ẽ，令解 e^{-γz} 代入',latex:'\\gamma^2=j\\omega\\mu(\\sigma+j\\omega\\varepsilon)'},
+      {text:'有耗媒质复麦克斯韦方程 $\\nabla\\times\\tilde{E}=-j\\omega\\mu\\tilde{H}$，$\\nabla\\times\\tilde{H}=(\\sigma+j\\omega\\varepsilon)\\tilde{E}$'},
+      {text:'消去 $\\tilde{H}$：$\\nabla\\times(\\nabla\\times\\tilde{E})=-j\\omega\\mu(\\sigma+j\\omega\\varepsilon)\\tilde{E}$，无源 $\\nabla\\cdot\\tilde{E}=0$ 故 $-\\nabla^2\\tilde{E}=-j\\omega\\mu(\\sigma+j\\omega\\varepsilon)\\tilde{E}$'},
+      {text:'即 $\\nabla^2\\tilde{E}=j\\omega\\mu(\\sigma+j\\omega\\varepsilon)\\tilde{E}$，令解 $e^{-\\gamma z}$ 代入',latex:'\\gamma^2=j\\omega\\mu(\\sigma+j\\omega\\varepsilon)'},
       {text:'取平方根',latex:'\\gamma=\\alpha+j\\beta=\\sqrt{j\\omega\\mu(\\sigma+j\\omega\\varepsilon)}'},
     ] },
 
@@ -685,8 +685,8 @@ export const FIELDS_FORMULAS: Formula[] = [
     symbols:['\\alpha','\\beta','\\omega','\\mu','\\sigma'],
     note:'良导体(σ≫ωε)中 α=β，波强烈衰减且相速极慢',
     derivation:[
-      {text:'良导体条件 σ≫ωε，传播常数简化 γ²≈jωμσ'},
-      {text:'因 j=e^{jπ/2}，√j=(1+j)/√2',latex:'\\gamma=\\sqrt{\\omega\\mu\\sigma}\\cdot\\frac{1+j}{\\sqrt{2}}'},
+      {text:'良导体条件 $\\sigma\\gg\\omega\\varepsilon$，传播常数简化 $\\gamma^2\\approx j\\omega\\mu\\sigma$'},
+      {text:'因 $j=e^{j\\pi/2}$，$\\sqrt{j}=\\frac{1+j}{\\sqrt{2}}$',latex:'\\gamma=\\sqrt{\\omega\\mu\\sigma}\\cdot\\frac{1+j}{\\sqrt{2}}'},
       {text:'实部虚部相等',latex:'\\alpha=\\beta=\\sqrt{\\frac{\\omega\\mu\\sigma}{2}}'},
     ] },
 
@@ -695,9 +695,9 @@ export const FIELDS_FORMULAS: Formula[] = [
     symbols:['\\delta','\\omega','\\mu','\\sigma','\\alpha'],
     note:'振幅衰减到 1/e 所经距离；频率越高趋肤越浅',
     derivation:[
-      {text:'良导体中衰减常数 α=√(ωμσ/2)'},
-      {text:'趋肤深度定义为振幅衰减到 1/e 的距离 δ=1/α'},
-      {text:'代入 α',latex:'\\delta=\\frac{1}{\\alpha}=\\sqrt{\\frac{2}{\\omega\\mu\\sigma}}'},
+      {text:'良导体中衰减常数 $\\alpha=\\sqrt{\\omega\\mu\\sigma/2}$'},
+      {text:'趋肤深度定义为振幅衰减到 $1/e$ 的距离 $\\delta=1/\\alpha$'},
+      {text:'代入 $\\alpha$',latex:'\\delta=\\frac{1}{\\alpha}=\\sqrt{\\frac{2}{\\omega\\mu\\sigma}}'},
     ] },
 
   { id:'pw-reflect', cat:'plane-wave', title:'垂直入射反射系数',
@@ -705,9 +705,9 @@ export const FIELDS_FORMULAS: Formula[] = [
     symbols:['\\Gamma','\\eta'],
     note:'界面处反射波与入射波电场之比；η₁=η₂ 时无反射(匹配)',
     derivation:[
-      {text:'垂直入射界面 z=0，电场切向连续：E_i+E_r=E_t',latex:'1+\\Gamma=\\tau'},
-      {text:'磁场切向连续（反射波 H 反号）：E_i/η₁-E_r/η₁=E_t/η₂',latex:'\\frac{1-\\Gamma}{\\eta_1}=\\frac{\\tau}{\\eta_2}'},
-      {text:'消去 τ 得',latex:'\\eta_2(1-\\Gamma)=\\eta_1(1+\\Gamma)'},
+      {text:'垂直入射界面 $z=0$，电场切向连续：$E_i+E_r=E_t$',latex:'1+\\Gamma=\\tau'},
+      {text:'磁场切向连续（反射波 $H$ 反号）：$E_i/\\eta_1-E_r/\\eta_1=E_t/\\eta_2$',latex:'\\frac{1-\\Gamma}{\\eta_1}=\\frac{\\tau}{\\eta_2}'},
+      {text:'消去 $\\tau$ 得',latex:'\\eta_2(1-\\Gamma)=\\eta_1(1+\\Gamma)'},
       {text:'解出反射系数',latex:'\\Gamma=\\frac{\\eta_2-\\eta_1}{\\eta_2+\\eta_1}'},
     ] },
 
@@ -716,8 +716,8 @@ export const FIELDS_FORMULAS: Formula[] = [
     symbols:['\\tau','\\eta','\\Gamma'],
     note:'界面处透射波与入射波电场之比；恒有 τ=1+Γ',
     derivation:[
-      {text:'由界面电场连续 E_i+E_r=E_t',latex:'\\tau=1+\\Gamma'},
-      {text:'代入 Γ=(η₂-η₁)/(η₂+η₁)',latex:'\\tau=1+\\frac{\\eta_2-\\eta_1}{\\eta_2+\\eta_1}'},
+      {text:'由界面电场连续 $E_i+E_r=E_t$',latex:'\\tau=1+\\Gamma'},
+      {text:'代入 $\\Gamma=\\frac{\\eta_2-\\eta_1}{\\eta_2+\\eta_1}$',latex:'\\tau=1+\\frac{\\eta_2-\\eta_1}{\\eta_2+\\eta_1}'},
       {text:'通分',latex:'\\tau=\\frac{2\\eta_2}{\\eta_2+\\eta_1}'},
     ] },
 
@@ -747,8 +747,8 @@ export const FIELDS_FORMULAS: Formula[] = [
     symbols:['Z_0','R','j','\\omega','L','G','C'],
     note:'行波状态下沿线电压/电流之比，仅取决于分布参数',
     derivation:[
-      {text:'电报方程 ∂U/∂z=-(R+jωL)I，对其求 ∂/∂z 再代入第二式',latex:'\\frac{\\partial^2 U}{\\partial z^2}=(R+j\\omega L)(G+j\\omega C)\\,U=\\gamma^2 U'},
-      {text:'行波解 U=U^+e^{-γz}（无反射），代回电报方程',latex:'-\\gamma U^+=-(R+j\\omega L)I'},
+      {text:'电报方程 $\\frac{\\partial U}{\\partial z}=-(R+j\\omega L)I$，对其求 $\\frac{\\partial}{\\partial z}$ 再代入第二式',latex:'\\frac{\\partial^2 U}{\\partial z^2}=(R+j\\omega L)(G+j\\omega C)\\,U=\\gamma^2 U'},
+      {text:'行波解 $U=U^+e^{-\\gamma z}$（无反射），代回电报方程',latex:'-\\gamma U^+=-(R+j\\omega L)I'},
       {text:'得特性阻抗',latex:'Z_0=\\frac{U}{I}=\\frac{R+j\\omega L}{\\gamma}=\\sqrt{\\frac{R+j\\omega L}{G+j\\omega C}}'},
     ] },
 
@@ -757,9 +757,9 @@ export const FIELDS_FORMULAS: Formula[] = [
     symbols:['\\gamma','R','j','\\omega','L','G','C','\\alpha','\\beta'],
     note:'γ=α+jβ，α 衰减、β 相移',
     derivation:[
-      {text:'电报方程 ∂U/∂z=-(R+jωL)I，∂I/∂z=-(G+jωC)U'},
-      {text:'联立求导消去 I',latex:'\\frac{\\partial^2 U}{\\partial z^2}=(R+j\\omega L)(G+j\\omega C)\\,U'},
-      {text:'令 γ²=(R+jωL)(G+jωC)',latex:'\\gamma=\\sqrt{(R+j\\omega L)(G+j\\omega C)}=\\alpha+j\\beta'},
+      {text:'电报方程 $\\frac{\\partial U}{\\partial z}=-(R+j\\omega L)I$，$\\frac{\\partial I}{\\partial z}=-(G+j\\omega C)U$'},
+      {text:'联立求导消去 $I$',latex:'\\frac{\\partial^2 U}{\\partial z^2}=(R+j\\omega L)(G+j\\omega C)\\,U'},
+      {text:'令 $\\gamma^2=(R+j\\omega L)(G+j\\omega C)$',latex:'\\gamma=\\sqrt{(R+j\\omega L)(G+j\\omega C)}=\\alpha+j\\beta'},
     ] },
 
   { id:'wg-z0-lossless', cat:'waveguide', title:'无耗传输线',
@@ -767,9 +767,9 @@ export const FIELDS_FORMULAS: Formula[] = [
     symbols:['Z_0','L','C','\\gamma','j','\\omega'],
     note:'R=G=0 时 Z₀ 为实数、γ 纯虚（只相移不衰减）',
     derivation:[
-      {text:'无耗线 R=G=0，代入特性阻抗',latex:'Z_0=\\sqrt{\\frac{j\\omega L}{j\\omega C}}=\\sqrt{\\frac{L}{C}}'},
+      {text:'无耗线 $R=G=0$，代入特性阻抗',latex:'Z_0=\\sqrt{\\frac{j\\omega L}{j\\omega C}}=\\sqrt{\\frac{L}{C}}'},
       {text:'代入传播常数',latex:'\\gamma=\\sqrt{j\\omega L\\cdot j\\omega C}=\\sqrt{-\\omega^2 LC}=j\\omega\\sqrt{LC}'},
-      {text:'Z₀ 为实数、γ 纯虚（α=0 只相移不衰减）'},
+      {text:'$Z_0$ 为实数、$\\gamma$ 纯虚（$\\alpha=0$ 只相移不衰减）'},
     ] },
 
   { id:'wg-cutoff-f', cat:'waveguide', title:'矩形波导截止频率',
@@ -777,7 +777,7 @@ export const FIELDS_FORMULAS: Formula[] = [
     symbols:['f_c','\\mu','\\varepsilon','m','n','a','b'],
     note:'TE/TM 模(m,n)的截止频率；a、b 为波导宽、窄边',
     derivation:[
-      {text:'波导中波数关系 k²=β²+k_c²，k=ω√με；截止时 β=0',latex:'\\omega_c\\sqrt{\\mu\\varepsilon}=k_c'},
+      {text:'波导中波数关系 $k^2=\\beta^2+k_c^2$，$k=\\omega\\sqrt{\\mu\\varepsilon}$；截止时 $\\beta=0$',latex:'\\omega_c\\sqrt{\\mu\\varepsilon}=k_c'},
       {text:'横向波数（由边界条件确定）',latex:'k_c=\\sqrt{\\left(\\frac{m\\pi}{a}\\right)^{2}+\\left(\\frac{n\\pi}{b}\\right)^{2}}'},
       {text:'解出截止频率',latex:'f_c=\\frac{1}{2\\sqrt{\\mu\\varepsilon}}\\sqrt{\\left(\\frac{m}{a}\\right)^{2}+\\left(\\frac{n}{b}\\right)^{2}}'},
     ] },
@@ -787,8 +787,8 @@ export const FIELDS_FORMULAS: Formula[] = [
     symbols:['\\lambda_c','v_p','f_c','m','n','a','b'],
     note:'仅 f>f_c（λ<λ_c）的波才能在波导中传播（高通特性）',
     derivation:[
-      {text:'截止波长 λ_c=v/f_c，v=1/√με'},
-      {text:'代入 f_c',latex:'\\lambda_c=\\frac{1/\\sqrt{\\mu\\varepsilon}}{f_c}'},
+      {text:'截止波长 $\\lambda_c=v/f_c$，$v=1/\\sqrt{\\mu\\varepsilon}$'},
+      {text:'代入 $f_c$',latex:'\\lambda_c=\\frac{1/\\sqrt{\\mu\\varepsilon}}{f_c}'},
       {text:'化简',latex:'\\lambda_c=\\frac{2}{\\sqrt{(m/a)^{2}+(n/b)^{2}}}'},
     ] },
 
@@ -797,9 +797,9 @@ export const FIELDS_FORMULAS: Formula[] = [
     symbols:['\\lambda_g','\\lambda','f_c','f'],
     note:'导行波沿轴向的波长，恒大于自由空间波长 λ',
     derivation:[
-      {text:'波导轴向波数 β=√(k²-k_c²)=k√(1-(k_c/k)²)'},
-      {text:'因 k_c/k=f_c/f',latex:'\\beta=k\\sqrt{1-(f_c/f)^{2}}'},
-      {text:'λ_g=2π/β，代入 k=2π/λ',latex:'\\lambda_g=\\frac{\\lambda}{\\sqrt{1-(f_c/f)^{2}}}'},
+      {text:'波导轴向波数 $\\beta=\\sqrt{k^2-k_c^2}=k\\sqrt{1-(k_c/k)^2}$'},
+      {text:'因 $k_c/k=f_c/f$',latex:'\\beta=k\\sqrt{1-(f_c/f)^{2}}'},
+      {text:'$\\lambda_g=2\\pi/\\beta$，代入 $k=2\\pi/\\lambda$',latex:'\\lambda_g=\\frac{\\lambda}{\\sqrt{1-(f_c/f)^{2}}}'},
     ] },
 
   { id:'wg-phase-vel', cat:'waveguide', title:'波导相速与群速',
@@ -807,8 +807,8 @@ export const FIELDS_FORMULAS: Formula[] = [
     symbols:['v_p','v_g','f_c','f'],
     note:'波导中相速 >c、群速 <c，二者乘积等于 v²（能量以群速传播）',
     derivation:[
-      {text:'波导轴向 β=k√(1-(f_c/f)²)，相速 v_p=ω/β',latex:'v_p=\\frac{\\omega}{k\\sqrt{1-(f_c/f)^{2}}}=\\frac{v}{\\sqrt{1-(f_c/f)^{2}}}>v'},
-      {text:'群速 v_g=dω/dβ（对 β=k√(1-(f_c/f)²) 求导）',latex:'v_g=v\\sqrt{1-(f_c/f)^{2}}<v'},
+      {text:'波导轴向 $\\beta=k\\sqrt{1-(f_c/f)^2}$，相速 $v_p=\\omega/\\beta$',latex:'v_p=\\frac{\\omega}{k\\sqrt{1-(f_c/f)^{2}}}=\\frac{v}{\\sqrt{1-(f_c/f)^{2}}}>v'},
+      {text:'群速 $v_g=d\\omega/d\\beta$（对 $\\beta=k\\sqrt{1-(f_c/f)^2}$ 求导）',latex:'v_g=v\\sqrt{1-(f_c/f)^{2}}<v'},
       {text:'二者乘积',latex:'v_p\\cdot v_g=v^{2}'},
     ] },
 
@@ -838,8 +838,8 @@ export const FIELDS_FORMULAS: Formula[] = [
     symbols:['R_r','l','\\lambda'],
     note:'辐射电阻表征天线辐射能力；R_r=P/(½I₀²)，l≪λ 时很小',
     derivation:[
-      {text:'辐射电阻定义 R_r=P/(½I₀²)，I₀ 为电流幅值'},
-      {text:'赫兹偶极子辐射功率 P=40π²(I₀l/λ)²（远区坡印廷球面积分）'},
+      {text:'辐射电阻定义 $R_r=P/(\\tfrac{1}{2}I_0^2)$，$I_0$ 为电流幅值'},
+      {text:'赫兹偶极子辐射功率 $P=40\\pi^2\\!\\left(\\frac{I_0 l}{\\lambda}\\right)^2$（远区坡印廷球面积分）'},
       {text:'代入',latex:'R_r=\\frac{2P}{I_0^2}=80\\pi^2\\!\\left(\\frac{l}{\\lambda}\\right)^{2}'},
     ] },
 
