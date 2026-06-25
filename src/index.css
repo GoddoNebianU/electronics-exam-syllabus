@@ -1663,9 +1663,10 @@
   display: flex;
   flex-direction: column;
   transform: translateX(100%);
-  transition: transform var(--transition);
+  visibility: hidden;
+  transition: transform var(--transition), visibility 0s 0.3s;
 }
-.stats-drawer.is-open { transform: translateX(0); }
+.stats-drawer.is-open { transform: translateX(0); visibility: visible; transition: transform var(--transition), visibility 0s; }
 .stats-drawer__head {
   display: flex;
   align-items: center;
