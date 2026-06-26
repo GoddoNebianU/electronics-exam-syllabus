@@ -8,7 +8,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { SYLLABUS, flattenChapters } from '../data/syllabus';
 import type { Chapter, Subject } from '../data/types';
-import { assetUrl } from '../lib/assets';
+import { getChapterMarkdown } from '../data/chapters';
 import { SearchResultItem, escapeHtml } from './SearchResultItem';
 
 interface IndexEntry {
@@ -23,7 +23,6 @@ interface Hit extends IndexEntry {
 }
 
 let indexCache: IndexEntry[] | null = null;
-let building: Promise<IndexEntry[]> | null = null;
 
 function stripMarkdown(md: string): string {
   return md
@@ -38,26 +37,13 @@ function stripMarkdown(md: string): string {
 
 async function buildIndex(): Promise<IndexEntry[]> {
   if (indexCache) return indexCache;
-  if (building) return building;
-  building = (async () => {
-    const items = flattenChapters();
-    const entries = await Promise.all(
-      items.map(async ({ subject, chapter }) => {
-        let text = '';
-        try {
-          const res = await fetch(assetUrl(chapter.file));
-          if (res.ok) text = await res.text();
-        } catch {
-          /* 单章失败不阻塞其余 */
-        }
-        return { subject, chapter, plain: stripMarkdown(text) };
-      }),
-    );
-    indexCache = entries;
-    building = null;
-    return entries;
-  })();
-  return building;
+  const items = flattenChapters();
+  indexCache = items.map(({ subject, chapter }) => ({
+    subject,
+    chapter,
+    plain: stripMarkdown(getChapterMarkdown(chapter.file) ?? ''),
+  }));
+  return indexCache;
 }
 
 function snippet(plain: string, query: string, len = 60): string {

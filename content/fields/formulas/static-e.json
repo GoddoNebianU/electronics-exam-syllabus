@@ -1,0 +1,331 @@
+[
+  {
+    "id": "se-coulomb",
+    "cat": "static-e",
+    "title": "库仑定律",
+    "latex": "\\mathbf{F}=\\frac{q_1 q_2}{4\\pi\\varepsilon_0 r^2}\\hat{r}",
+    "symbols": [
+      "F",
+      "\\varepsilon_0",
+      "r",
+      "\\hat{r}",
+      "q"
+    ],
+    "note": "真空中两点电荷间作用力，沿连线方向；同号斥、异号吸"
+  },
+  {
+    "id": "se-e-point",
+    "cat": "static-e",
+    "title": "电场强度（点电荷）",
+    "latex": "\\mathbf{E}=\\frac{q}{4\\pi\\varepsilon r^2}\\hat{r}",
+    "symbols": [
+      "E",
+      "q",
+      "\\varepsilon",
+      "r",
+      "\\hat{r}"
+    ],
+    "note": "点电荷在 r 处产生的电场；正电荷指向外，负电荷指向内"
+  },
+  {
+    "id": "se-d-const",
+    "cat": "static-e",
+    "title": "电位移与本构关系",
+    "latex": "\\mathbf{D}=\\varepsilon\\mathbf{E}=\\varepsilon_0\\varepsilon_r\\mathbf{E}",
+    "symbols": [
+      "D",
+      "\\varepsilon",
+      "E",
+      "\\varepsilon_0",
+      "\\varepsilon_r"
+    ],
+    "note": "D 只与自由电荷有关，E 还受极化影响；εᵣ 为相对介电常数"
+  },
+  {
+    "id": "se-gauss-int",
+    "cat": "static-e",
+    "title": "高斯定理（积分形式）",
+    "latex": "\\oint_{S}\\mathbf{D}\\cdot d\\mathbf{S}=Q=\\int_{V}\\rho\\,dV",
+    "symbols": [
+      "\\oint",
+      "S",
+      "D",
+      "dS",
+      "Q",
+      "\\int",
+      "V",
+      "\\rho",
+      "dV"
+    ],
+    "note": "穿过任一闭合面的电通量等于面内总自由电荷"
+  },
+  {
+    "id": "se-gauss-diff",
+    "cat": "static-e",
+    "title": "高斯定理（微分形式）",
+    "latex": "\\nabla\\cdot\\mathbf{D}=\\rho",
+    "symbols": [
+      "\\nabla\\cdot",
+      "D",
+      "\\rho"
+    ],
+    "note": "电位移散度等于该点自由电荷体密度（静电场基本方程之一）",
+    "derivation": [
+      {
+        "text": "起点：高斯定理积分形式",
+        "latex": "\\oint_{S}\\mathbf{D}\\cdot d\\mathbf{S}=\\int_{V}\\rho\\,dV"
+      },
+      {
+        "text": "对左边闭合面积分应用高斯散度定理",
+        "latex": "\\oint_{S}\\mathbf{D}\\cdot d\\mathbf{S}=\\int_{V}(\\nabla\\cdot\\mathbf{D})\\,dV"
+      },
+      {
+        "text": "两式相等，被积函数必相等",
+        "latex": "\\nabla\\cdot\\mathbf{D}=\\rho"
+      }
+    ]
+  },
+  {
+    "id": "se-pot-def",
+    "cat": "static-e",
+    "title": "电位定义",
+    "latex": "\\mathbf{E}=-\\nabla\\varphi",
+    "symbols": [
+      "E",
+      "\\nabla",
+      "\\varphi"
+    ],
+    "note": "电场等于电位负梯度；静电场无旋，故可引入标量电位",
+    "derivation": [
+      {
+        "text": "静电场沿任意闭合路径做功为零（保守场）",
+        "latex": "\\nabla\\times\\mathbf{E}=0"
+      },
+      {
+        "text": "矢量恒等式：标量梯度的旋度恒为零",
+        "latex": "\\nabla\\times(\\nabla\\varphi)=0"
+      },
+      {
+        "text": "故 $E$ 必可表为某标量的梯度，取负号使场指向电位降低方向",
+        "latex": "\\mathbf{E}=-\\nabla\\varphi"
+      }
+    ]
+  },
+  {
+    "id": "se-pot-point",
+    "cat": "static-e",
+    "title": "点电荷电位",
+    "latex": "\\varphi=\\frac{q}{4\\pi\\varepsilon r}",
+    "symbols": [
+      "\\varphi",
+      "q",
+      "\\varepsilon",
+      "r"
+    ],
+    "note": "取无穷远为电位参考点（φ(∞)=0）",
+    "derivation": [
+      {
+        "text": "由电位定义（取无穷远 $\\varphi(\\infty)=0$）",
+        "latex": "\\varphi=-\\int_{\\infty}^{r}\\mathbf{E}\\cdot d\\mathbf{l}=\\int_{r}^{\\infty}\\mathbf{E}\\cdot d\\mathbf{l}"
+      },
+      {
+        "text": "代入点电荷电场 $E=\\frac{q}{4\\pi\\varepsilon r^2}$，沿径向积分",
+        "latex": "\\varphi=\\int_{r}^{\\infty}\\frac{q}{4\\pi\\varepsilon r'^{2}}\\,dr'"
+      },
+      {
+        "text": "计算定积分",
+        "latex": "\\varphi=\\frac{q}{4\\pi\\varepsilon}\\left[-\\frac{1}{r'}\\right]_{r}^{\\infty}=\\frac{q}{4\\pi\\varepsilon r}"
+      }
+    ]
+  },
+  {
+    "id": "se-poisson",
+    "cat": "static-e",
+    "title": "泊松方程",
+    "latex": "\\nabla^2\\varphi=-\\frac{\\rho}{\\varepsilon}",
+    "symbols": [
+      "\\nabla^2",
+      "\\varphi",
+      "\\rho",
+      "\\varepsilon"
+    ],
+    "note": "有源区电位满足的微分方程",
+    "derivation": [
+      {
+        "text": "高斯定理微分形式与本构关系 $D=\\varepsilon E$ 联立",
+        "latex": "\\nabla\\cdot(\\varepsilon\\mathbf{E})=\\rho"
+      },
+      {
+        "text": "均匀介质 $\\varepsilon$ 为常数，提到散度外；代入 $E=-\\nabla\\varphi$",
+        "latex": "\\varepsilon\\,\\nabla\\cdot(-\\nabla\\varphi)=\\rho"
+      },
+      {
+        "text": "梯度的散度即拉普拉斯算子",
+        "latex": "\\nabla^2\\varphi=-\\frac{\\rho}{\\varepsilon}"
+      }
+    ]
+  },
+  {
+    "id": "se-laplace",
+    "cat": "static-e",
+    "title": "拉普拉斯方程",
+    "latex": "\\nabla^2\\varphi=0",
+    "symbols": [
+      "\\nabla^2",
+      "\\varphi"
+    ],
+    "note": "无源区(ρ=0)电位满足的方程；边值问题的核心",
+    "derivation": [
+      {
+        "text": "泊松方程",
+        "latex": "\\nabla^2\\varphi=-\\frac{\\rho}{\\varepsilon}"
+      },
+      {
+        "text": "无源区域 $\\rho=0$",
+        "latex": "\\nabla^2\\varphi=0"
+      }
+    ]
+  },
+  {
+    "id": "se-dipole-p",
+    "cat": "static-e",
+    "title": "电偶极矩",
+    "latex": "\\mathbf{p}=q\\mathbf{l}",
+    "symbols": [
+      "p",
+      "q",
+      "l"
+    ],
+    "note": "电偶极子 p=ql，方向由 −q 指向 +q"
+  },
+  {
+    "id": "se-dipole-pot",
+    "cat": "static-e",
+    "title": "电偶极子电位",
+    "latex": "\\varphi=\\frac{p\\cos\\theta}{4\\pi\\varepsilon r^2}",
+    "symbols": [
+      "\\varphi",
+      "p",
+      "\\theta",
+      "\\varepsilon",
+      "r"
+    ],
+    "note": "远区电位按 1/r² 衰减，比点电荷(1/r)更快",
+    "derivation": [
+      {
+        "text": "电偶极子由 $\\pm q$（相距 $l$）构成，远区 $P$ 点电位为两点电荷电位叠加",
+        "latex": "\\varphi=\\frac{q}{4\\pi\\varepsilon}\\!\\left(\\frac{1}{r_+}-\\frac{1}{r_-}\\right)"
+      },
+      {
+        "text": "远区近似（$r\\gg l$）：$r_+\\approx r-\\tfrac{l}{2}\\cos\\theta$，$r_-\\approx r+\\tfrac{l}{2}\\cos\\theta$",
+        "latex": "\\frac{1}{r_+}-\\frac{1}{r_-}\\approx\\frac{l\\cos\\theta}{r^2}"
+      },
+      {
+        "text": "代入电偶极矩 $p=ql$",
+        "latex": "\\varphi=\\frac{p\\cos\\theta}{4\\pi\\varepsilon r^2}"
+      }
+    ]
+  },
+  {
+    "id": "se-energy",
+    "cat": "static-e",
+    "title": "电场能量",
+    "latex": "W_e=\\frac{1}{2}\\int_{V}\\mathbf{D}\\cdot\\mathbf{E}\\,dV",
+    "symbols": [
+      "W_e",
+      "\\int",
+      "V",
+      "D",
+      "E",
+      "dV"
+    ],
+    "note": "静电场总储能，积分遍及场存在的全部区域"
+  },
+  {
+    "id": "se-energy-density",
+    "cat": "static-e",
+    "title": "电场能量密度",
+    "latex": "w_e=\\frac{1}{2}\\mathbf{D}\\cdot\\mathbf{E}=\\frac{1}{2}\\varepsilon E^2",
+    "symbols": [
+      "w_e",
+      "D",
+      "E",
+      "\\varepsilon"
+    ],
+    "note": "单位体积电场储能，W_e=∫w_e dV",
+    "derivation": [
+      {
+        "text": "平行板电容器储能 $W=\\tfrac{1}{2}QU$，极板面积 $S$、间距 $d$",
+        "latex": "W=\\tfrac{1}{2}QU=\\tfrac{1}{2}(\\varepsilon E\\cdot S)(Ed)"
+      },
+      {
+        "text": "体积 $V=Sd$",
+        "latex": "W=\\tfrac{1}{2}\\varepsilon E^{2}\\cdot Sd"
+      },
+      {
+        "text": "除以体积得能量密度，并代入 $D=\\varepsilon E$",
+        "latex": "w_e=\\frac{W}{V}=\\tfrac{1}{2}\\varepsilon E^{2}=\\tfrac{1}{2}\\mathbf{D}\\cdot\\mathbf{E}"
+      }
+    ]
+  },
+  {
+    "id": "se-capacitance",
+    "cat": "static-e",
+    "title": "电容",
+    "latex": "C=\\frac{Q}{U}",
+    "symbols": [
+      "C",
+      "Q",
+      "U"
+    ],
+    "note": "电容仅与导体几何形状及介质有关，与电荷、电压无关"
+  },
+  {
+    "id": "se-bc-d",
+    "cat": "static-e",
+    "title": "边界条件：法向 D",
+    "latex": "D_{1n}-D_{2n}=\\rho_s\\quad(\\text{无面电荷则 }D_{1n}=D_{2n})",
+    "symbols": [
+      "D",
+      "\\rho_s",
+      "\\hat{n}"
+    ],
+    "note": "分界面两侧电位移法向分量之差等于面电荷密度",
+    "derivation": [
+      {
+        "text": "在分界面取扁平柱形高斯面（pillbox），上下底面平行界面、面积 $S$，侧面高 $\\to 0$"
+      },
+      {
+        "text": "应用高斯定理 $\\oint\\mathbf{D}\\cdot d\\mathbf{S}=\\rho_s\\cdot S$，侧面通量趋于零",
+        "latex": "D_{1n}S-D_{2n}S=\\rho_s\\cdot S"
+      },
+      {
+        "text": "消去 $S$",
+        "latex": "D_{1n}-D_{2n}=\\rho_s"
+      }
+    ]
+  },
+  {
+    "id": "se-bc-e",
+    "cat": "static-e",
+    "title": "边界条件：切向 E",
+    "latex": "E_{1t}=E_{2t}",
+    "symbols": [
+      "E"
+    ],
+    "note": "分界面两侧电场切向分量连续（静电场无旋的直接结果）",
+    "derivation": [
+      {
+        "text": "在分界面取窄矩形回路，上下边平行界面、长 $l$，侧边高 $\\to 0$"
+      },
+      {
+        "text": "静电场无旋 $\\oint\\mathbf{E}\\cdot d\\mathbf{l}=0$，侧边贡献趋于零",
+        "latex": "E_{1t}\\cdot l-E_{2t}\\cdot l=0"
+      },
+      {
+        "text": "电场切向分量连续",
+        "latex": "E_{1t}=E_{2t}"
+      }
+    ]
+  }
+]

@@ -1,0 +1,195 @@
+[
+  {
+    "id": "st-current-density",
+    "cat": "steady-e",
+    "title": "电流密度",
+    "latex": "\\mathbf{J}=\\rho\\mathbf{v}",
+    "symbols": [
+      "J",
+      "\\rho",
+      "v"
+    ],
+    "note": "体电流密度 = 电荷密度 × 运动速度；方向为正电荷运动方向"
+  },
+  {
+    "id": "st-ohm",
+    "cat": "steady-e",
+    "title": "欧姆定律（微分形式）",
+    "latex": "\\mathbf{J}=\\sigma\\mathbf{E}",
+    "symbols": [
+      "J",
+      "\\sigma",
+      "E"
+    ],
+    "note": "导体中电流密度与电场成正比，σ 为电导率",
+    "derivation": [
+      {
+        "text": "一段均匀导体长 $l$、截面 $S$，电阻 $R=\\frac{l}{\\sigma S}$"
+      },
+      {
+        "text": "两端电压 $U=El$，电流 $I=JS$，代入欧姆定律 $U=IR$",
+        "latex": "El=\\frac{l}{\\sigma S}\\cdot JS"
+      },
+      {
+        "text": "消去 $l$、$S$",
+        "latex": "\\mathbf{J}=\\sigma\\mathbf{E}"
+      }
+    ]
+  },
+  {
+    "id": "st-current",
+    "cat": "steady-e",
+    "title": "电流（积分关系）",
+    "latex": "I=\\int_{S}\\mathbf{J}\\cdot d\\mathbf{S}",
+    "symbols": [
+      "I",
+      "\\int",
+      "S",
+      "J",
+      "dS"
+    ],
+    "note": "穿过某截面的电流等于电流密度的通量"
+  },
+  {
+    "id": "st-joule-p",
+    "cat": "steady-e",
+    "title": "焦耳定律（功率密度）",
+    "latex": "p=\\mathbf{J}\\cdot\\mathbf{E}=\\sigma E^2",
+    "symbols": [
+      "p",
+      "J",
+      "E",
+      "\\sigma"
+    ],
+    "note": "单位体积损耗的焦耳热功率",
+    "derivation": [
+      {
+        "text": "一段导体体积 $V=Sl$，两端电压 $U$、电流 $I$，焦耳功率 $P=UI$"
+      },
+      {
+        "text": "功率密度 $p=P/V$，代入 $U=El$、$I=JS$",
+        "latex": "p=\\frac{UI}{Sl}=\\frac{(El)(JS)}{Sl}"
+      },
+      {
+        "text": "化简，并代入 $J=\\sigma E$",
+        "latex": "p=\\mathbf{J}\\cdot\\mathbf{E}=\\sigma E^{2}"
+      }
+    ]
+  },
+  {
+    "id": "st-joule-pwr",
+    "cat": "steady-e",
+    "title": "焦耳总功率",
+    "latex": "P=\\int_{V}\\mathbf{J}\\cdot\\mathbf{E}\\,dV",
+    "symbols": [
+      "P",
+      "\\int",
+      "V",
+      "J",
+      "E",
+      "dV"
+    ],
+    "note": "导体区域总焦耳热损耗"
+  },
+  {
+    "id": "st-continuity",
+    "cat": "steady-e",
+    "title": "电流连续性方程",
+    "latex": "\\nabla\\cdot\\mathbf{J}=-\\frac{\\partial\\rho}{\\partial t}",
+    "symbols": [
+      "\\nabla\\cdot",
+      "J",
+      "\\partial",
+      "\\rho",
+      "t"
+    ],
+    "note": "电荷守恒定律的微分形式；恒定电流时 ∂ρ/∂t=0 即 ∇·J=0",
+    "derivation": [
+      {
+        "text": "电荷守恒：单位时间流出闭合面的电荷等于内部电荷减少率",
+        "latex": "\\oint_{S}\\mathbf{J}\\cdot d\\mathbf{S}=-\\frac{dQ}{dt}=-\\frac{d}{dt}\\int_{V}\\rho\\,dV"
+      },
+      {
+        "text": "左边用高斯散度定理",
+        "latex": "\\int_{V}(\\nabla\\cdot\\mathbf{J})\\,dV=-\\int_{V}\\frac{\\partial\\rho}{\\partial t}\\,dV"
+      },
+      {
+        "text": "对任意体积成立，被积函数相等",
+        "latex": "\\nabla\\cdot\\mathbf{J}=-\\frac{\\partial\\rho}{\\partial t}"
+      }
+    ]
+  },
+  {
+    "id": "st-steady-eq1",
+    "cat": "steady-e",
+    "title": "恒定电场方程（电流连续）",
+    "latex": "\\oint_{S}\\mathbf{J}\\cdot d\\mathbf{S}=0",
+    "symbols": [
+      "\\oint",
+      "S",
+      "J",
+      "dS"
+    ],
+    "note": "恒定电流管内无电荷堆积，流入等于流出"
+  },
+  {
+    "id": "st-steady-eq2",
+    "cat": "steady-e",
+    "title": "恒定电场方程（保守）",
+    "latex": "\\oint_{l}\\mathbf{E}\\cdot d\\mathbf{l}=0",
+    "symbols": [
+      "\\oint",
+      "E",
+      "dl"
+    ],
+    "note": "恒定电场无旋（管外电源区域）"
+  },
+  {
+    "id": "st-bc-j",
+    "cat": "steady-e",
+    "title": "边界条件：法向电流",
+    "latex": "J_{1n}=J_{2n}\\;\\Leftrightarrow\\;\\sigma_1 E_{1n}=\\sigma_2 E_{2n}",
+    "symbols": [
+      "J",
+      "\\sigma",
+      "E",
+      "\\hat{n}"
+    ],
+    "note": "分界面两侧电流密度法向分量连续（无电荷堆积时）",
+    "derivation": [
+      {
+        "text": "恒定电流时 $\\frac{\\partial\\rho}{\\partial t}=0$，连续性方程退化为 $\\nabla\\cdot\\mathbf{J}=0$ 即 $\\oint\\mathbf{J}\\cdot d\\mathbf{S}=0$"
+      },
+      {
+        "text": "分界面取 pillbox 高斯面",
+        "latex": "J_{1n}S-J_{2n}S=0"
+      },
+      {
+        "text": "电流密度法向分量连续",
+        "latex": "J_{1n}=J_{2n}"
+      }
+    ]
+  },
+  {
+    "id": "st-bc-e",
+    "cat": "steady-e",
+    "title": "边界条件：切向 E",
+    "latex": "E_{1t}=E_{2t}",
+    "symbols": [
+      "E"
+    ],
+    "note": "分界面两侧电场切向分量连续"
+  },
+  {
+    "id": "st-emf",
+    "cat": "steady-e",
+    "title": "电动势",
+    "latex": "\\mathcal{E}=\\oint_{l}\\mathbf{E}_{\\text{非}}\\cdot d\\mathbf{l}",
+    "symbols": [
+      "\\oint",
+      "E",
+      "dl"
+    ],
+    "note": "非保守（非静电）场沿闭合路径的线积分，维持恒定电流"
+  }
+]

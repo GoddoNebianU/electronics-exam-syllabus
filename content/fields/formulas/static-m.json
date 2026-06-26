@@ -1,0 +1,311 @@
+[
+  {
+    "id": "sm-flux-cont-int",
+    "cat": "static-m",
+    "title": "磁通连续性（积分形式）",
+    "latex": "\\oint_{S}\\mathbf{B}\\cdot d\\mathbf{S}=0",
+    "symbols": [
+      "\\oint",
+      "S",
+      "B",
+      "dS"
+    ],
+    "note": "穿过任一闭合面磁通为零——磁荷不存在，磁力线闭合"
+  },
+  {
+    "id": "sm-flux-cont-diff",
+    "cat": "static-m",
+    "title": "磁通连续性（微分形式）",
+    "latex": "\\nabla\\cdot\\mathbf{B}=0",
+    "symbols": [
+      "\\nabla\\cdot",
+      "B"
+    ],
+    "note": "磁感应强度无散（磁场基本方程之一）",
+    "derivation": [
+      {
+        "text": "磁通连续性积分形式",
+        "latex": "\\oint_{S}\\mathbf{B}\\cdot d\\mathbf{S}=0"
+      },
+      {
+        "text": "左边用高斯散度定理",
+        "latex": "\\int_{V}(\\nabla\\cdot\\mathbf{B})\\,dV=0"
+      },
+      {
+        "text": "对任意体积成立",
+        "latex": "\\nabla\\cdot\\mathbf{B}=0"
+      }
+    ]
+  },
+  {
+    "id": "sm-biot-savart",
+    "cat": "static-m",
+    "title": "毕奥-萨伐尔定律",
+    "latex": "\\mathbf{B}=\\frac{\\mu I}{4\\pi}\\oint_{l}\\frac{d\\mathbf{l}\\times\\hat{r}}{r^2}",
+    "symbols": [
+      "B",
+      "\\mu",
+      "I",
+      "\\oint",
+      "l",
+      "dl",
+      "\\hat{r}",
+      "r"
+    ],
+    "note": "电流元产生磁场的积分式；方向由右手定则判定"
+  },
+  {
+    "id": "sm-b-const",
+    "cat": "static-m",
+    "title": "磁场强度与本构关系",
+    "latex": "\\mathbf{B}=\\mu\\mathbf{H}=\\mu_0\\mu_r\\mathbf{H}",
+    "symbols": [
+      "B",
+      "\\mu",
+      "H",
+      "\\mu_0",
+      "\\mu_r"
+    ],
+    "note": "B 与介质磁化有关，H 只与自由电流有关；μᵣ 为相对磁导率"
+  },
+  {
+    "id": "sm-ampere-int",
+    "cat": "static-m",
+    "title": "安培环路定律（积分形式）",
+    "latex": "\\oint_{l}\\mathbf{H}\\cdot d\\mathbf{l}=I=\\int_{S}\\mathbf{J}\\cdot d\\mathbf{S}",
+    "symbols": [
+      "\\oint",
+      "l",
+      "H",
+      "dl",
+      "I",
+      "\\int",
+      "S",
+      "J",
+      "dS"
+    ],
+    "note": "磁场强度沿闭合路径环量等于路径包围的总传导电流"
+  },
+  {
+    "id": "sm-ampere-diff",
+    "cat": "static-m",
+    "title": "安培环路定律（微分形式）",
+    "latex": "\\nabla\\times\\mathbf{H}=\\mathbf{J}",
+    "symbols": [
+      "\\nabla\\times",
+      "H",
+      "J"
+    ],
+    "note": "恒定磁场旋度等于传导电流密度（磁场基本方程之一）",
+    "derivation": [
+      {
+        "text": "安培环路定律积分形式",
+        "latex": "\\oint_{l}\\mathbf{H}\\cdot d\\mathbf{l}=\\int_{S}\\mathbf{J}\\cdot d\\mathbf{S}"
+      },
+      {
+        "text": "左边用斯托克斯定理",
+        "latex": "\\int_{S}(\\nabla\\times\\mathbf{H})\\cdot d\\mathbf{S}=\\int_{S}\\mathbf{J}\\cdot d\\mathbf{S}"
+      },
+      {
+        "text": "对任意曲面成立",
+        "latex": "\\nabla\\times\\mathbf{H}=\\mathbf{J}"
+      }
+    ]
+  },
+  {
+    "id": "sm-vector-pot",
+    "cat": "static-m",
+    "title": "矢量磁位定义",
+    "latex": "\\mathbf{B}=\\nabla\\times\\mathbf{A}",
+    "symbols": [
+      "B",
+      "\\nabla\\times",
+      "A"
+    ],
+    "note": "因 ∇·B=0，B 可表为某矢量 A 的旋度；库仑规范 ∇·A=0"
+  },
+  {
+    "id": "sm-vector-pot-eq",
+    "cat": "static-m",
+    "title": "矢量磁位的泊松方程",
+    "latex": "\\nabla^2\\mathbf{A}=-\\mu\\mathbf{J}",
+    "symbols": [
+      "\\nabla^2",
+      "A",
+      "\\mu",
+      "J"
+    ],
+    "note": "库仑规范下矢量磁位满足的方程（类比静电泊松方程）",
+    "derivation": [
+      {
+        "text": "由 $\\mathbf{B}=\\nabla\\times\\mathbf{A}$ 及安培定律 $\\nabla\\times\\mathbf{H}=\\mathbf{J}$，本构 $\\mathbf{B}=\\mu\\mathbf{H}$",
+        "latex": "\\nabla\\times(\\nabla\\times\\mathbf{A})=\\mu\\mathbf{J}"
+      },
+      {
+        "text": "矢量恒等式 $\\nabla\\times(\\nabla\\times\\mathbf{A})=\\nabla(\\nabla\\cdot\\mathbf{A})-\\nabla^2\\mathbf{A}$，库仑规范 $\\nabla\\cdot\\mathbf{A}=0$",
+        "latex": "-\\nabla^2\\mathbf{A}=\\mu\\mathbf{J}"
+      },
+      {
+        "text": "整理",
+        "latex": "\\nabla^2\\mathbf{A}=-\\mu\\mathbf{J}"
+      }
+    ]
+  },
+  {
+    "id": "sm-flux",
+    "cat": "static-m",
+    "title": "磁通量",
+    "latex": "\\Phi=\\int_{S}\\mathbf{B}\\cdot d\\mathbf{S}=\\oint_{l}\\mathbf{A}\\cdot d\\mathbf{l}",
+    "symbols": [
+      "\\Phi",
+      "\\int",
+      "S",
+      "B",
+      "dS",
+      "\\oint",
+      "l",
+      "A",
+      "dl"
+    ],
+    "note": "磁通等于 B 的面积分，亦等于矢量磁位的环路积分"
+  },
+  {
+    "id": "sm-lorentz",
+    "cat": "static-m",
+    "title": "洛伦兹力",
+    "latex": "\\mathbf{F}=q\\mathbf{v}\\times\\mathbf{B}",
+    "symbols": [
+      "F",
+      "q",
+      "v",
+      "B"
+    ],
+    "note": "运动电荷在磁场中所受力，方向由 v×B 判定"
+  },
+  {
+    "id": "sm-bc-b",
+    "cat": "static-m",
+    "title": "边界条件：法向 B",
+    "latex": "B_{1n}=B_{2n}",
+    "symbols": [
+      "B",
+      "\\hat{n}"
+    ],
+    "note": "分界面两侧磁感应法向分量连续（磁通连续的结果）",
+    "derivation": [
+      {
+        "text": "磁通连续 $\\oint\\mathbf{B}\\cdot d\\mathbf{S}=0$"
+      },
+      {
+        "text": "分界面取 pillbox 高斯面",
+        "latex": "B_{1n}S-B_{2n}S=0"
+      },
+      {
+        "text": "磁感应法向分量连续",
+        "latex": "B_{1n}=B_{2n}"
+      }
+    ]
+  },
+  {
+    "id": "sm-bc-h",
+    "cat": "static-m",
+    "title": "边界条件：切向 H",
+    "latex": "H_{1t}-H_{2t}=J_s\\quad(\\text{无面电流则 }H_{1t}=H_{2t})",
+    "symbols": [
+      "H",
+      "J_s"
+    ],
+    "note": "分界面两侧磁场切向分量之差等于面电流密度",
+    "derivation": [
+      {
+        "text": "安培环路定律 $\\oint\\mathbf{H}\\cdot d\\mathbf{l}=I$（包围的传导电流）"
+      },
+      {
+        "text": "分界面取矩形回路，上下边长 $l$ 平行界面",
+        "latex": "H_{1t}\\cdot l-H_{2t}\\cdot l=J_s\\cdot l"
+      },
+      {
+        "text": "磁场切向分量之差等于面电流密度",
+        "latex": "H_{1t}-H_{2t}=J_s"
+      }
+    ]
+  },
+  {
+    "id": "sm-self-ind",
+    "cat": "static-m",
+    "title": "自感",
+    "latex": "L=\\frac{\\Phi}{I}",
+    "symbols": [
+      "L",
+      "\\Phi",
+      "I"
+    ],
+    "note": "自感仅与线圈几何及磁介质有关；磁链 ψ=NΦ 时 L=ψ/I"
+  },
+  {
+    "id": "sm-mutual-ind",
+    "cat": "static-m",
+    "title": "互感",
+    "latex": "M=\\frac{\\Phi_{21}}{I_1}",
+    "symbols": [
+      "M",
+      "\\Phi",
+      "I"
+    ],
+    "note": "回路1电流在回路2产生的磁链与 I₁ 之比；恒有 M₁₂=M₂₁"
+  },
+  {
+    "id": "sm-energy",
+    "cat": "static-m",
+    "title": "磁场能量",
+    "latex": "W_m=\\frac{1}{2}\\int_{V}\\mathbf{B}\\cdot\\mathbf{H}\\,dV",
+    "symbols": [
+      "W_m",
+      "\\int",
+      "V",
+      "B",
+      "H",
+      "dV"
+    ],
+    "note": "恒定磁场总储能，积分遍及磁场存在的全部区域"
+  },
+  {
+    "id": "sm-energy-density",
+    "cat": "static-m",
+    "title": "磁场能量密度",
+    "latex": "w_m=\\frac{1}{2}\\mathbf{B}\\cdot\\mathbf{H}=\\frac{B^2}{2\\mu}",
+    "symbols": [
+      "w_m",
+      "B",
+      "H",
+      "\\mu"
+    ],
+    "note": "单位体积磁场储能，W_m=∫w_m dV",
+    "derivation": [
+      {
+        "text": "长直螺线管自感 $L=\\mu n^2 Sl$，电流 $I$ 时磁能 $W=\\tfrac{1}{2}LI^2$",
+        "latex": "W_m=\\tfrac{1}{2}\\mu n^{2}Sl\\cdot I^{2}"
+      },
+      {
+        "text": "体积 $V=Sl$，内部 $H=nI$",
+        "latex": "\\frac{W_m}{V}=\\tfrac{1}{2}\\mu n^{2}I^{2}"
+      },
+      {
+        "text": "代入 $B=\\mu H=\\mu nI$",
+        "latex": "w_m=\\tfrac{1}{2}\\mu H^{2}=\\frac{B^{2}}{2\\mu}=\\tfrac{1}{2}\\mathbf{B}\\cdot\\mathbf{H}"
+      }
+    ]
+  },
+  {
+    "id": "sm-dipole-m",
+    "cat": "static-m",
+    "title": "磁偶极矩",
+    "latex": "\\mathbf{m}=I\\mathbf{S}",
+    "symbols": [
+      "m",
+      "I",
+      "S"
+    ],
+    "note": "小电流环的磁偶极矩 m=IS，方向由右手定则（环面法向）"
+  }
+]

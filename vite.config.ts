@@ -59,9 +59,9 @@ export default defineConfig({
         ],
       },
       workbox: {
+        // 章节正文已随 import.meta.glob ?raw 内联进 JS bundle，无需单独缓存 md
         globPatterns: [
           '**/*.{js,css,html,svg,png,ico,woff,woff2,ttf,eot}',
-          '大纲/**/*.md',
         ],
         // 公式数据 + KaTeX 字体较多，调高上限
         maximumFileSizeToCacheInBytes: 4 * 1024 * 1024,

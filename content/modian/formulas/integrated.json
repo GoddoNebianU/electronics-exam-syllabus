@@ -1,0 +1,188 @@
+[
+  {
+    "id": "it-diff-signal",
+    "cat": "integrated",
+    "title": "差模输入信号",
+    "latex": "u_{id}=u_{i1}-u_{i2}",
+    "symbols": [
+      "u_{id}",
+      "u_{i1}",
+      "u_{i2}"
+    ],
+    "note": "两输入端电压之差，是差放要放大的有用信号"
+  },
+  {
+    "id": "it-common-signal",
+    "cat": "integrated",
+    "title": "共模输入信号",
+    "latex": "u_{ic}=\\frac{u_{i1}+u_{i2}}{2}",
+    "symbols": [
+      "u_{ic}",
+      "u_{i1}",
+      "u_{i2}"
+    ],
+    "note": "两输入端电压的平均值；多为温漂/干扰等共模噪声，需抑制"
+  },
+  {
+    "id": "it-input-decomp",
+    "cat": "integrated",
+    "title": "任意输入的差/共模分解",
+    "latex": "u_{i1}=u_{ic}+\\tfrac{1}{2}u_{id},\\quad u_{i2}=u_{ic}-\\tfrac{1}{2}u_{id}",
+    "symbols": [
+      "u_{i1}",
+      "u_{i2}",
+      "u_{ic}",
+      "u_{id}"
+    ],
+    "note": "任意两路输入恒可分解为共模与差模之和，便于分别分析",
+    "derivation": [
+      {
+        "text": "定义差模 $u_{id}=u_{i1}-u_{i2}$，共模 $u_{ic}=(u_{i1}+u_{i2})/2$"
+      },
+      {
+        "text": "由 $u_{id}=u_{i1}-u_{i2}$ 得 $u_{i2}=u_{i1}-u_{id}$"
+      },
+      {
+        "text": "代入 $u_{ic}=(u_{i1}+u_{i1}-u_{id})/2=u_{i1}-u_{id}/2$，反解 $u_{i1}$",
+        "latex": "u_{i1}=u_{ic}+\\tfrac{1}{2}u_{id},\\quad u_{i2}=u_{ic}-\\tfrac{1}{2}u_{id}"
+      }
+    ]
+  },
+  {
+    "id": "it-ad-double",
+    "cat": "integrated",
+    "title": "差放双端输出差模放大倍数",
+    "latex": "A_d=-\\frac{\\beta R_c}{r_{be}}",
+    "symbols": [
+      "A_d",
+      "\\beta",
+      "R_c",
+      "r_{be}"
+    ],
+    "note": "双端输出(差动输出)差模增益与单管共射相同，输出取两集电极之差",
+    "derivation": [
+      {
+        "text": "差模输入时两边对称：一侧 $+u_{id}/2$，另一侧 $-u_{id}/2$"
+      },
+      {
+        "text": "单管共射增益 $A_1=-\\beta R_c/r_{be}$，两管输出大小相等、符号相反"
+      },
+      {
+        "text": "双端输出 $u_{od}=u_{c1}-u_{c2}=A_1\\cdot(u_{id}/2)-A_1\\cdot(-u_{id}/2)=A_1\\cdot u_{id}$"
+      },
+      {
+        "text": "差模增益",
+        "latex": "A_d=\\frac{u_{od}}{u_{id}}=A_1=-\\frac{\\beta R_c}{r_{be}}"
+      }
+    ]
+  },
+  {
+    "id": "it-ad-single",
+    "cat": "integrated",
+    "title": "差放单端输出差模放大倍数",
+    "latex": "A_d=-\\frac{\\beta R_c}{2\\,r_{be}}",
+    "symbols": [
+      "A_d",
+      "\\beta",
+      "R_c",
+      "r_{be}"
+    ],
+    "note": "单端输出(从一个集电极对地)增益为双端的一半，有固定相位(同相或反相取决于输出端)",
+    "derivation": [
+      {
+        "text": "单端输出仅取一个集电极对地，输出电压为双端的一半"
+      },
+      {
+        "text": "$u_{od}=u_{c1}=A_1\\cdot u_{id}/2$"
+      },
+      {
+        "text": "差模增益为双端的一半",
+        "latex": "A_d=\\frac{A_1}{2}=-\\frac{\\beta R_c}{2\\,r_{be}}"
+      }
+    ]
+  },
+  {
+    "id": "it-ac-double",
+    "cat": "integrated",
+    "title": "差放共模放大倍数",
+    "latex": "A_c\\approx 0\\;\\text{(双端)},\\quad A_c\\approx-\\frac{R_c}{2R_e}\\;\\text{(单端)}",
+    "symbols": [
+      "A_c",
+      "R_c",
+      "R_e"
+    ],
+    "note": "双端输出电路对称时共模增益趋于零；单端输出靠发射极电阻 R_e 的共模负反馈抑制，R_e 越大 A_c 越小"
+  },
+  {
+    "id": "it-cmrr",
+    "cat": "integrated",
+    "title": "共模抑制比（比值形式）",
+    "latex": "\\mathrm{CMRR}=\\left|\\frac{A_d}{A_c}\\right|",
+    "symbols": [
+      "CMRR",
+      "A_d",
+      "A_c"
+    ],
+    "note": "差模增益与共模增益之比的绝对值，越大抑制共模干扰能力越强；理想对称差放趋于无穷"
+  },
+  {
+    "id": "it-cmrr-db",
+    "cat": "integrated",
+    "title": "共模抑制比（分贝形式）",
+    "latex": "\\mathrm{CMRR}=20\\lg\\left|\\frac{A_d}{A_c}\\right|\\;(\\mathrm{dB})",
+    "symbols": [
+      "CMRR",
+      "A_d",
+      "A_c"
+    ],
+    "note": "工程上常用分贝表示，优质集成运放 CMRR 可达 100~140 dB"
+  },
+  {
+    "id": "it-virtual-short",
+    "cat": "integrated",
+    "title": "理想运放：虚短",
+    "latex": "u_+=u_-",
+    "symbols": [
+      "u_+",
+      "u_-"
+    ],
+    "note": "开环增益极大且工作于负反馈时，两输入端电位近似相等(虚短路)；是分析运放的两大依据之一"
+  },
+  {
+    "id": "it-virtual-open",
+    "cat": "integrated",
+    "title": "理想运放：虚断",
+    "latex": "i_+=i_-=0",
+    "symbols": [
+      "i_+",
+      "i_-"
+    ],
+    "note": "输入电阻极大，流入两输入端的电流近似为零(虚开路)"
+  },
+  {
+    "id": "it-mirror",
+    "cat": "integrated",
+    "title": "镜像电流源",
+    "latex": "I_{C2}=I_{REF}=\\frac{V_{CC}-U_{BE}}{R}",
+    "symbols": [
+      "I_{C2}",
+      "I_{REF}",
+      "V_{CC}",
+      "U_{BE}",
+      "R"
+    ],
+    "note": "两管参数对称时输出电流 I_{C2} 镜像参考电流 I_{REF}；广泛用作集成运放的偏置与有源负载",
+    "derivation": [
+      {
+        "text": "两管参数对称且 $U_{BE}$ 相同 $\\to I_{C1}=I_{C2}$"
+      },
+      {
+        "text": "$\\beta\\gg 1$ 时基极电流可忽略，参考支路 $I_{REF}\\approx I_{C1}$"
+      },
+      {
+        "text": "由参考回路 KVL：$I_{REF}=(V_{CC}-U_{BE})/R$",
+        "latex": "I_{C2}=I_{REF}=\\frac{V_{CC}-U_{BE}}{R}"
+      }
+    ]
+  }
+]

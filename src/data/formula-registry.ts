@@ -3,8 +3,7 @@
  * 迁移自 legacy/js/formula-views.js 的注册思想。
  * 新增一个公式科目只需在 FORMULA_VIEWS 里加一项。
  * ========================================================================== */
-import { FIELDS_CATEGORIES, FIELDS_FORMULAS, FIELDS_SYMBOLS } from './fields';
-import { MODIAN_CATEGORIES, MODIAN_FORMULAS, MODIAN_SYMBOLS } from './modian-formulas';
+import { FIELDS_CATEGORIES, FIELDS_FORMULAS, FIELDS_SYMBOLS, MODIAN_CATEGORIES, MODIAN_FORMULAS, MODIAN_SYMBOLS } from './content';
 import type { FormulaCategory, Formula as FormulaT, SymbolDict } from './types';
 
 /** 公式视图配置 */

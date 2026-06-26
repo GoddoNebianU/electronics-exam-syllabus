@@ -1,0 +1,137 @@
+[
+  {
+    "id": "ms-total-gain",
+    "cat": "multistage",
+    "title": "多级放大总电压增益",
+    "latex": "A_u=A_{u1}\\cdot A_{u2}\\cdots A_{un}",
+    "symbols": [
+      "A_u",
+      "A_{u1}",
+      "A_{u2}",
+      "A_{un}",
+      "n"
+    ],
+    "note": "各级电压增益相乘；注意后级输入电阻即前级负载，计算 A_{uk} 时须代入该负载"
+  },
+  {
+    "id": "ms-total-db",
+    "cat": "multistage",
+    "title": "多级增益（分贝相加）",
+    "latex": "20\\lg|A_u|=20\\lg|A_{u1}|+20\\lg|A_{u2}|+\\cdots",
+    "symbols": [
+      "A_u",
+      "A_{u1}",
+      "A_{u2}"
+    ],
+    "note": "增益取分贝后由乘变加，便于工程估算；A_u(dB)=20lg|A_u|",
+    "derivation": [
+      {
+        "text": "多级总增益为各级增益之积",
+        "latex": "|A_u|=|A_{u1}|\\cdot|A_{u2}|\\cdots|A_{un}|"
+      },
+      {
+        "text": "取 20 倍对数（分贝）",
+        "latex": "20\\lg|A_u|=20\\lg(|A_{u1}|\\cdot|A_{u2}|\\cdots)"
+      },
+      {
+        "text": "利用对数性质 $\\lg(xy)=\\lg x+\\lg y$",
+        "latex": "20\\lg|A_u|=20\\lg|A_{u1}|+20\\lg|A_{u2}|+\\cdots"
+      }
+    ]
+  },
+  {
+    "id": "ms-ri-ro",
+    "cat": "multistage",
+    "title": "多级放大输入/输出电阻",
+    "latex": "R_i=R_{i1},\\quad R_o=R_{on}",
+    "symbols": [
+      "R_i",
+      "R_{i1}",
+      "R_o",
+      "R_{on}"
+    ],
+    "note": "输入电阻等于第一级输入电阻，输出电阻等于末级输出电阻(级间耦合电阻已归入相应级)"
+  },
+  {
+    "id": "ms-divider-bias",
+    "cat": "multistage",
+    "title": "分压式偏置：基极静态电位",
+    "latex": "U_{BQ}\\approx\\frac{R_{b2}}{R_{b1}+R_{b2}}V_{CC}",
+    "symbols": [
+      "U_{BQ}",
+      "R_{b2}",
+      "R_{b1}",
+      "V_{CC}"
+    ],
+    "note": "当基极电流 I_B 远小于分压支路电流时，基极电位由 R_{b1}、R_{b2} 分压近似固定，从而稳定 Q 点",
+    "derivation": [
+      {
+        "text": "当 $I_B\\ll$ 分压支路电流时，$R_{b1}$、$R_{b2}$ 可视为纯分压网络"
+      },
+      {
+        "text": "由分压关系",
+        "latex": "U_{BQ}\\approx\\frac{R_{b2}}{R_{b1}+R_{b2}}V_{CC}"
+      }
+    ]
+  },
+  {
+    "id": "ms-divider-ie",
+    "cat": "multistage",
+    "title": "分压式偏置：发射极静态电流",
+    "latex": "I_{EQ}=\\frac{U_{BQ}-U_{BEQ}}{R_e}",
+    "symbols": [
+      "I_{EQ}",
+      "U_{BQ}",
+      "U_{BEQ}",
+      "R_e"
+    ],
+    "note": "R_e 引入直流负反馈使 I_EQ 受温度影响大大减小；近似 I_{CQ}≈I_{EQ}",
+    "derivation": [
+      {
+        "text": "发射极回路 KVL",
+        "latex": "U_{BQ}=U_{BEQ}+I_{EQ}R_e"
+      },
+      {
+        "text": "解出发射极静态电流",
+        "latex": "I_{EQ}=\\frac{U_{BQ}-U_{BEQ}}{R_e}"
+      }
+    ]
+  },
+  {
+    "id": "ms-fh-n",
+    "cat": "multistage",
+    "title": "n 级相同放大级的上限频率",
+    "latex": "f_{Hn}\\approx f_H\\sqrt{2^{1/n}-1}",
+    "symbols": [
+      "f_{Hn}",
+      "f_H",
+      "n"
+    ],
+    "note": "多级级联后总带宽变窄(上限频率下降)；级数越多 f_{Hn} 越小",
+    "derivation": [
+      {
+        "text": "单级归一化高频增益 $|A/A_m|=1/\\sqrt{1+(f/f_H)^2}$，$n$ 级相同级联取 $n$ 次方"
+      },
+      {
+        "text": "总幅频降为 $1/\\sqrt{2}$（$-3$ dB）处为总上限频率 $f_{Hn}$",
+        "latex": "\\left(\\frac{1}{\\sqrt{1+(f_{Hn}/f_H)^2}}\\right)^{\\!n}=\\frac{1}{\\sqrt{2}}"
+      },
+      {
+        "text": "解出",
+        "latex": "f_{Hn}=f_H\\sqrt{2^{1/n}-1}"
+      }
+    ]
+  },
+  {
+    "id": "ms-gbp",
+    "cat": "multistage",
+    "title": "增益带宽积（GBP）",
+    "latex": "\\mathrm{GBP}=|A_{um}|\\cdot f_H",
+    "symbols": [
+      "GBP",
+      "A_{um}",
+      "f_H"
+    ],
+    "note": "增益与带宽的乘积近似为常数；提高增益必以降低带宽为代价(单极点系统)"
+  }
+]

@@ -1,0 +1,174 @@
+[
+  {
+    "id": "ps-half-rect",
+    "cat": "power-supply",
+    "title": "半波整流输出直流电压",
+    "latex": "U_{o(AV)}\\approx 0.45\\,U_2",
+    "symbols": [
+      "U_{o(AV)}",
+      "U_2"
+    ],
+    "note": "U_2 为变压器次级电压有效值；半波整流只利用正(或负)半周，纹波大",
+    "derivation": [
+      {
+        "text": "半波整流输出为正弦半波 $u_o=\\sqrt{2}\\,U_2\\sin(\\omega t)$（仅正半周）"
+      },
+      {
+        "text": "取一周期平均值",
+        "latex": "U_{o(AV)}=\\frac{1}{2\\pi}\\int_0^{\\pi}\\sqrt{2}\\,U_2\\sin\\theta\\,d\\theta"
+      },
+      {
+        "text": "计算定积分",
+        "latex": "U_{o(AV)}=\\frac{\\sqrt{2}\\,U_2}{2\\pi}[-\\cos\\theta]_0^{\\pi}=\\frac{\\sqrt{2}\\,U_2}{\\pi}"
+      },
+      {
+        "text": "数值",
+        "latex": "U_{o(AV)}\\approx 0.45\\,U_2"
+      }
+    ]
+  },
+  {
+    "id": "ps-full-rect",
+    "cat": "power-supply",
+    "title": "桥式(全波)整流输出直流电压",
+    "latex": "U_{o(AV)}\\approx 0.9\\,U_2",
+    "symbols": [
+      "U_{o(AV)}",
+      "U_2"
+    ],
+    "note": "桥式整流利用了整个周期，输出直流电压为半波的两倍；每只二极管承受反向峰值 √2·U_2",
+    "derivation": [
+      {
+        "text": "全波整流输出为 $|\\sqrt{2}\\,U_2\\sin(\\omega t)|$，两半周都利用"
+      },
+      {
+        "text": "取一周期平均值（全波周期为 $\\pi$）",
+        "latex": "U_{o(AV)}=\\frac{1}{\\pi}\\int_0^{\\pi}\\sqrt{2}\\,U_2\\sin\\theta\\,d\\theta"
+      },
+      {
+        "text": "计算定积分",
+        "latex": "U_{o(AV)}=\\frac{\\sqrt{2}\\,U_2}{\\pi}[-\\cos\\theta]_0^{\\pi}=\\frac{2\\sqrt{2}\\,U_2}{\\pi}"
+      },
+      {
+        "text": "数值",
+        "latex": "U_{o(AV)}\\approx 0.9\\,U_2"
+      }
+    ]
+  },
+  {
+    "id": "ps-cap-noload",
+    "cat": "power-supply",
+    "title": "电容滤波输出电压（空载）",
+    "latex": "U_o\\approx\\sqrt{2}\\,U_2\\approx 1.414\\,U_2",
+    "symbols": [
+      "U_o",
+      "U_2"
+    ],
+    "note": "空载时电容充电至峰值且无放电通路，输出等于交流峰值 √2·U_2",
+    "derivation": [
+      {
+        "text": "空载时电容在电压峰值时刻充电至变压器次级电压峰值"
+      },
+      {
+        "text": "无放电通路（负载开路），输出保持峰值不变"
+      },
+      {
+        "text": "输出电压",
+        "latex": "U_o=\\sqrt{2}\\,U_2\\approx 1.414\\,U_2"
+      }
+    ]
+  },
+  {
+    "id": "ps-cap-load",
+    "cat": "power-supply",
+    "title": "电容滤波输出电压（带载估算）",
+    "latex": "U_o\\approx 1.2\\,U_2",
+    "symbols": [
+      "U_o",
+      "U_2"
+    ],
+    "note": "正常带载(RL·C 较大、放电较慢)时工程估算输出约 1.2 U_2，介于 0.9 U_2 与 √2 U_2 之间"
+  },
+  {
+    "id": "ps-zener-rmax",
+    "cat": "power-supply",
+    "title": "稳压管限流电阻上限",
+    "latex": "R_{\\max}=\\frac{U_{I\\min}-U_Z}{I_{Z\\min}+I_{L\\max}}",
+    "symbols": [
+      "R",
+      "U_I",
+      "U_Z",
+      "I_Z",
+      "I_L"
+    ],
+    "note": "为保证最小输入电压、最大负载电流下稳压管仍工作于稳压区(I_Z≥I_{Zmin})，R 不得超过此值"
+  },
+  {
+    "id": "ps-zener-rmin",
+    "cat": "power-supply",
+    "title": "稳压管限流电阻下限",
+    "latex": "R_{\\min}=\\frac{U_{I\\max}-U_Z}{I_{Z\\max}+I_{L\\min}}",
+    "symbols": [
+      "R",
+      "U_I",
+      "U_Z",
+      "I_Z",
+      "I_L"
+    ],
+    "note": "为保证最大输入电压、最小负载电流下稳压管不致损坏(I_Z≤I_{Zmax})，R 不得小于此值。R 须取在 R_min~R_max 之间"
+  },
+  {
+    "id": "ps-series-reg",
+    "cat": "power-supply",
+    "title": "串联型稳压输出电压",
+    "latex": "U_o=\\frac{R_1+R_2}{R_2}\\,U_Z",
+    "symbols": [
+      "U_o",
+      "R_1",
+      "R_2",
+      "U_Z"
+    ],
+    "note": "取样比决定输出：U_o=U_Z/取样比；调节 R_1/R_2(电位器)即可改变输出，输出恒大于 U_Z",
+    "derivation": [
+      {
+        "text": "取样电路 $R_1$、$R_2$ 对输出分压，反馈到比较放大器反相端"
+      },
+      {
+        "text": "运放虚短 $U_-=U_+=U_Z$，取样电压",
+        "latex": "U_-=U_o\\cdot\\frac{R_2}{R_1+R_2}=U_Z"
+      },
+      {
+        "text": "解出输出电压",
+        "latex": "U_o=\\frac{R_1+R_2}{R_2}\\,U_Z"
+      }
+    ]
+  },
+  {
+    "id": "ps-three-terminal",
+    "cat": "power-supply",
+    "title": "可调三端稳压器输出（LM317）",
+    "latex": "U_o=U_{REF}\\left(1+\\frac{R_2}{R_1}\\right)",
+    "symbols": [
+      "U_o",
+      "U_{REF}",
+      "R_2",
+      "R_1"
+    ],
+    "note": "LM317 基准 U_REF≈1.25 V 接于输出与调整端之间，调节 R_2 可得 1.25~37 V 连续可调输出",
+    "derivation": [
+      {
+        "text": "LM317 内部基准 $U_{REF}\\approx 1.25\\,\\mathrm{V}$ 恒定接于输出端与调整端之间"
+      },
+      {
+        "text": "$R_1$ 上电流为 $U_{REF}/R_1$，调整端电流 $I_{ADJ}\\approx 0$（可忽略）"
+      },
+      {
+        "text": "$R_2$ 上压降为 $(U_{REF}/R_1)\\cdot R_2$，输出电压为基准加 $R_2$ 压降"
+      },
+      {
+        "text": "整理",
+        "latex": "U_o=U_{REF}\\left(1+\\frac{R_2}{R_1}\\right)"
+      }
+    ]
+  }
+]

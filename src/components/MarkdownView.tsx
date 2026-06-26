@@ -6,7 +6,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { marked } from 'marked';
 import type { Chapter, Subject } from '../data/types';
-import { assetUrl } from '../lib/assets';
+import { getChapterMarkdown } from '../data/chapters';
 import { protectMath, restoreAndRenderMath } from '../lib/katex';
 
 interface MarkdownViewProps {
@@ -34,34 +34,14 @@ export function MarkdownView({ chapter }: MarkdownViewProps) {
   const bodyRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    let cancelled = false;
-    setState({ status: 'loading', html: '', store: [], error: '' });
-
-    (async () => {
-      try {
-        const res = await fetch(assetUrl(chapter.file));
-        if (!res.ok) throw new Error(`服务器返回 ${res.status}`);
-        const md = await res.text();
-        if (cancelled) return;
-
-        const { text: protectedMd, store } = protectMath(md);
-        const html = marked.parse(protectedMd, { async: false }) as string;
-        if (cancelled) return;
-        setState({ status: 'ready', html, store, error: '' });
-      } catch (err) {
-        if (cancelled) return;
-        setState({
-          status: 'error',
-          html: '',
-          store: [],
-          error: err instanceof Error ? err.message : String(err),
-        });
-      }
-    })();
-
-    return () => {
-      cancelled = true;
-    };
+    const md = getChapterMarkdown(chapter.file);
+    if (md == null) {
+      setState({ status: 'error', html: '', store: [], error: `章节正文未找到：${chapter.file}` });
+      return;
+    }
+    const { text: protectedMd, store } = protectMath(md);
+    const html = marked.parse(protectedMd, { async: false }) as string;
+    setState({ status: 'ready', html, store, error: '' });
   }, [chapter.file]);
 
   // DOM 插入后还原公式 + KaTeX 渲染 + 表格包裹 + 外链处理

@@ -1,0 +1,345 @@
+[
+  {
+    "id": "pw-uniform",
+    "cat": "plane-wave",
+    "title": "均匀平面波（瞬时式）",
+    "latex": "\\mathbf{E}(z,t)=\\hat{x}\\,E_m\\cos(\\omega t-\\beta z)",
+    "symbols": [
+      "E",
+      "z",
+      "t",
+      "\\hat{x}",
+      "E_m",
+      "\\omega",
+      "\\beta"
+    ],
+    "note": "沿 +z 方向传播、x 向线偏振的均匀平面波电场"
+  },
+  {
+    "id": "pw-phase-const",
+    "cat": "plane-wave",
+    "title": "相位常数",
+    "latex": "\\beta=\\omega\\sqrt{\\mu\\varepsilon}",
+    "symbols": [
+      "\\beta",
+      "\\omega",
+      "\\mu",
+      "\\varepsilon"
+    ],
+    "note": "单位距离相位滞后量，又称波数(无耗)，单位 rad/m",
+    "derivation": [
+      {
+        "text": "无源无耗波动方程 $\\nabla^2\\mathbf{E}-\\mu\\varepsilon\\frac{\\partial^2\\mathbf{E}}{\\partial t^2}=0$"
+      },
+      {
+        "text": "代入沿 $+z$ 传播的解 $E=E_m e^{j(\\omega t-\\beta z)}$"
+      },
+      {
+        "text": "解代入波动方程得色散关系",
+        "latex": "\\beta^2=\\omega^2\\mu\\varepsilon\\;\\Rightarrow\\;\\beta=\\omega\\sqrt{\\mu\\varepsilon}"
+      }
+    ]
+  },
+  {
+    "id": "pw-wavelength",
+    "cat": "plane-wave",
+    "title": "波长",
+    "latex": "\\lambda=\\frac{2\\pi}{\\beta}",
+    "symbols": [
+      "\\lambda",
+      "\\beta"
+    ],
+    "note": "相位差 2π 的两相邻等相面间距"
+  },
+  {
+    "id": "pw-phase-vel",
+    "cat": "plane-wave",
+    "title": "相速",
+    "latex": "v_p=\\frac{\\omega}{\\beta}=\\frac{1}{\\sqrt{\\mu\\varepsilon}}",
+    "symbols": [
+      "v_p",
+      "\\omega",
+      "\\beta",
+      "\\mu",
+      "\\varepsilon"
+    ],
+    "note": "等相面推进速度；真空中 v_p=c=3×10⁸ m/s",
+    "derivation": [
+      {
+        "text": "等相面 $\\omega t-\\beta z=\\text{常数}$，对 $t$ 求导",
+        "latex": "\\omega-\\beta\\frac{dz}{dt}=0"
+      },
+      {
+        "text": "等相面速度",
+        "latex": "v_p=\\frac{dz}{dt}=\\frac{\\omega}{\\beta}"
+      },
+      {
+        "text": "代入 $\\beta=\\omega\\sqrt{\\mu\\varepsilon}$",
+        "latex": "v_p=\\frac{1}{\\sqrt{\\mu\\varepsilon}}"
+      }
+    ]
+  },
+  {
+    "id": "pw-speed-light",
+    "cat": "plane-wave",
+    "title": "真空中电磁波速度（光速）",
+    "latex": "c=\\frac{1}{\\sqrt{\\mu_0\\varepsilon_0}}\\approx 3\\times10^{8}\\,\\mathrm{m/s}",
+    "symbols": [
+      "c",
+      "\\mu_0",
+      "\\varepsilon_0"
+    ],
+    "note": "麦克斯韦理论预言电磁波速等于光速，揭示光的电磁本质",
+    "derivation": [
+      {
+        "text": "相速公式",
+        "latex": "c=\\frac{1}{\\sqrt{\\mu_0\\varepsilon_0}}"
+      },
+      {
+        "text": "代入 $\\mu_0=4\\pi\\times10^{-7}$、$\\varepsilon_0\\approx 8.854\\times10^{-12}$"
+      },
+      {
+        "text": "数值计算",
+        "latex": "c\\approx 3\\times10^{8}\\,\\mathrm{m/s}"
+      }
+    ]
+  },
+  {
+    "id": "pw-impedance",
+    "cat": "plane-wave",
+    "title": "本征阻抗（波阻抗）",
+    "latex": "\\eta=\\sqrt{\\frac{\\mu}{\\varepsilon}}",
+    "symbols": [
+      "\\eta",
+      "\\mu",
+      "\\varepsilon"
+    ],
+    "note": "均匀平面波 E 与 H 振幅之比 |E|/|H|=η",
+    "derivation": [
+      {
+        "text": "平面波 $\\tilde{E}=\\hat{x}E_0 e^{-j\\beta z}$ 代入 $\\nabla\\times\\tilde{E}=-j\\omega\\mu\\tilde{H}$"
+      },
+      {
+        "text": "由 $y$ 分量：$j\\beta E_0=-j\\omega\\mu H_y$",
+        "latex": "\\frac{|E|}{|H|}=\\frac{\\omega\\mu}{\\beta}"
+      },
+      {
+        "text": "代入 $\\beta=\\omega\\sqrt{\\mu\\varepsilon}$",
+        "latex": "\\eta=\\frac{|E|}{|H|}=\\sqrt{\\frac{\\mu}{\\varepsilon}}"
+      }
+    ]
+  },
+  {
+    "id": "pw-impedance-vac",
+    "cat": "plane-wave",
+    "title": "真空本征阻抗",
+    "latex": "\\eta_0=\\sqrt{\\frac{\\mu_0}{\\varepsilon_0}}\\approx 120\\pi\\approx 377\\,\\Omega",
+    "symbols": [
+      "\\eta_0",
+      "\\mu_0",
+      "\\varepsilon_0"
+    ],
+    "note": "自由空间波阻抗 ≈ 377 Ω",
+    "derivation": [
+      {
+        "text": "波阻抗公式 $\\eta=\\sqrt{\\mu/\\varepsilon}$"
+      },
+      {
+        "text": "真空中 $\\mu=\\mu_0$、$\\varepsilon=\\varepsilon_0$",
+        "latex": "\\eta_0=\\sqrt{\\frac{\\mu_0}{\\varepsilon_0}}"
+      },
+      {
+        "text": "代入 $\\mu_0$、$\\varepsilon_0$ 数值",
+        "latex": "\\eta_0\\approx 120\\pi\\approx 377\\,\\Omega"
+      }
+    ]
+  },
+  {
+    "id": "pw-eh-rel",
+    "cat": "plane-wave",
+    "title": "E 与 H 的关系",
+    "latex": "\\mathbf{H}=\\frac{1}{\\eta}\\hat{k}\\times\\mathbf{E}",
+    "symbols": [
+      "H",
+      "\\eta",
+      "E"
+    ],
+    "note": "E、H、传播方向 k̂ 三者两两正交，构成右手系",
+    "derivation": [
+      {
+        "text": "平面波 $\\tilde{E}=\\hat{x}E_0 e^{-j\\beta z}$，传播方向 $\\hat{k}=\\hat{z}$"
+      },
+      {
+        "text": "由 $\\nabla\\times\\tilde{E}=-j\\omega\\mu\\tilde{H}$ 得 $\\tilde{H}=\\hat{y}(E_0/\\eta)e^{-j\\beta z}$"
+      },
+      {
+        "text": "验证 $\\hat{y}=\\hat{z}\\times\\hat{x}=\\hat{k}\\times\\hat{x}$",
+        "latex": "\\mathbf{H}=\\frac{1}{\\eta}\\hat{k}\\times\\mathbf{E}"
+      }
+    ]
+  },
+  {
+    "id": "pw-prop-const-lossy",
+    "cat": "plane-wave",
+    "title": "有耗媒质传播常数",
+    "latex": "\\gamma=\\alpha+j\\beta=\\sqrt{j\\omega\\mu(\\sigma+j\\omega\\varepsilon)}",
+    "symbols": [
+      "\\gamma",
+      "\\alpha",
+      "\\beta",
+      "j",
+      "\\omega",
+      "\\mu",
+      "\\sigma",
+      "\\varepsilon"
+    ],
+    "note": "γ=α+jβ，α 衰减、β 相移；电场按 e^(−αz) 衰减",
+    "derivation": [
+      {
+        "text": "有耗媒质复麦克斯韦方程 $\\nabla\\times\\tilde{E}=-j\\omega\\mu\\tilde{H}$，$\\nabla\\times\\tilde{H}=(\\sigma+j\\omega\\varepsilon)\\tilde{E}$"
+      },
+      {
+        "text": "消去 $\\tilde{H}$：$\\nabla\\times(\\nabla\\times\\tilde{E})=-j\\omega\\mu(\\sigma+j\\omega\\varepsilon)\\tilde{E}$，无源 $\\nabla\\cdot\\tilde{E}=0$ 故 $-\\nabla^2\\tilde{E}=-j\\omega\\mu(\\sigma+j\\omega\\varepsilon)\\tilde{E}$"
+      },
+      {
+        "text": "即 $\\nabla^2\\tilde{E}=j\\omega\\mu(\\sigma+j\\omega\\varepsilon)\\tilde{E}$，令解 $e^{-\\gamma z}$ 代入",
+        "latex": "\\gamma^2=j\\omega\\mu(\\sigma+j\\omega\\varepsilon)"
+      },
+      {
+        "text": "取平方根",
+        "latex": "\\gamma=\\alpha+j\\beta=\\sqrt{j\\omega\\mu(\\sigma+j\\omega\\varepsilon)}"
+      }
+    ]
+  },
+  {
+    "id": "pw-good-conductor",
+    "cat": "plane-wave",
+    "title": "良导体参数",
+    "latex": "\\alpha=\\beta=\\sqrt{\\frac{\\omega\\mu\\sigma}{2}}",
+    "symbols": [
+      "\\alpha",
+      "\\beta",
+      "\\omega",
+      "\\mu",
+      "\\sigma"
+    ],
+    "note": "良导体(σ≫ωε)中 α=β，波强烈衰减且相速极慢",
+    "derivation": [
+      {
+        "text": "良导体条件 $\\sigma\\gg\\omega\\varepsilon$，传播常数简化 $\\gamma^2\\approx j\\omega\\mu\\sigma$"
+      },
+      {
+        "text": "因 $j=e^{j\\pi/2}$，$\\sqrt{j}=\\frac{1+j}{\\sqrt{2}}$",
+        "latex": "\\gamma=\\sqrt{\\omega\\mu\\sigma}\\cdot\\frac{1+j}{\\sqrt{2}}"
+      },
+      {
+        "text": "实部虚部相等",
+        "latex": "\\alpha=\\beta=\\sqrt{\\frac{\\omega\\mu\\sigma}{2}}"
+      }
+    ]
+  },
+  {
+    "id": "pw-skin",
+    "cat": "plane-wave",
+    "title": "趋肤深度",
+    "latex": "\\delta=\\sqrt{\\frac{2}{\\omega\\mu\\sigma}}=\\frac{1}{\\alpha}",
+    "symbols": [
+      "\\delta",
+      "\\omega",
+      "\\mu",
+      "\\sigma",
+      "\\alpha"
+    ],
+    "note": "振幅衰减到 1/e 所经距离；频率越高趋肤越浅",
+    "derivation": [
+      {
+        "text": "良导体中衰减常数 $\\alpha=\\sqrt{\\omega\\mu\\sigma/2}$"
+      },
+      {
+        "text": "趋肤深度定义为振幅衰减到 $1/e$ 的距离 $\\delta=1/\\alpha$"
+      },
+      {
+        "text": "代入 $\\alpha$",
+        "latex": "\\delta=\\frac{1}{\\alpha}=\\sqrt{\\frac{2}{\\omega\\mu\\sigma}}"
+      }
+    ]
+  },
+  {
+    "id": "pw-reflect",
+    "cat": "plane-wave",
+    "title": "垂直入射反射系数",
+    "latex": "\\Gamma=\\frac{\\eta_2-\\eta_1}{\\eta_2+\\eta_1}",
+    "symbols": [
+      "\\Gamma",
+      "\\eta"
+    ],
+    "note": "界面处反射波与入射波电场之比；η₁=η₂ 时无反射(匹配)",
+    "derivation": [
+      {
+        "text": "垂直入射界面 $z=0$，电场切向连续：$E_i+E_r=E_t$",
+        "latex": "1+\\Gamma=\\tau"
+      },
+      {
+        "text": "磁场切向连续（反射波 $H$ 反号）：$E_i/\\eta_1-E_r/\\eta_1=E_t/\\eta_2$",
+        "latex": "\\frac{1-\\Gamma}{\\eta_1}=\\frac{\\tau}{\\eta_2}"
+      },
+      {
+        "text": "消去 $\\tau$ 得",
+        "latex": "\\eta_2(1-\\Gamma)=\\eta_1(1+\\Gamma)"
+      },
+      {
+        "text": "解出反射系数",
+        "latex": "\\Gamma=\\frac{\\eta_2-\\eta_1}{\\eta_2+\\eta_1}"
+      }
+    ]
+  },
+  {
+    "id": "pw-transmit",
+    "cat": "plane-wave",
+    "title": "垂直入射透射系数",
+    "latex": "\\tau=\\frac{2\\eta_2}{\\eta_2+\\eta_1}=1+\\Gamma",
+    "symbols": [
+      "\\tau",
+      "\\eta",
+      "\\Gamma"
+    ],
+    "note": "界面处透射波与入射波电场之比；恒有 τ=1+Γ",
+    "derivation": [
+      {
+        "text": "由界面电场连续 $E_i+E_r=E_t$",
+        "latex": "\\tau=1+\\Gamma"
+      },
+      {
+        "text": "代入 $\\Gamma=\\frac{\\eta_2-\\eta_1}{\\eta_2+\\eta_1}$",
+        "latex": "\\tau=1+\\frac{\\eta_2-\\eta_1}{\\eta_2+\\eta_1}"
+      },
+      {
+        "text": "通分",
+        "latex": "\\tau=\\frac{2\\eta_2}{\\eta_2+\\eta_1}"
+      }
+    ]
+  },
+  {
+    "id": "pw-vswr",
+    "cat": "plane-wave",
+    "title": "驻波比",
+    "latex": "\\mathrm{VSWR}=\\frac{1+|\\Gamma|}{1-|\\Gamma|}",
+    "symbols": [
+      "\\mathrm{VSWR}",
+      "\\Gamma"
+    ],
+    "note": "驻波最大值与最小值之比；全反射时 →∞，完全匹配时 =1"
+  },
+  {
+    "id": "pw-polarization",
+    "cat": "plane-wave",
+    "title": "极化判据（圆极化条件）",
+    "latex": "E_x=E_m,\\;E_y=jE_m\\;\\Rightarrow\\;\\text{圆极化}",
+    "symbols": [
+      "E",
+      "E_m",
+      "j"
+    ],
+    "note": "两正交分量等幅、相位差 ±90°→圆；不等幅→椭圆；同相→线"
+  }
+]

@@ -1,0 +1,177 @@
+[
+  {
+    "id": "dv-diode-vi",
+    "cat": "device",
+    "title": "二极管伏安特性（肖克莱方程）",
+    "latex": "I=I_S\\left(e^{U/U_T}-1\\right)",
+    "symbols": [
+      "I",
+      "I_S",
+      "U",
+      "U_T"
+    ],
+    "note": "正向偏置 U>0 时电流随电压指数增长；U<0 反向时 I≈−I_S（反向饱和）。常温硅管导通电压约 0.6~0.7 V，锗管约 0.2~0.3 V"
+  },
+  {
+    "id": "dv-thermal-v",
+    "cat": "device",
+    "title": "热电压（温度当量）",
+    "latex": "U_T=\\frac{kT}{q}\\approx 26\\,\\mathrm{mV}\\;(T=300\\,\\mathrm{K})",
+    "symbols": [
+      "U_T"
+    ],
+    "note": "常温(T≈300 K)下 U_T≈26 mV，是 PN 结电流方程中的温度当量，k 为玻尔兹曼常数、q 为电子电量"
+  },
+  {
+    "id": "dv-zener-rz",
+    "cat": "device",
+    "title": "稳压管动态电阻",
+    "latex": "r_Z=\\frac{\\Delta U_Z}{\\Delta I_Z}",
+    "symbols": [
+      "r_Z",
+      "\\Delta",
+      "U_Z",
+      "I_Z"
+    ],
+    "note": "稳压管工作于反向击穿区，稳定电压为 U_Z；r_Z 越小稳压性能越好(通常为几~几十 Ω)"
+  },
+  {
+    "id": "dv-bjt-current",
+    "cat": "device",
+    "title": "三极管电流关系（含穿透电流）",
+    "latex": "I_C=\\beta I_B+I_{CEO}",
+    "symbols": [
+      "I_C",
+      "\\beta",
+      "I_B",
+      "I_{CEO}"
+    ],
+    "note": "集电极电流 = 放大的基极电流加穿透电流；忽略 I_{CEO} 时 I_C=βI_B"
+  },
+  {
+    "id": "dv-bjt-ie",
+    "cat": "device",
+    "title": "发射极电流",
+    "latex": "I_E=I_B+I_C=(1+\\beta)I_B",
+    "symbols": [
+      "I_E",
+      "I_B",
+      "I_C",
+      "\\beta"
+    ],
+    "note": "由基尔霍夫电流定律，发射极电流等于基极与集电极电流之和"
+  },
+  {
+    "id": "dv-bjt-beta-dc",
+    "cat": "device",
+    "title": "共射电流放大系数（直流/交流）",
+    "latex": "\\beta=\\frac{I_C}{I_B}=\\frac{\\Delta I_C}{\\Delta I_B}",
+    "symbols": [
+      "\\beta",
+      "I_C",
+      "I_B",
+      "\\Delta"
+    ],
+    "note": "直流 β=I_C/I_B；交流 β=ΔI_C/ΔI_B（小信号）。通常 β>>1(几十~几百)，两者数值相近常不加区分"
+  },
+  {
+    "id": "dv-bjt-alpha",
+    "cat": "device",
+    "title": "共基电流放大系数",
+    "latex": "\\alpha=\\frac{I_C}{I_E}=\\frac{\\beta}{1+\\beta}",
+    "symbols": [
+      "\\alpha",
+      "I_C",
+      "I_E",
+      "\\beta"
+    ],
+    "note": "α 略小于 1(约 0.95~0.995)，反映发射区注入载流子被集电极收集的比例",
+    "derivation": [
+      {
+        "text": "共基电流放大系数定义 $\\alpha=I_C/I_E$"
+      },
+      {
+        "text": "由 KCL $I_E=I_B+I_C$，及 $I_C=\\beta I_B$ 得 $I_E=I_B+\\beta I_B=(1+\\beta)I_B$"
+      },
+      {
+        "text": "代入 $\\alpha=I_C/I_E=\\beta I_B/((1+\\beta)I_B)$",
+        "latex": "\\alpha=\\frac{\\beta}{1+\\beta}"
+      }
+    ]
+  },
+  {
+    "id": "dv-bjt-iceo",
+    "cat": "device",
+    "title": "穿透电流与集基反向饱和电流",
+    "latex": "I_{CEO}=(1+\\beta)I_{CBO}",
+    "symbols": [
+      "I_{CEO}",
+      "\\beta",
+      "I_{CBO}"
+    ],
+    "note": "基极开路时 c-e 间的穿透电流；I_{CBO} 为发射极开路时集电结反向饱和电流。硅管 I_{CEO} 很小(μA 级)",
+    "derivation": [
+      {
+        "text": "$I_{CBO}$ 为发射极开路时集电结反向饱和电流"
+      },
+      {
+        "text": "基极开路（$I_B=0$）时，$I_{CBO}$ 相当于流入基极的电流，被三极管放大 $\\beta$ 倍"
+      },
+      {
+        "text": "故 c-e 间穿透电流为 $I_{CBO}$ 本身加其放大结果",
+        "latex": "I_{CEO}=I_{CBO}+\\beta I_{CBO}=(1+\\beta)I_{CBO}"
+      }
+    ]
+  },
+  {
+    "id": "dv-fet-gm",
+    "cat": "device",
+    "title": "场效应管跨导（定义）",
+    "latex": "g_m=\\frac{\\Delta I_D}{\\Delta U_{GS}}",
+    "symbols": [
+      "g_m",
+      "\\Delta",
+      "I_D",
+      "U_{GS}"
+    ],
+    "note": "转移特性在 Q 点的斜率，反映栅源电压对漏极电流的控制能力，单位 mS(西门子)"
+  },
+  {
+    "id": "dv-mos-sat-id",
+    "cat": "device",
+    "title": "MOS 管饱和区漏极电流",
+    "latex": "I_D=K_n\\left(U_{GS}-V_{TN}\\right)^2",
+    "symbols": [
+      "I_D",
+      "K_n",
+      "U_{GS}",
+      "V_{TN}"
+    ],
+    "note": "增强型 NMOS 工作于饱和区(恒流区)的平方律关系，K_n 为跨导参数，V_{TN} 为开启电压；需 U_{GS}>V_{TN} 且 U_{DS}≥U_{GS}−V_{TN}"
+  },
+  {
+    "id": "dv-mos-gm",
+    "cat": "device",
+    "title": "MOS 管饱和区跨导",
+    "latex": "g_m=\\sqrt{2K_n I_{DQ}}",
+    "symbols": [
+      "g_m",
+      "K_n",
+      "I_{DQ}"
+    ],
+    "note": "由平方律关系导出，I_{DQ} 为静态漏极电流；跨导随工作电流增大而增大",
+    "derivation": [
+      {
+        "text": "饱和区电流方程（$K_n=\\mu_n C_{ox} W/L$）",
+        "latex": "I_D=\\frac{K_n}{2}(U_{GS}-V_{TN})^2"
+      },
+      {
+        "text": "跨导定义 $g_m=\\frac{\\partial I_D}{\\partial U_{GS}}=K_n(U_{GS}-V_{TN})$"
+      },
+      {
+        "text": "由电流方程解出 $U_{GS}-V_{TN}=\\sqrt{2I_D/K_n}$，代入",
+        "latex": "g_m=K_n\\sqrt{\\frac{2I_D}{K_n}}=\\sqrt{2K_n I_D}"
+      }
+    ]
+  }
+]
