@@ -1,0 +1,119 @@
+[
+  {
+    "id": "ss-lti-linear",
+    "cat": "lti-time",
+    "title": "线性（叠加性与齐次性）",
+    "latex": "x(t)\\to y(t)\\ \\Longrightarrow\\ a\\,x(t)\\to a\\,y(t),\\quad x_1(t)+x_2(t)\\to y_1(t)+y_2(t)",
+    "symbols": ["x(t)", "y(t)", "t"],
+    "note": "线性系统同时满足齐次性与叠加性：若输入 x(t) 产生输出 y(t)，则 a·x(t) 产生 a·y(t)；若 x_1(t)、x_2(t) 分别产生 y_1(t)、y_2(t)，则二者之和的输入产生输出之和。线性是叠加原理与卷积积分成立的先决条件，也是频域分析的基础。常数 a 与各项系数均可为任意实数或复数。"
+  },
+  {
+    "id": "ss-lti-ti",
+    "cat": "lti-time",
+    "title": "时不变性",
+    "latex": "x(t)\\to y(t)\\ \\Longrightarrow\\ x(t-t_0)\\to y(t-t_0)",
+    "symbols": ["x(t)", "y(t)", "t"],
+    "note": "时不变性指系统的输入输出关系不随时间起点的选择而改变：输入延迟 t_0 则输出波形不变，仅整体延迟相同的 t_0。该性质与线性结合即得 LTI 系统，保证系统可由单位冲激响应完全表征。时变系统不满足此关系，叠加原理与冲激响应描述随之失效。"
+  },
+  {
+    "id": "ss-lti-ht-def",
+    "cat": "lti-time",
+    "title": "连续单位冲激响应 h(t)",
+    "latex": "h(t)=\\mathcal{H}\\{\\delta(t)\\}",
+    "symbols": ["h(t)", "\\delta(t)", "t"],
+    "note": "连续时间 LTI 系统的单位冲激响应 h(t) 定义为系统对单位冲激 \\delta(t) 的零状态响应。由时不变性与线性，h(t) 完全决定系统对任意输入的响应，是时域与变换域分析的枢纽。h(t) 的傅里叶变换与拉氏变换分别给出系统的频率响应 H(j\\omega) 与系统函数 H(s)。",
+    "derivation": [
+      {"text": "任意输入分解为冲激的加权叠加", "latex": "x(t)=\\int_{-\\infty}^{\\infty}x(\\tau)\\delta(t-\\tau)\\,d\\tau"},
+      {"text": "由时不变性，系统对 $\\delta(t-\\tau)$ 的响应为 $h(t-\\tau)$；由线性叠加得卷积", "latex": "y(t)=\\int_{-\\infty}^{\\infty}x(\\tau)h(t-\\tau)\\,d\\tau"}
+    ]
+  },
+  {
+    "id": "ss-lti-hn-def",
+    "cat": "lti-time",
+    "title": "离散单位脉冲响应 h[n]",
+    "latex": "h[n]=\\mathcal{H}\\{\\delta[n]\\}",
+    "symbols": ["h[n]", "\\delta[n]", "n"],
+    "note": "离散时间 LTI 系统的单位脉冲响应 h[n] 定义为系统对单位脉冲 \\delta[n] 的零状态响应。与连续情形对偶，h[n] 完全表征离散系统的输入输出关系，是离散卷积和与 z 变换分析的基础。h[n] 的 DTFT 与 z 变换分别给出频率响应 H(e^{j\\omega}) 与系统函数 H(z)。"
+  },
+  {
+    "id": "ss-lti-conv-c",
+    "cat": "lti-time",
+    "title": "连续时间卷积（零状态响应）",
+    "latex": "y(t)=x(t)*h(t)=\\int_{-\\infty}^{\\infty}x(\\tau)h(t-\\tau)\\,d\\tau",
+    "symbols": ["y(t)", "x(t)", "h(t)", "\\int", "t"],
+    "note": "线性时不变系统的零状态响应等于输入信号与系统单位冲激响应的卷积。卷积满足交换、结合、分配律，且与冲激函数卷积保持原信号不变。该式是 LTI 系统时域分析的核心，将系统的输入输出关系完全由 h(t) 决定。",
+    "derivation": [
+      {"text": "任意输入可分解为冲激的加权叠加", "latex": "x(t)=\\int_{-\\infty}^{\\infty}x(\\tau)\\delta(t-\\tau)\\,d\\tau"},
+      {"text": "由时不变性与线性，系统对 $\\delta(t-\\tau)$ 的响应为 $h(t-\\tau)$，叠加得卷积", "latex": "y(t)=\\int_{-\\infty}^{\\infty}x(\\tau)h(t-\\tau)\\,d\\tau"}
+    ]
+  },
+  {
+    "id": "ss-lti-conv-d",
+    "cat": "lti-time",
+    "title": "离散时间卷积和（零状态响应）",
+    "latex": "y[n]=x[n]*h[n]=\\sum_{k=-\\infty}^{\\infty}x[k]h[n-k]",
+    "symbols": ["y[n]", "x[n]", "h[n]", "\\sum", "n", "k"],
+    "note": "离散时间 LTI 系统的零状态响应等于输入序列与单位脉冲响应的卷积和，是连续卷积的离散对偶。该式可经翻转、平移、相乘、求和四步图解计算。当 x[n] 与 h[n] 均为有限长序列时，卷积结果长度为两者长度之和减一。",
+    "derivation": [
+      {"text": "输入序列按移位脉冲分解", "latex": "x[n]=\\sum_{k=-\\infty}^{\\infty}x[k]\\delta[n-k]"},
+      {"text": "由 LTI 性质，$\\delta[n-k]$ 的响应为 $h[n-k]$，叠加得卷积和", "latex": "y[n]=\\sum_{k=-\\infty}^{\\infty}x[k]h[n-k]"}
+    ]
+  },
+  {
+    "id": "ss-lti-conv-prop",
+    "cat": "lti-time",
+    "title": "卷积的代数性质",
+    "latex": "x(t)*h(t)=h(t)*x(t),\\quad x(t)*\\delta(t)=x(t),\\quad x(t)*\\delta(t-t_0)=x(t-t_0)",
+    "symbols": ["x(t)", "h(t)", "\\delta(t)", "t"],
+    "note": "卷积满足交换律、结合律与分配律，使级联子系统可任意换序、并联结构可合并为单一系统。与单位冲激的卷积为恒等运算，与位于 t_0 的延迟冲激卷积产生等量延迟，故 \\delta(t) 是卷积代数的单位元。这些性质是系统等效变换与方框图化简的代数基础。"
+  },
+  {
+    "id": "ss-lti-causal",
+    "cat": "lti-time",
+    "title": "因果性",
+    "latex": "h(t)=0\\ (t<0),\\quad h[n]=0\\ (n<0)",
+    "symbols": ["h(t)", "h[n]", "t", "n"],
+    "note": "因果 LTI 系统的冲激响应在输入加入之前恒为零，即系统不会在激励作用之前产生响应。该条件等价于卷积积分（求和）的下限可取为 0 而结果不变。一切实际物理系统都是因果的，而理想滤波、预测等非因果运算只能在离线数据处理中实现。"
+  },
+  {
+    "id": "ss-lti-bibo",
+    "cat": "lti-time",
+    "title": "BIBO 稳定性",
+    "latex": "\\int_{-\\infty}^{\\infty}|h(t)|\\,dt<\\infty,\\quad \\sum_{n=-\\infty}^{\\infty}|h[n]|<\\infty",
+    "symbols": ["\\int", "\\sum", "h(t)", "h[n]", "t", "n"],
+    "note": "LTI 系统 BIBO 稳定的充要条件是其冲激响应绝对可积（连续）或绝对可和（离散）。该条件保证任意有界输入产生有界输出，是系统可用的基本要求。稳定性与系统函数极点位置直接相关：连续系统极点须全部位于左半 s 平面，离散系统极点须全部位于 z 平面单位圆内部。"
+  },
+  {
+    "id": "ss-lti-diffeq",
+    "cat": "lti-time",
+    "title": "微分方程表征",
+    "latex": "\\sum_{k=0}^{N}\\alpha_k\\frac{d^{k}}{dt^{k}}y(t)=\\sum_{k=0}^{M}\\beta_k\\frac{d^{k}}{dt^{k}}x(t)",
+    "symbols": ["\\sum", "k", "N", "y(t)", "x(t)", "t"],
+    "note": "线性常系数微分方程是连续时间 LTI 系统的基本时域模型，阶数 N 由输出端最高导数决定。方程的全解由齐次通解（自然响应）与特解（受迫响应）组成，分别对应系统的自由振荡模式与外部激励。系数 \\alpha_k、\\beta_k 与系统函数 H(s) 的分母、分子多项式系数一一对应。"
+  },
+  {
+    "id": "ss-lti-eigen",
+    "cat": "lti-time",
+    "title": "复指数特征函数与系统函数",
+    "latex": "e^{st}\\to H(s)e^{st}",
+    "symbols": ["s", "t", "H(s)"],
+    "note": "复指数 e^{st} 是 LTI 系统的特征函数：系统对其响应仅为同频率复指数乘以复增益 H(s)，故称 H(s) 为系统函数。该性质是拉氏变换、傅里叶变换将卷积运算化为乘积的根本原因。s 取纯虚 j\\omega 时即得频率响应 H(j\\omega)，反映系统对不同频率分量的幅度加权与相位移动。",
+    "derivation": [
+      {"text": "将特征输入代入卷积积分", "latex": "y(t)=\\int_{-\\infty}^{\\infty}h(\\tau)e^{s(t-\\tau)}\\,d\\tau"},
+      {"text": "提出与积分变量无关的 $e^{st}$", "latex": "y(t)=e^{st}\\int_{-\\infty}^{\\infty}h(\\tau)e^{-s\\tau}\\,d\\tau"},
+      {"text": "定义系统函数 $H(s)=\\int_{-\\infty}^{\\infty}h(\\tau)e^{-s\\tau}\\,d\\tau$，即得特征响应", "latex": "y(t)=H(s)e^{st}"}
+    ]
+  },
+  {
+    "id": "ss-lti-step",
+    "cat": "lti-time",
+    "title": "阶跃响应与冲激响应的关系",
+    "latex": "g(t)=u(t)*h(t)=\\int_{-\\infty}^{t}h(\\tau)\\,d\\tau",
+    "symbols": ["u(t)", "h(t)", "\\int", "t"],
+    "note": "阶跃响应 g(t) 定义为系统对单位阶跃 u(t) 的零状态响应，等于冲激响应从 −∞ 到 t 的积分。反之，冲激响应是阶跃响应的时间导数 h(t)=dg(t)/dt，二者一一对应。阶跃响应在一阶、二阶电路的暂态分析中尤为重要，其上升时间、超调量等指标直接刻画系统的动态性能。",
+    "derivation": [
+      {"text": "由卷积定义展开阶跃响应", "latex": "g(t)=u(t)*h(t)=\\int_{-\\infty}^{\\infty}u(t-\\tau)h(\\tau)\\,d\\tau"},
+      {"text": "由 $u(t-\\tau)=1$（当 $\\tau<t$）、否则为 $0$，积分下限收缩到 $t$", "latex": "g(t)=\\int_{-\\infty}^{t}h(\\tau)\\,d\\tau"}
+    ]
+  }
+]

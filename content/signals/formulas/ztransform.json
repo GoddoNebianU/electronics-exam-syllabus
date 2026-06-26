@@ -1,0 +1,98 @@
+[
+  {
+    "id": "z-def",
+    "cat": "ztransform",
+    "title": "单边 z 变换（定义）",
+    "latex": "X(z)=\\sum_{n=0}^{\\infty}x[n]\\,z^{-n}",
+    "symbols": ["X(z)", "\\sum", "x[n]", "z", "n"],
+    "note": "单边 z 变换将因果序列 x[n]（n≥0）映射为复变量 z 的幂级数 X(z)。z 与拉氏复频率 s 通过 z=e^{sT_s} 联系，故 z 变换可视为采样信号的拉氏变换。收敛域是 z 平面上使级数收敛的区域，通常为某圆外或圆内。z 变换是离散系统 z 域分析的基础。"
+  },
+  {
+    "id": "z-pair-delta",
+    "cat": "ztransform",
+    "title": "变换对：单位脉冲",
+    "latex": "\\delta[n]\\longleftrightarrow 1",
+    "symbols": ["\\delta[n]"],
+    "note": "离散单位脉冲 δ[n] 的 z 变换为常数 1，全 z 平面收敛。该变换对是构造其他变换对与分析离散系统脉冲响应的基础。由移位性质，δ[n−k] 的 z 变换为 z^{-k}。"
+  },
+  {
+    "id": "z-pair-step",
+    "cat": "ztransform",
+    "title": "变换对：单位阶跃序列",
+    "latex": "u[n]\\longleftrightarrow \\frac{z}{z-1}",
+    "symbols": ["u[n]", "z"],
+    "note": "离散单位阶跃 u[n] 的 z 变换为 z/(z−1)，收敛域 |z|>1，极点位于 z=1。该变换对是几何级数求和的直接结果，也是构造其他序列变换的基本积木。等价形式为 1/(1−z^{-1})。"
+  },
+  {
+    "id": "z-pair-exp",
+    "cat": "ztransform",
+    "title": "变换对：单边指数序列",
+    "latex": "a^n u[n]\\longleftrightarrow \\frac{z}{z-a}\\quad(|z|>|a|)",
+    "symbols": ["u[n]", "z", "n"],
+    "note": "单边指数序列 a^n u[n] 的 z 变换为 z/(z−a)，收敛域 |z|>|a|，极点位于 z=a。|a|<1 时序列衰减、极点在单位圆内；|a|>1 时序列增长、极点在单位圆外。该变换对是离散系统 z 域分析的基本积木。"
+  },
+  {
+    "id": "z-pair-ramp",
+    "cat": "ztransform",
+    "title": "变换对：斜坡序列",
+    "latex": "n\\,u[n]\\longleftrightarrow \\frac{z}{(z-1)^{2}}",
+    "symbols": ["u[n]", "z", "n"],
+    "note": "斜坡序列 n·u[n] 的 z 变换为 z/(z−1)²，可由阶跃变换的 z 域微分性质导出。一般地，n·a^n u[n] 的 z 变换为 az/(z−a)²。该变换对用于分析线性增长激励下的离散系统响应。"
+  },
+  {
+    "id": "z-pair-sin",
+    "cat": "ztransform",
+    "title": "变换对：正弦序列",
+    "latex": "\\sin(\\omega n)\\,u[n]\\longleftrightarrow \\frac{z\\sin\\omega}{z^{2}-2z\\cos\\omega+1}",
+    "symbols": ["\\omega", "n", "u[n]", "z"],
+    "note": "因果正弦序列 sin(ωn)·u[n] 的 z 变换为 z sinω/(z²−2z cosω+1)，极点为一对共轭复数，由欧拉公式分解复指数得到。当极点位于单位圆内（|z|<1 的等价条件）时对应衰减振荡，在单位圆上时对应等幅振荡。"
+  },
+  {
+    "id": "z-prop-shift",
+    "cat": "ztransform",
+    "title": "性质：时域移位（单边）",
+    "latex": "x[n-1]\\longleftrightarrow z^{-1}X(z)+x[-1]",
+    "symbols": ["z", "X(z)"],
+    "note": "单边 z 变换下，序列右移一位对应 X(z) 乘以 z^{-1} 再加上初值项 x[−1]，初值项来自移入主值区间的非因果部分。右移 k 位类似地引入 x[−1] 至 x[−k] 的初值项。该性质自动计入初始条件，是用 z 变换解差分方程的关键。"
+  },
+  {
+    "id": "z-prop-scale",
+    "cat": "ztransform",
+    "title": "性质：z 域尺度（指数加权）",
+    "latex": "a^n x[n]\\longleftrightarrow X(z/a)",
+    "symbols": ["x[n]", "z", "n"],
+    "note": "序列在时域乘以 a^n 对应象函数的复变量由 z 缩放为 z/a，收敛域随之作 |a| 倍缩放。该性质将时域指数加权转化为 z 平面上极零点的径向移动，是分析指数加权序列与频率尺度变换的工具。"
+  },
+  {
+    "id": "z-prop-conv",
+    "cat": "ztransform",
+    "title": "性质：时域卷积",
+    "latex": "x[n]*h[n]\\longleftrightarrow X(z)\\,H(z)",
+    "symbols": ["x[n]", "h[n]", "X(z)", "H(z)"],
+    "note": "时域卷积和对应 z 域相乘，是离散 LTI 系统 z 域分析的核心：零状态响应的 z 变换等于输入变换乘以离散系统函数 H(z)。该性质将离散卷积运算转化为代数乘法，使差分方程求解大大简化。"
+  },
+  {
+    "id": "z-iv",
+    "cat": "ztransform",
+    "title": "初值定理",
+    "latex": "x[0]=\\lim_{z\\to\\infty}X(z)",
+    "symbols": ["z", "X(z)"],
+    "note": "初值定理可由象函数 X(z) 直接求出序列初值 x[0]，无需逆变换。要求 X(z) 为 z 的负幂级数（即 x[n] 因果）。该定理在离散系统瞬态分析中用于确定初始条件，形式上比拉氏初值定理更简洁。"
+  },
+  {
+    "id": "z-fv",
+    "cat": "ztransform",
+    "title": "终值定理",
+    "latex": "x[\\infty]=\\lim_{z\\to 1}(z-1)\\,X(z)",
+    "symbols": ["z", "X(z)"],
+    "note": "终值定理可由象函数 X(z) 直接求出序列稳态终值，无需逆变换。应用前提是 (z−1)X(z) 的全部极点位于单位圆内（即系统稳定，终值存在），否则终值不存在、定理不适用。该定理常用于求离散系统的稳态响应。"
+  },
+  {
+    "id": "z-inv-partial",
+    "cat": "ztransform",
+    "title": "逆 z 变换（部分分式法）",
+    "latex": "\\frac{X(z)}{z}=\\sum_{k}\\frac{A_k}{z-p_k}\\ \\Rightarrow\\ x[n]=\\sum_{k}A_k\\,p_k^{\\,n}\\,u[n]",
+    "symbols": ["X(z)", "z", "\\sum", "p_k", "n", "u[n]"],
+    "note": "部分分式法先将 X(z)/z 展开为形如 A_k/(z−p_k) 的单极点分式，再逐项反查基本变换对 z/(z−p_k)↔p_k^n u[n]，得到原序列 x[n]=Σ A_k p_k^n u[n]。重极点情形需用高阶项展开。这是求逆 z 变换最常用的方法。"
+  }
+]

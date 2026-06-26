@@ -1,0 +1,74 @@
+[
+  {
+    "id": "ctfs-exp",
+    "cat": "ctfs",
+    "title": "连续时间傅里叶级数（复指数形式）",
+    "latex": "x(t)=\\sum_{k=-\\infty}^{\\infty}X[k]\\,e^{jk\\omega_0 t}",
+    "symbols": ["x(t)", "\\sum", "X[k]", "\\omega_0", "t", "k"],
+    "note": "满足狄利克雷条件的周期信号可展开为复指数谐波分量的无穷级数，每一项 X[k]e^{jkω₀t} 为第 k 次谐波。基波角频率 ω₀=2π/T 由周期 T 决定，k 取全部整数。该展开是周期信号频域分析的基础，将时域周期信号表示为离散频率分量之和。"
+  },
+  {
+    "id": "ctfs-coef",
+    "cat": "ctfs",
+    "title": "傅里叶级数系数",
+    "latex": "X[k]=\\frac{1}{T}\\int_{T}x(t)\\,e^{-jk\\omega_0 t}\\,dt",
+    "symbols": ["X[k]", "T", "\\int", "x(t)", "\\omega_0", "k", "t"],
+    "note": "第 k 次谐波复振幅 X[k] 由信号在一个周期 T 内与复指数 e^{-jkω₀t} 的正交内积给出，积分区间取任一完整周期。X[k] 的模表征该谐波幅度，辐角表征初相。X[0] 即信号的直流（平均）分量。"
+  },
+  {
+    "id": "ctfs-trig",
+    "cat": "ctfs",
+    "title": "傅里叶级数（三角形式）",
+    "latex": "x(t)=\\frac{a_0}{2}+\\sum_{k=1}^{\\infty}\\left(a_k\\cos(k\\omega_0 t)+b_k\\sin(k\\omega_0 t)\\right)",
+    "symbols": ["x(t)", "\\sum", "a_k", "b_k", "\\omega_0", "t", "k"],
+    "note": "三角形式将周期信号展开为直流分量 a_0/2 与各次余弦、正弦谐波之和，物理意义直观。a_k、b_k 分别为第 k 次谐波的余弦和正弦分量系数，k 从 1 取到无穷。它与复指数形式完全等价。"
+  },
+  {
+    "id": "ctfs-ak",
+    "cat": "ctfs",
+    "title": "余弦分量系数 a_k",
+    "latex": "a_k=\\frac{2}{T}\\int_{T}x(t)\\cos(k\\omega_0 t)\\,dt",
+    "symbols": ["a_k", "T", "\\int", "x(t)", "\\omega_0", "k", "t"],
+    "note": "a_k 是信号与 cos(kω₀t) 在一个周期内的正交投影（归一化系数 2/T），表征第 k 次余弦谐波幅度。k=0 时 a_0/2 为直流分量。该系数由信号在一个完整周期内的积分确定。"
+  },
+  {
+    "id": "ctfs-bk",
+    "cat": "ctfs",
+    "title": "正弦分量系数 b_k",
+    "latex": "b_k=\\frac{2}{T}\\int_{T}x(t)\\sin(k\\omega_0 t)\\,dt",
+    "symbols": ["b_k", "T", "\\int", "x(t)", "\\omega_0", "k", "t"],
+    "note": "b_k 是信号与 sin(kω₀t) 在一个周期内的正交投影，表征第 k 次正弦谐波幅度。实信号经半波对称或奇对称时，相应系数为零。该系数与 a_k 共同确定各谐波相位。"
+  },
+  {
+    "id": "ctfs-dc",
+    "cat": "ctfs",
+    "title": "直流分量（信号平均值）",
+    "latex": "\\frac{a_0}{2}=\\frac{1}{T}\\int_{T}x(t)\\,dt",
+    "symbols": ["T", "\\int", "x(t)", "t"],
+    "note": "直流分量 a_0/2 等于周期信号在一个周期内的平均值，对应零频率分量 X[0]。去除直流分量后得到的交流部分不含零频成分，常用于分析信号的波动部分。"
+  },
+  {
+    "id": "ctfs-relation",
+    "cat": "ctfs",
+    "title": "复数系数与三角系数的关系",
+    "latex": "X[k]=\\tfrac{1}{2}(a_k-j\\,b_k),\\quad k>0",
+    "symbols": ["X[k]", "a_k", "j", "b_k", "k"],
+    "note": "复指数系数 X[k] 与三角系数 a_k、b_k 一一对应：X[k] 的实部为 a_k/2，虚部为 −b_k/2。负频率系数 X[−k] 为 X[k] 的共轭（实信号情形），故实信号幅度谱为偶函数、相位谱为奇函数。"
+  },
+  {
+    "id": "ctfs-parseval",
+    "cat": "ctfs",
+    "title": "帕塞瓦尔定理（周期信号功率）",
+    "latex": "P=\\frac{1}{T}\\int_{T}|x(t)|^{2}\\,dt=\\sum_{k=-\\infty}^{\\infty}|X[k]|^{2}",
+    "symbols": ["P", "T", "\\int", "x(t)", "t", "\\sum", "X[k]", "k"],
+    "note": "周期信号的平均功率等于时域一个周期内 |x(t)|² 的平均，也等于频域各谐波功率 |X[k]|² 之和。该定理建立时域能量与频域能量的等价关系，是功率信号频域分析的基本工具。"
+  },
+  {
+    "id": "ctfs-symmetry",
+    "cat": "ctfs",
+    "title": "对称信号的频谱特点",
+    "latex": "x(t)=x(-t)\\Rightarrow b_k=0;\\quad x(t)=-x(-t)\\Rightarrow a_k=0",
+    "symbols": ["x(t)", "b_k", "a_k"],
+    "note": "实偶信号的傅里叶级数只含余弦项（b_k 恒为零），实奇信号只含正弦项（a_k 恒为零）。利用对称性可减少待求系数个数，简化展开计算。半波对称信号（x(t)=−x(t±T/2)）仅含奇次谐波。"
+  }
+]

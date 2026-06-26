@@ -1,0 +1,98 @@
+[
+  {
+    "id": "lap-def",
+    "cat": "laplace",
+    "title": "单边拉普拉斯变换（定义）",
+    "latex": "X(s)=\\int_{0}^{\\infty}x(t)\\,e^{-st}\\,dt",
+    "symbols": ["X(s)", "\\int", "x(t)", "s", "t"],
+    "note": "单边拉普拉斯变换将因果信号 x(t)（t≥0）映射为复频率 s=σ+jω 域的函数 X(s)，积分下限取 0⁻ 以包含 t=0 处的冲激。引入实部 σ 的指数加权 e^{-σt} 使变换的收敛范围比傅里叶变换更广，可处理不稳定信号。s 称为复频率。"
+  },
+  {
+    "id": "lap-pair-delta",
+    "cat": "laplace",
+    "title": "变换对：单位冲激",
+    "latex": "\\delta(t)\\longleftrightarrow 1",
+    "symbols": ["\\delta(t)"],
+    "note": "单位冲激 δ(t) 的拉氏变换为常数 1，全 s 平面收敛。该变换对是构造其他变换对与分析系统冲激响应的基础。由时移性质，δ(t−t₀) 的拉氏变换为 e^{-st₀}。"
+  },
+  {
+    "id": "lap-pair-step",
+    "cat": "laplace",
+    "title": "变换对：单位阶跃",
+    "latex": "u(t)\\longleftrightarrow \\frac{1}{s}",
+    "symbols": ["u(t)", "s"],
+    "note": "单位阶跃 u(t) 的拉氏变换为 1/s，收敛域为 Re(s)>0。该变换对是积分性质（时域积分对应 s 域除以 s）的直接结果，也是构造斜坡、抛物等信号变换的基本积木。"
+  },
+  {
+    "id": "lap-pair-exp",
+    "cat": "laplace",
+    "title": "变换对：单边指数",
+    "latex": "e^{-at}u(t)\\longleftrightarrow \\frac{1}{s+a}\\quad(\\mathrm{Re}(s)>-a)",
+    "symbols": ["u(t)", "s", "t"],
+    "note": "单边指数衰减信号 e^{-at}u(t) 的拉氏变换为 1/(s+a)，收敛域 Re(s)>−a，极点位于 s=−a。a 为正时信号衰减、极点在左半平面；a 为负时信号增长、极点在右半平面。该变换对是复频域分析的基本积木。"
+  },
+  {
+    "id": "lap-pair-ramp",
+    "cat": "laplace",
+    "title": "变换对：斜坡信号",
+    "latex": "t\\,u(t)\\longleftrightarrow \\frac{1}{s^{2}}",
+    "symbols": ["u(t)", "s", "t"],
+    "note": "斜坡信号 t·u(t) 的拉氏变换为 1/s²，可由阶跃变换的 s 域微分性质导出。一般地，t^n·u(t) 的拉氏变换为 n!/s^{n+1}。该变换对用于分析线性增长激励下的系统响应。"
+  },
+  {
+    "id": "lap-pair-sin",
+    "cat": "laplace",
+    "title": "变换对：正弦信号",
+    "latex": "\\sin(\\omega t)\\,u(t)\\longleftrightarrow \\frac{\\omega}{s^{2}+\\omega^{2}}",
+    "symbols": ["\\omega", "t", "u(t)", "s"],
+    "note": "因果正弦信号 sin(ωt)·u(t) 的拉氏变换为 ω/(s²+ω²)，极点位于 s=±jω（虚轴上），收敛域 Re(s)>0。该变换对由欧拉公式分解为两个复指数得到，是分析振荡响应的基础。"
+  },
+  {
+    "id": "lap-pair-cos",
+    "cat": "laplace",
+    "title": "变换对：余弦信号",
+    "latex": "\\cos(\\omega t)\\,u(t)\\longleftrightarrow \\frac{s}{s^{2}+\\omega^{2}}",
+    "symbols": ["\\omega", "t", "u(t)", "s"],
+    "note": "因果余弦信号 cos(ωt)·u(t) 的拉氏变换为 s/(s²+ω²)，极点位于 s=±jω，收敛域 Re(s)>0。该变换对与正弦变换对结合，可得到任意相位正弦信号的变换。二者的极点均位于虚轴，对应等幅振荡。"
+  },
+  {
+    "id": "lap-prop-deriv",
+    "cat": "laplace",
+    "title": "性质：时域微分",
+    "latex": "x'(t)\\longleftrightarrow sX(s)-x(0^{-})",
+    "symbols": ["s", "X(s)"],
+    "note": "单边拉氏变换下，时域一阶导数对应 s 域乘以 s 再减去初值 x(0⁻)。二阶导数为 s²X(s)−sx(0⁻)−x'(0⁻)。该性质将微分方程转化为 s 域代数方程，自动计入初始条件，是用拉氏变换解常微分方程的关键。"
+  },
+  {
+    "id": "lap-prop-tshift",
+    "cat": "laplace",
+    "title": "性质：时域时移",
+    "latex": "x(t-t_0)\\,u(t-t_0)\\longleftrightarrow e^{-st_0}X(s)\\ (t_0>0)",
+    "symbols": ["s", "X(s)"],
+    "note": "因果信号延迟 t₀（t₀>0）后，其拉氏变换为原变换乘以指数因子 e^{-st₀}。注意单边变换中时移定理要求信号整体延迟且保持因果形式，否则需修正。该性质用于分析延迟环节与传输线效应。"
+  },
+  {
+    "id": "lap-prop-conv",
+    "cat": "laplace",
+    "title": "性质：时域卷积",
+    "latex": "x(t)*h(t)\\longleftrightarrow X(s)\\,H(s)",
+    "symbols": ["x(t)", "h(t)", "X(s)", "H(s)", "t"],
+    "note": "时域卷积对应 s 域相乘，是连续 LTI 系统 s 域分析的核心：零状态响应的拉氏变换等于输入变换乘以系统函数 H(s)。该性质将时域积分运算转化为代数乘法，使系统分析大大简化。"
+  },
+  {
+    "id": "lap-iv",
+    "cat": "laplace",
+    "title": "初值定理",
+    "latex": "x(0^{+})=\\lim_{s\\to\\infty}sX(s)",
+    "symbols": ["s", "X(s)"],
+    "note": "初值定理可由象函数 X(s) 直接求出原函数在 t=0⁺ 处的初值，无需逆变换。要求 X(s) 为真分式（分子次数低于分母），否则需先做多项式除法。该定理在系统瞬态分析中用于确定初始条件。"
+  },
+  {
+    "id": "lap-fv",
+    "cat": "laplace",
+    "title": "终值定理",
+    "latex": "x(\\infty)=\\lim_{s\\to 0}sX(s)",
+    "symbols": ["s", "X(s)"],
+    "note": "终值定理可由象函数 X(s) 直接求出原函数的稳态终值，无需逆变换。应用前提是 sX(s) 的全部极点位于左半 s 平面（即系统稳定，终值存在），否则终值不存在、定理不适用。该定理常用于求系统的稳态响应。"
+  }
+]

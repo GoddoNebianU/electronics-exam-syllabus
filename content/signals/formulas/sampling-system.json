@@ -1,0 +1,82 @@
+[
+  {
+    "id": "ss-sampling-impulse",
+    "cat": "sampling-system",
+    "title": "理想冲激采样",
+    "latex": "x_s(t)=\\sum_{n=-\\infty}^{\\infty}x(nT_s)\\,\\delta(t-nT_s)",
+    "symbols": ["\\sum", "n", "T_s", "t"],
+    "note": "理想冲激采样用周期为 T_s 的冲激串对连续信号 x(t) 抽样，得到冲激采样信号 x_s(t)，其冲激强度等于各采样点 x(nT_s) 的取值。这是连接连续信号与离散序列的数学桥梁，采样频率 f_s=1/T_s。实际采样用窄脉冲近似冲激。"
+  },
+  {
+    "id": "ss-sampling-spectrum",
+    "cat": "sampling-system",
+    "title": "采样信号的频谱（周期延拓）",
+    "latex": "X_s(j\\omega)=\\frac{1}{T_s}\\sum_{k=-\\infty}^{\\infty}X\\big(j(\\omega-k\\omega_s)\\big)",
+    "symbols": ["T_s", "\\sum", "\\omega", "\\omega_s", "k"],
+    "note": "采样信号的频谱是原信号频谱以采样角频率 ω_s=2π/T_s 为周期进行无穷平移副本的叠加，幅度降为 1/T_s。该式表明采样在频域表现为频谱的周期延拓，是采样定理的理论基础。"
+  },
+  {
+    "id": "ss-nyquist",
+    "cat": "sampling-system",
+    "title": "时域采样定理（奈奎斯特）",
+    "latex": "f_s\\ge 2\\,f_{max}\\quad(\\omega_s\\ge 2\\,\\omega_{max})",
+    "symbols": ["f_s", "\\omega_s"],
+    "note": "为使带限信号（最高频率 f_max）采样后能无失真恢复，采样频率必须满足 f_s≥2f_max，即采样角频率 ω_s≥2ω_max。下限 2f_max 称为奈奎斯特频率。满足该条件时频谱副本不重叠，可用理想低通完全恢复原信号。"
+  },
+  {
+    "id": "ss-aliasing",
+    "cat": "sampling-system",
+    "title": "频谱混叠",
+    "latex": "f_s<2\\,f_{max}\\Rightarrow X(j\\omega)\\text{ 的频谱副本相互重叠}",
+    "symbols": ["f_s", "X(j\\omega)", "\\omega"],
+    "note": "当采样频率不足（f_s<2f_max）时，相邻频谱副本发生重叠，高频分量折叠回低频，原信号无法由采样值无失真恢复，称为混叠。混叠是采样定理不满足的直接后果，工程上采样前常用抗混叠低通滤波器限制信号带宽。"
+  },
+  {
+    "id": "ss-reconstruction",
+    "cat": "sampling-system",
+    "title": "理想内插恢复",
+    "latex": "x(t)=\\sum_{n=-\\infty}^{\\infty}x(nT_s)\\,\\mathrm{sinc}\\!\\left(\\frac{t-nT_s}{T_s}\\right)",
+    "symbols": ["x(t)", "\\sum", "n", "T_s", "t"],
+    "note": "当满足采样定理时，原连续信号可由采样值经理想低通（sinc 内插）完全恢复：x(t) 等于各采样值 x(nT_s) 与平移抽样函数 sinc((t−nT_s)/T_s) 的加权之和。该式是采样定理的时域重构形式，实际中用截断近似实现。"
+  },
+  {
+    "id": "ss-hjw",
+    "cat": "sampling-system",
+    "title": "连续系统频率响应",
+    "latex": "H(j\\omega)=\\frac{Y(j\\omega)}{X(j\\omega)}",
+    "symbols": ["H(j\\omega)", "X(j\\omega)", "\\omega"],
+    "note": "连续 LTI 系统的频率响应 H(jω) 定义为零状态下输出与输入的傅里叶变换之比，它等于系统冲激响应 h(t) 的傅里叶变换。|H(jω)| 为幅频特性，arg H(jω) 为相频特性，描述系统对各频率分量的增益与相移。"
+  },
+  {
+    "id": "ss-hs",
+    "cat": "sampling-system",
+    "title": "连续系统函数",
+    "latex": "H(s)=\\frac{Y(s)}{X(s)}",
+    "symbols": ["H(s)", "X(s)", "s"],
+    "note": "连续 LTI 系统的系统函数 H(s) 定义为零状态下输出与输入的拉氏变换之比。将 s=jω 代入即得频率响应 H(jω)。H(s) 的极点决定系统的自然模态与稳定性，零点影响频率响应的形状，是系统综合与分析的核心。"
+  },
+  {
+    "id": "ss-stability-s",
+    "cat": "sampling-system",
+    "title": "连续系统稳定性判据",
+    "latex": "H(s)\\text{ 稳定}\\Leftrightarrow \\text{全部极点 }p_k\\text{ 位于左半 }s\\text{ 平面}",
+    "symbols": ["H(s)", "s", "p_k"],
+    "note": "因果连续 LTI 系统 BIBO 稳定的充分必要条件是系统函数 H(s) 的全部极点 p_k 位于左半 s 平面（Re(p_k)<0），此时冲激响应 h(t) 绝对可积。极点在虚轴上为临界稳定（等幅振荡），在右半平面则不稳定。"
+  },
+  {
+    "id": "ss-stability-z",
+    "cat": "sampling-system",
+    "title": "离散系统稳定性判据",
+    "latex": "H(z)\\text{ 稳定}\\Leftrightarrow \\text{全部极点 }p_k\\text{ 位于单位圆内}",
+    "symbols": ["H(z)", "z", "p_k"],
+    "note": "因果离散 LTI 系统 BIBO 稳定的充分必要条件是系统函数 H(z) 的全部极点 p_k 位于单位圆内（|p_k|<1），此时冲激响应 h[n] 绝对可和。极点在单位圆上为临界稳定，在单位圆外则不稳定。该判据与连续系统的左半平面判据通过 z=e^{sT_s} 对应。"
+  },
+  {
+    "id": "ss-group-delay",
+    "cat": "sampling-system",
+    "title": "群延迟",
+    "latex": "\\tau_g(\\omega)=-\\frac{d\\varphi(\\omega)}{d\\omega}",
+    "symbols": ["\\omega"],
+    "note": "群延迟 τ_g(ω) 定义为系统相频特性 φ(ω) 对角频率的负导数，表征信号各频率分量通过系统的时延。群延迟为常数时信号无相位失真（线性相位）。群延迟的起伏反映系统对不同频率的不等延时，是评估系统相位失真的重要指标。"
+  }
+]
