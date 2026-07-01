@@ -1,0 +1,218 @@
+/* ==========================================================================
+   examples.css — 电磁场例题页
+   风格沿用设计令牌；与公式手册/背记页保持一致。
+   ========================================================================== */
+
+.examples-root {
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: var(--space-4) var(--space-5) var(--space-8);
+}
+
+/* ---------- 分类筛选 ---------- */
+.examples-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-bottom: var(--space-5);
+}
+.examples-chip {
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  color: var(--text-muted);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 4px var(--space-2);
+  cursor: pointer;
+  transition: color var(--transition-fast), background var(--transition-fast),
+              border-color var(--transition-fast);
+}
+.examples-chip:hover { border-color: var(--border-strong); color: var(--text); }
+.examples-chip[data-active='true'] {
+  color: var(--accent-contrast);
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+/* ---------- 分组标题 ---------- */
+.examples-section { margin-bottom: var(--space-6); }
+.examples-section__title {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  font-size: var(--fs-base);
+  color: var(--accent-strong);
+  padding-bottom: var(--space-2);
+  margin-bottom: var(--space-3);
+  border-bottom: 1px solid var(--border);
+}
+.examples-section__title small {
+  font-size: var(--fs-xs);
+  font-weight: 400;
+  color: var(--text-muted);
+}
+.examples-section__title em {
+  margin-left: auto;
+  font-style: normal;
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+}
+
+/* ---------- 例题卡片 ---------- */
+.example {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4) var(--space-5);
+  margin-bottom: var(--space-3);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+.example:hover { border-color: var(--border-strong); box-shadow: var(--shadow); }
+
+.example__head {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-2);
+}
+.example__type,
+.example__cat {
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  padding: 2px var(--space-2);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-strong);
+}
+.example__type {
+  color: var(--accent-contrast);
+  background: var(--accent);
+  border-color: var(--accent);
+}
+.example__cat { color: var(--text-muted); }
+
+.example__title {
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  color: var(--accent-strong);
+  margin-bottom: var(--space-3);
+}
+
+.example__problem {
+  font-size: var(--fs-sm);
+  line-height: var(--lh-normal);
+  color: var(--text);
+}
+.example__problem .katex { font-size: 1em; }
+
+/* ---------- 显示解答 toggle ---------- */
+.example__toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  margin-top: var(--space-3);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  color: var(--accent-text);
+  background: var(--accent-soft);
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  padding: 4px var(--space-3);
+  cursor: pointer;
+  transition: background var(--transition-fast), color var(--transition-fast);
+}
+.example__toggle:hover { background: var(--accent); color: var(--accent-contrast); }
+.example__toggle-icon { font-size: 10px; }
+.example__toggle-count {
+  font-weight: 400;
+  color: var(--text-muted);
+}
+.example__toggle:hover .example__toggle-count { color: var(--accent-contrast); opacity: 0.85; }
+
+/* ---------- 解答 ---------- */
+.example__solution {
+  margin-top: var(--space-3);
+  padding-top: var(--space-3);
+  border-top: 1px dashed var(--border);
+  animation: examples-fade 180ms ease-out;
+}
+@keyframes examples-fade {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.example__steps {
+  margin: 0;
+  padding-left: var(--space-5);
+}
+.example__step {
+  font-size: var(--fs-sm);
+  line-height: var(--lh-normal);
+  color: var(--text);
+  margin-bottom: var(--space-2);
+}
+.example__step-text .katex,
+.example__step-math .katex { font-size: 1em; }
+.example__step-math {
+  margin: var(--space-1) 0 var(--space-2);
+  padding: var(--space-1) 0;
+  overflow-x: auto;
+}
+.example__step-math .katex-display { margin: 0; }
+
+.example__answer {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-top: var(--space-3);
+  padding: var(--space-3);
+  background: var(--surface-2);
+  border-radius: var(--radius-md);
+}
+.example__answer-label {
+  flex: 0 0 auto;
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  color: var(--accent-strong);
+}
+.example__answer-math { overflow-x: auto; min-width: 0; }
+.example__answer-math .katex-display { margin: 0; }
+
+.example__related {
+  margin-top: var(--space-3);
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+}
+.example__related-label { color: var(--text-faint); }
+.example__related-link {
+  padding: 2px var(--space-2);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  color: var(--accent-text);
+  background: var(--surface);
+}
+.example__related-link:hover { border-color: var(--accent); background: var(--accent-soft); }
+.example__related-link.is-dangling { color: var(--text-faint); }
+
+/* ---------- 空态 / 提示 ---------- */
+.examples-empty {
+  text-align: center;
+  padding: var(--space-8);
+  color: var(--text-muted);
+}
+.examples-hint {
+  margin-top: var(--space-6);
+  font-size: var(--fs-xs);
+  color: var(--text-faint);
+  text-align: center;
+}
+
+/* ---------- 响应式 ---------- */
+@media (max-width: 600px) {
+  .examples-root { padding: var(--space-3) var(--space-3) var(--space-7); }
+  .example { padding: var(--space-3) var(--space-4); }
+}

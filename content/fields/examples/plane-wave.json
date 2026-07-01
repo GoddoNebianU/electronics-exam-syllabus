@@ -1,0 +1,151 @@
+[
+  {
+    "id": "ex-pw-1",
+    "cat": "plane-wave",
+    "title": "由 E(z,t) 反演平面波参量",
+    "type": "计算",
+    "problem": "无耗介质（$\\mu_r=1$，$\\varepsilon_r=4$）中均匀平面波电场为 $\\mathbf{E}=10\\cos(\\pi\\times10^{7}t-\\beta z)\\,\\hat{x}\\ \\mathrm{V/m}$。求角频率 $\\omega$、频率 $f$、相位常数 $\\beta$、波长 $\\lambda$、相速 $v_p$、本征阻抗 $\\eta$ 及磁场 $\\mathbf{H}$。",
+    "steps": [
+      {
+        "text": "对比标准形式 $\\mathbf{E}=E_m\\cos(\\omega t-\\beta z)\\,\\hat{x}$ 直接读出 $\\omega$ 与 $E_m$。",
+        "latex": "\\omega=\\pi\\times10^{7}\\ \\mathrm{rad/s},\\quad E_m=10\\ \\mathrm{V/m}"
+      },
+      {
+        "text": "频率 $f=\\dfrac{\\omega}{2\\pi}$。",
+        "latex": "f=\\frac{\\omega}{2\\pi}=\\frac{\\pi\\times10^{7}}{2\\pi}=5\\times10^{6}\\ \\mathrm{Hz}=5\\ \\mathrm{MHz}"
+      },
+      {
+        "text": "相位常数 $\\beta=\\omega\\sqrt{\\mu\\varepsilon}=\\dfrac{\\omega\\sqrt{\\varepsilon_r}}{c}$，$\\sqrt{\\varepsilon_r}=2$，$c=3\\times10^{8}\\ \\mathrm{m/s}$。",
+        "latex": "\\beta=\\frac{\\pi\\times10^{7}\\times 2}{3\\times10^{8}}=\\frac{\\pi}{15}\\approx 0.209\\ \\mathrm{rad/m}"
+      },
+      {
+        "text": "由 $\\lambda=\\dfrac{2\\pi}{\\beta}$ 与 $v_p=\\dfrac{\\omega}{\\beta}=\\dfrac{c}{\\sqrt{\\varepsilon_r}}$ 计算波长与相速。",
+        "latex": "\\lambda=\\frac{2\\pi}{\\pi/15}=30\\ \\mathrm{m},\\quad v_p=\\frac{3\\times10^{8}}{2}=1.5\\times10^{8}\\ \\mathrm{m/s}"
+      },
+      {
+        "text": "本征阻抗 $\\eta=\\sqrt{\\mu/\\varepsilon}=\\dfrac{\\eta_0}{\\sqrt{\\varepsilon_r}}$。",
+        "latex": "\\eta=\\frac{377}{2}\\approx 188.5\\ \\Omega"
+      },
+      {
+        "text": "由 $\\mathbf{H}=\\dfrac{1}{\\eta}\\hat{z}\\times\\mathbf{E}$ 得磁场（$\\hat{z}\\times\\hat{x}=\\hat{y}$，与 $\\mathbf{E}$ 同相，沿 $+\\hat{y}$）。",
+        "latex": "\\mathbf{H}=\\frac{10}{188.5}\\cos(\\pi\\times10^{7}t-\\tfrac{\\pi}{15}z)\\,\\hat{y}\\approx 5.31\\times10^{-2}\\cos(\\pi\\times10^{7}t-\\tfrac{\\pi}{15}z)\\,\\hat{y}\\ \\mathrm{A/m}"
+      }
+    ],
+    "answer": "\\boxed{\\omega=\\pi\\times10^{7}\\ \\mathrm{rad/s},\\ f=5\\ \\mathrm{MHz},\\ \\beta=\\tfrac{\\pi}{15}\\ \\mathrm{rad/m},\\ \\lambda=30\\ \\mathrm{m},\\ v_p=1.5\\times10^{8}\\ \\mathrm{m/s},\\ \\eta\\approx 188.5\\ \\Omega,\\ |H_m|\\approx 5.31\\times10^{-2}\\ \\mathrm{A/m}}",
+    "related": [
+      "pw-uniform",
+      "pw-phase-const",
+      "pw-wavelength",
+      "pw-phase-vel",
+      "pw-impedance",
+      "pw-eh-rel"
+    ]
+  },
+  {
+    "id": "ex-pw-2",
+    "cat": "plane-wave",
+    "title": "良导体铜的趋肤深度",
+    "type": "计算",
+    "problem": "频率 $f=100\\ \\mathrm{MHz}$ 的均匀平面波垂直入射到大块铜表面，铜 $\\sigma=5.8\\times10^{7}\\ \\mathrm{S/m}$，$\\mu\\approx\\mu_0$。求趋肤深度 $\\delta$、衰减常数 $\\alpha$，并说明波的振幅在 $z=\\delta$ 处衰减为原来的多少。",
+    "steps": [
+      {
+        "text": "良导体判据 $\\sigma/\\omega\\varepsilon\\gg 1$。对铜，即使取 $\\varepsilon_0$，$\\omega\\varepsilon_0=2\\pi\\times10^{8}\\times 8.854\\times10^{-12}\\approx 5.56\\times10^{-3}\\ \\mathrm{S/m}\\ll\\sigma$，铜显然为良导体。",
+        "latex": "\\frac{\\sigma}{\\omega\\varepsilon_0}\\approx\\frac{5.8\\times10^{7}}{5.56\\times10^{-3}}\\approx 1.04\\times10^{10}\\gg 1"
+      },
+      {
+        "text": "良导体衰减常数 $\\alpha=\\sqrt{\\dfrac{\\omega\\mu\\sigma}{2}}$，趋肤深度 $\\delta=\\dfrac{1}{\\alpha}=\\sqrt{\\dfrac{2}{\\omega\\mu\\sigma}}$。",
+        "latex": "\\delta=\\sqrt{\\frac{2}{\\omega\\mu_0\\sigma}}=\\sqrt{\\frac{2}{2\\pi\\times10^{8}\\times 4\\pi\\times10^{-7}\\times 5.8\\times10^{7}}}"
+      },
+      {
+        "text": "化简被开方数 $\\omega\\mu_0\\sigma=2\\pi\\times 4\\pi\\times 5.8\\times10^{8}\\approx 4.58\\times10^{10}$。",
+        "latex": "\\delta=\\sqrt{\\frac{2}{4.58\\times10^{10}}}=\\sqrt{4.37\\times10^{-11}}"
+      },
+      {
+        "text": "数值计算得趋肤深度（约 $6.6$ 微米）及衰减常数。",
+        "latex": "\\delta\\approx 6.61\\times10^{-6}\\ \\mathrm{m}=6.61\\ \\mu\\mathrm{m},\\quad \\alpha=\\frac{1}{\\delta}\\approx 1.51\\times10^{5}\\ \\mathrm{Np/m}"
+      },
+      {
+        "text": "波幅按 $e^{-\\alpha z}$ 衰减，$z=\\delta$ 处振幅为表面处的 $e^{-1}$，即衰减为约 $36.8\\%$。",
+        "latex": "\\frac{|E(\\delta)|}{|E(0)|}=e^{-\\alpha\\delta}=e^{-1}\\approx 0.368"
+      }
+    ],
+    "answer": "\\boxed{\\delta\\approx 6.61\\ \\mu\\mathrm{m},\\quad \\alpha\\approx 1.51\\times10^{5}\\ \\mathrm{Np/m},\\quad \\text{波幅在 }\\delta\\text{ 处衰减为 }e^{-1}\\approx 36.8\\%}",
+    "related": [
+      "pw-skin",
+      "pw-good-conductor"
+    ]
+  },
+  {
+    "id": "ex-pw-3",
+    "cat": "plane-wave",
+    "title": "垂直入射的反射、透射与驻波比",
+    "type": "计算",
+    "problem": "均匀平面波由空气（$\\eta_1=\\eta_0\\approx 377\\ \\Omega$）垂直入射到无耗介质表面（$\\mu_r=1$，$\\varepsilon_r=4$）。求电场反射系数 $\\Gamma$、电场透射系数 $\\tau$、驻波比 $\\mathrm{VSWR}$ 及功率透射系数 $T$。",
+    "steps": [
+      {
+        "text": "无耗介质 2 的本征阻抗 $\\eta_2=\\dfrac{\\eta_0}{\\sqrt{\\varepsilon_r}}=\\dfrac{377}{2}=188.5\\ \\Omega$。",
+        "latex": "\\eta_2=\\frac{\\eta_0}{\\sqrt{\\varepsilon_r}}=\\frac{377}{2}=188.5\\ \\Omega"
+      },
+      {
+        "text": "垂直入射电场反射系数 $\\Gamma=\\dfrac{\\eta_2-\\eta_1}{\\eta_2+\\eta_1}$。",
+        "latex": "\\Gamma=\\frac{\\eta_2-\\eta_1}{\\eta_2+\\eta_1}=\\frac{188.5-377}{188.5+377}=\\frac{-188.5}{565.5}=-\\frac{1}{3}"
+      },
+      {
+        "text": "电场透射系数 $\\tau=1+\\Gamma$（界面电场切向连续）。",
+        "latex": "\\tau=1+\\Gamma=1-\\frac{1}{3}=\\frac{2}{3}"
+      },
+      {
+        "text": "驻波比 $\\mathrm{VSWR}=\\dfrac{1+|\\Gamma|}{1-|\\Gamma|}$，反映介质 1 中驻波的最大最小场强比。",
+        "latex": "\\mathrm{VSWR}=\\frac{1+1/3}{1-1/3}=\\frac{4/3}{2/3}=2"
+      },
+      {
+        "text": "功率透射系数 $T=1-|\\Gamma|^{2}$（能量守恒，无耗介质无吸收）。",
+        "latex": "T=1-|\\Gamma|^{2}=1-\\frac{1}{9}=\\frac{8}{9}\\approx 0.889"
+      }
+    ],
+    "answer": "\\boxed{\\Gamma=-\\tfrac{1}{3},\\quad \\tau=\\tfrac{2}{3},\\quad \\mathrm{VSWR}=2,\\quad T=\\tfrac{8}{9}\\approx 0.889}",
+    "related": [
+      "pw-reflect",
+      "pw-transmit",
+      "pw-vswr",
+      "pw-impedance"
+    ]
+  },
+  {
+    "id": "ex-pw-4",
+    "cat": "plane-wave",
+    "title": "由电场分量判定极化方式",
+    "type": "概念",
+    "problem": "两束沿 $+z$ 方向传播的均匀平面波，电场均由 $\\hat{x}$、$\\hat{y}$ 两分量叠加。判断下列各波的极化方式与旋向：\n(a) $\\mathbf{E}_a=E_0\\cos(\\omega t-\\beta z)\\,\\hat{x}+E_0\\cos(\\omega t-\\beta z)\\,\\hat{y}$；\n(b) $\\mathbf{E}_b=E_0\\cos(\\omega t-\\beta z)\\,\\hat{x}+E_0\\cos(\\omega t-\\beta z+\\tfrac{\\pi}{2})\\,\\hat{y}$。",
+    "steps": [
+      {
+        "text": "极化由固定 $z$ 处电场端点随时间描绘的轨迹决定。取 $z=0$ 分析。",
+        "latex": "z=0:\\ E_x=E_0\\cos\\omega t"
+      },
+      {
+        "text": "(a) 两分量同相且等幅：$E_x=E_y=E_0\\cos\\omega t$，恒有 $E_y=E_x$，端点沿一条倾角 $45^{\\circ}$ 的直线运动——线极化。",
+        "latex": "E_y=E_x\\ \\Rightarrow\\ \\text{线极化（沿 }y=x\\text{）}"
+      },
+      {
+        "text": "(b) $E_y=E_0\\cos(\\omega t+\\pi/2)=-E_0\\sin\\omega t$，与 $E_x=E_0\\cos\\omega t$ 消去 $t$。",
+        "latex": "E_x^{2}+E_y^{2}=E_0^{2}\\cos^{2}\\!\\omega t+E_0^{2}\\sin^{2}\\!\\omega t=E_0^{2}"
+      },
+      {
+        "text": "端点轨迹为半径 $E_0$ 的圆，且两分量等幅、相位差 $90^{\\circ}$——圆极化。",
+        "latex": "E_x^{2}+E_y^{2}=E_0^{2}\\ \\Rightarrow\\ \\text{圆极化}"
+      },
+      {
+        "text": "旋向：$t=0$ 时端点在 $(E_0,0)$，$t$ 略增时 $E_y<0$，端点依次为 $+\\hat{x}\\to -\\hat{y}\\to -\\hat{x}\\to +\\hat{y}$（按右手螺旋约定，拇指指 $+z$ 时右旋方向为 $+\\hat{x}\\to+\\hat{y}$，与此相反），故为左旋圆极化。等价判据：$E_y$ 相位超前 $E_x$ $\\pi/2$ 对应左旋。",
+        "latex": "\\text{左旋圆极化（}E_y\\text{ 超前 }E_x\\ \\pi/2\\text{）}"
+      },
+      {
+        "text": "一般判据：两分量同相或反相 → 线极化；等幅且相位差 $\\pm 90^{\\circ}$ → 圆极化；其余情形 → 椭圆极化。",
+        "latex": "\\varphi=0\\text{ 或 }\\pi\\!:\\ \\text{线};\\quad |E_x|=|E_y|,\\ |\\varphi|=\\pi/2\\!:\\ \\text{圆};\\quad \\text{其余}\\!:\\ \\text{椭圆}"
+      }
+    ],
+    "answer": "\\boxed{(a)\\ \\text{线极化（沿 }y=x\\text{，倾角 }45^{\\circ}\\text{）；}\\quad (b)\\ \\text{左旋圆极化，轨迹 }E_x^{2}+E_y^{2}=E_0^{2}}",
+    "related": [
+      "pw-polarization"
+    ]
+  }
+]

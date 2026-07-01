@@ -1,0 +1,67 @@
+[
+  {
+    "id": "ex-rad-1",
+    "cat": "radiation",
+    "title": "赫兹偶极子辐射功率与辐射电阻",
+    "type": "计算",
+    "problem": "赫兹偶极子长度 $l=0.3\\ \\mathrm{m}$，工作频率 $f=100\\ \\mathrm{MHz}$（$\\lambda=3\\ \\mathrm{m}$），馈电电流幅值 $I_0=1\\ \\mathrm{A}$。求辐射电阻 $R_r$ 与总辐射功率 $P$。",
+    "steps": [
+      {
+        "text": "赫兹偶极子条件 $l\\ll\\lambda$。$l/\\lambda=0.3/3=0.1\\ll 1$，满足。",
+        "latex": "\\frac{l}{\\lambda}=\\frac{0.3}{3}=0.1"
+      },
+      {
+        "text": "辐射电阻公式 $R_r=80\\pi^{2}\\!\\left(\\dfrac{l}{\\lambda}\\right)^{2}$。",
+        "latex": "R_r=80\\pi^{2}\\times 0.1^{2}=0.8\\pi^{2}"
+      },
+      {
+        "text": "代入 $\\pi^{2}\\approx 9.87$ 计算得辐射电阻。",
+        "latex": "R_r\\approx 0.8\\times 9.87\\approx 7.90\\ \\Omega"
+      },
+      {
+        "text": "辐射功率 $P=\\tfrac{1}{2}I_0^{2}R_r$（$I_0$ 为电流幅值，时间平均用 $1/2$）。",
+        "latex": "P=\\frac{1}{2}I_0^{2}R_r=\\frac{1}{2}\\times 1^{2}\\times 7.90"
+      },
+      {
+        "text": "得辐射功率。亦可由远区坡印廷矢量在球面上积分验证 $P=40\\pi^{2}\\!\\left(\\dfrac{I_0 l}{\\lambda}\\right)^{2}$。",
+        "latex": "P\\approx 3.95\\ \\mathrm{W}"
+      }
+    ],
+    "answer": "\\boxed{R_r\\approx 7.90\\ \\Omega,\\quad P\\approx 3.95\\ \\mathrm{W}}",
+    "related": [
+      "rad-resistance",
+      "rad-power",
+      "rad-dipole-far"
+    ]
+  },
+  {
+    "id": "ex-rad-2",
+    "cat": "radiation",
+    "title": "天线方向性与有效面积",
+    "type": "计算",
+    "problem": "一副天线的方向性 $D=10$（即 $10\\ \\mathrm{dBi}$），工作频率 $f=3\\ \\mathrm{GHz}$。求该天线的最大有效面积 $A_e$。",
+    "steps": [
+      {
+        "text": "工作波长 $\\lambda=c/f$。",
+        "latex": "\\lambda=\\frac{c}{f}=\\frac{3\\times10^{8}}{3\\times10^{9}}=0.1\\ \\mathrm{m}"
+      },
+      {
+        "text": "天线有效面积与方向性的普适关系 $A_e=\\dfrac{\\lambda^{2}}{4\\pi}D$，适用于任意天线。",
+        "latex": "A_e=\\frac{\\lambda^{2}}{4\\pi}D=\\frac{0.1^{2}}{4\\pi}\\times 10"
+      },
+      {
+        "text": "代入数值计算。",
+        "latex": "A_e=\\frac{0.01\\times 10}{4\\pi}=\\frac{0.1}{4\\pi}=\\frac{0.1}{12.566}"
+      },
+      {
+        "text": "化简得最大有效面积（用 SI 与常用单位表示）。",
+        "latex": "A_e\\approx 7.96\\times10^{-3}\\ \\mathrm{m^2}=79.6\\ \\mathrm{cm^2}"
+      }
+    ],
+    "answer": "\\boxed{A_e\\approx 7.96\\times10^{-3}\\ \\mathrm{m^2}\\approx 79.6\\ \\mathrm{cm^2}}",
+    "related": [
+      "rad-gain",
+      "rad-effective-area"
+    ]
+  }
+]

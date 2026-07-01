@@ -1,0 +1,73 @@
+[
+  {
+    "id": "ex-st-1",
+    "cat": "steady-e",
+    "title": "欧姆定律微分形式与焦耳功率",
+    "type": "计算",
+    "problem": "一段长 $L=100\\ \\mathrm{m}$、横截面 $A=1\\ \\mathrm{mm^2}=10^{-6}\\ \\mathrm{m^2}$ 的铜导线两端加电压 $U=10\\ \\mathrm{V}$。铜电导率 $\\sigma=5.8\\times10^{7}\\ \\mathrm{S/m}$。求导线内电场 $E$、电流密度 $J$、总电流 $I$、电阻 $R$ 及消耗的焦耳功率 $P$。",
+    "steps": [
+      {
+        "text": "导线内电场沿轴向且均匀分布 $E=U/L$。",
+        "latex": "E=\\frac{U}{L}=\\frac{10}{100}=0.1\\ \\mathrm{V/m}"
+      },
+      {
+        "text": "由欧姆定律微分形式 $\\mathbf{J}=\\sigma\\mathbf{E}$，电流密度大小为 $J=\\sigma E$。",
+        "latex": "J=\\sigma E=5.8\\times10^{7}\\times 0.1=5.8\\times10^{6}\\ \\mathrm{A/m^2}"
+      },
+      {
+        "text": "总电流 $I=JA$。",
+        "latex": "I=JA=5.8\\times10^{6}\\times 10^{-6}=5.8\\ \\mathrm{A}"
+      },
+      {
+        "text": "电阻可由电路定义 $R=U/I$ 或积分式 $R=L/(\\sigma A)$，二者一致。",
+        "latex": "R=\\frac{U}{I}=\\frac{10}{5.8}\\approx 1.72\\ \\Omega\\quad\\left(=\\frac{L}{\\sigma A}=\\frac{100}{5.8\\times10^{7}\\times 10^{-6}}\\right)"
+      },
+      {
+        "text": "焦耳功率 $P=UI=I^{2}R$，单位体积消耗功率 $p=\\mathbf{J}\\cdot\\mathbf{E}=\\sigma E^{2}$。",
+        "latex": "P=UI=10\\times 5.8=58\\ \\mathrm{W}\\quad (I^{2}R=5.8^{2}\\times 1.72\\approx 58\\ \\mathrm{W})"
+      }
+    ],
+    "answer": "\\boxed{E=0.1\\ \\mathrm{V/m},\\ J=5.8\\times10^{6}\\ \\mathrm{A/m^2},\\ I=5.8\\ \\mathrm{A},\\ R\\approx 1.72\\ \\Omega,\\ P=58\\ \\mathrm{W}}",
+    "related": [
+      "st-ohm",
+      "st-current-density",
+      "st-current",
+      "st-joule-p"
+    ]
+  },
+  {
+    "id": "ex-st-2",
+    "cat": "steady-e",
+    "title": "两种导电媒质分界面边界条件",
+    "type": "计算",
+    "problem": "z=0 平面两侧分布两种导电媒质：z>0 区域 $\\sigma_1=1\\ \\mathrm{S/m}$，z<0 区域 $\\sigma_2=0.01\\ \\mathrm{S/m}$，两侧介电常数均为 $\\varepsilon_0$。已知上半空间电场 $\\mathbf{E}_1=2\\,\\hat{x}+1\\,\\hat{z}\\ \\mathrm{V/m}$。求下半空间电场 $\\mathbf{E}_2$，并计算分界面上的自由面电荷密度 $\\rho_s$。",
+    "steps": [
+      {
+        "text": "界面法向 $\\hat{n}=\\hat{z}$。$\\mathbf{E}_1$ 的切向分量为 $E_{1t}=2$（$\\hat{x}$ 向），法向分量 $E_{1n}=1$（$\\hat{z}$ 向）。",
+        "latex": "E_{1t}=2\\ \\mathrm{V/m},\\quad E_{1n}=1\\ \\mathrm{V/m}"
+      },
+      {
+        "text": "由边界条件 $E_{1t}=E_{2t}$（切向电场连续）得 $E_{2t}=2\\ \\mathrm{V/m}$。",
+        "latex": "E_{2t}=E_{1t}=2\\ \\mathrm{V/m}"
+      },
+      {
+        "text": "由稳态电流连续条件 $J_{1n}=J_{2n}$，即 $\\sigma_1 E_{1n}=\\sigma_2 E_{2n}$，得 $E_{2n}=\\dfrac{\\sigma_1}{\\sigma_2}E_{1n}$。",
+        "latex": "E_{2n}=\\frac{\\sigma_1 E_{1n}}{\\sigma_2}=\\frac{1\\times 1}{0.01}=100\\ \\mathrm{V/m}"
+      },
+      {
+        "text": "故 $\\mathbf{E}_2=E_{2t}\\,\\hat{x}+E_{2n}\\,\\hat{z}=2\\,\\hat{x}+100\\,\\hat{z}\\ \\mathrm{V/m}$。",
+        "latex": "\\mathbf{E}_2=2\\,\\hat{x}+100\\,\\hat{z}\\ \\mathrm{V/m}"
+      },
+      {
+        "text": "界面自由面电荷由 $\\rho_s=D_{1n}-D_{2n}=\\varepsilon_0(E_{1n}-E_{2n})$ 给出。",
+        "latex": "\\rho_s=\\varepsilon_0(E_{1n}-E_{2n})=8.854\\times10^{-12}\\times(1-100)\\approx -8.77\\times10^{-10}\\ \\mathrm{C/m^2}"
+      }
+    ],
+    "answer": "\\boxed{\\mathbf{E}_2=2\\,\\hat{x}+100\\,\\hat{z}\\ \\mathrm{V/m},\\quad \\rho_s\\approx -8.77\\times10^{-10}\\ \\mathrm{C/m^2}}",
+    "related": [
+      "st-bc-j",
+      "st-bc-e",
+      "st-ohm"
+    ]
+  }
+]

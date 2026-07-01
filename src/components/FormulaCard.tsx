@@ -56,7 +56,17 @@ export function FormulaCard({ formula, symbols, viewId }: FormulaCardProps) {
           />
         </svg>
       </button>
-      <h4 className="formula__title">{formula.title}</h4>
+      <h4 className="formula__title">
+        <span className="formula__title-text">{formula.title}</span>
+        {formula.memorize === false && (
+          <span
+            className="formula__badge formula__badge--optional"
+            title="非必背：试卷公式表常给出，或可由已背公式现场推出"
+          >
+            非必背
+          </span>
+        )}
+      </h4>
       <div
         className="formula-math"
         dangerouslySetInnerHTML={{ __html: mathHtml }}

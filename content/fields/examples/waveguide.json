@@ -1,0 +1,108 @@
+[
+  {
+    "id": "ex-wg-1",
+    "cat": "waveguide",
+    "title": "矩形波导 TE₁₀ 模截止与波导波长",
+    "type": "计算",
+    "problem": "空气填充矩形波导宽边 $a=22.86\\ \\mathrm{mm}$，窄边 $b=10.16\\ \\mathrm{mm}$（标准 WR-90）。工作频率 $f=10\\ \\mathrm{GHz}$。求 TE₁₀ 模截止频率 $f_c$、截止波长 $\\lambda_c$、波导波长 $\\lambda_g$，并判断该频率下能否单模传输。",
+    "steps": [
+      {
+        "text": "TE₁₀ 模 $m=1,n=0$，由 $f_c=\\dfrac{1}{2\\sqrt{\\mu\\varepsilon}}\\sqrt{(m/a)^{2}+(n/b)^{2}}$，$n=0$ 时 $f_c=\\dfrac{c}{2a}$。",
+        "latex": "f_c=\\frac{c}{2a}=\\frac{3\\times10^{8}}{2\\times 22.86\\times10^{-3}}\\approx 6.56\\times10^{9}\\ \\mathrm{Hz}=6.56\\ \\mathrm{GHz}"
+      },
+      {
+        "text": "TE₁₀ 截止波长 $\\lambda_c=2a$。",
+        "latex": "\\lambda_c=2a=2\\times 22.86=45.72\\ \\mathrm{mm}"
+      },
+      {
+        "text": "工作频率 $f=10\\ \\mathrm{GHz}>f_c=6.56\\ \\mathrm{GHz}$，TE₁₀ 可传播。自由空间波长 $\\lambda_0=c/f$。",
+        "latex": "\\lambda_0=\\frac{c}{f}=\\frac{3\\times10^{8}}{10^{10}}=30\\ \\mathrm{mm}"
+      },
+      {
+        "text": "波导波长 $\\lambda_g=\\dfrac{\\lambda_0}{\\sqrt{1-(f_c/f)^{2}}}$。",
+        "latex": "\\lambda_g=\\frac{30}{\\sqrt{1-(6.56/10)^{2}}}=\\frac{30}{\\sqrt{1-0.430}}=\\frac{30}{\\sqrt{0.570}}\\approx\\frac{30}{0.755}"
+      },
+      {
+        "text": "得波导波长，大于自由空间波长（波导色散）。",
+        "latex": "\\lambda_g\\approx 39.8\\ \\mathrm{mm}"
+      },
+      {
+        "text": "判断单模：TE₂₀ 截止 $f_{c,20}=c/a=13.12\\ \\mathrm{GHz}>10\\ \\mathrm{GHz}$；TE₀₁ 截止 $f_{c,01}=c/(2b)=14.76\\ \\mathrm{GHz}>10\\ \\mathrm{GHz}$。故仅 TE₁₀ 传播，单模工作。",
+        "latex": "f_{c,20}=13.12\\ \\mathrm{GHz}>f,\\ f_{c,01}=14.76\\ \\mathrm{GHz}>f\\ \\Rightarrow\\ \\text{单模 TE}_{10}"
+      }
+    ],
+    "answer": "\\boxed{f_c\\approx 6.56\\ \\mathrm{GHz},\\quad \\lambda_c=45.72\\ \\mathrm{mm},\\quad \\lambda_g\\approx 39.8\\ \\mathrm{mm},\\quad \\text{TE}_{10}\\text{ 单模可传播}}",
+    "related": [
+      "wg-cutoff-f",
+      "wg-cutoff-lambda",
+      "wg-guide-lambda"
+    ]
+  },
+  {
+    "id": "ex-wg-2",
+    "cat": "waveguide",
+    "title": "无耗传输线的输入阻抗",
+    "type": "计算",
+    "problem": "无耗均匀传输线特性阻抗 $Z_0=50\\ \\Omega$，终端接负载 $Z_L=(50+j100)\\ \\Omega$，工作波长 $\\lambda$。求距负载 $l=\\lambda/8$ 处的输入阻抗 $Z_{\\text{in}}$。",
+    "steps": [
+      {
+        "text": "无耗传输线输入阻抗公式 $Z_{\\text{in}}=Z_0\\dfrac{Z_L+jZ_0\\tan(\\beta l)}{Z_0+jZ_L\\tan(\\beta l)}$。",
+        "latex": "Z_{\\text{in}}=Z_0\\,\\frac{Z_L+jZ_0\\tan(\\beta l)}{Z_0+jZ_L\\tan(\\beta l)}"
+      },
+      {
+        "text": "$l=\\lambda/8$ 时 $\\beta l=\\dfrac{2\\pi}{\\lambda}\\cdot\\dfrac{\\lambda}{8}=\\dfrac{\\pi}{4}$，故 $\\tan(\\beta l)=1$。",
+        "latex": "\\beta l=\\frac{\\pi}{4},\\quad \\tan(\\beta l)=1"
+      },
+      {
+        "text": "代入数据：分子 $Z_L+jZ_0=(50+j100)+j50=50+j150$；分母 $Z_0+jZ_L=50+j(50+j100)=50-100+j50=-50+j50$。",
+        "latex": "Z_{\\text{in}}=50\\times\\frac{50+j150}{-50+j50}"
+      },
+      {
+        "text": "分子分母同乘分母的共轭 $(-50-j50)$ 化简。",
+        "latex": "\\frac{50+j150}{-50+j50}=\\frac{(50+j150)(-50-j50)}{(-50)^{2}+50^{2}}=\\frac{-2500-j2500-j7500+7500}{5000}=\\frac{5000-j10000}{5000}=1-j2"
+      },
+      {
+        "text": "代入得 $Z_{\\text{in}}$，含负虚部呈容性。",
+        "latex": "Z_{\\text{in}}=50\\,(1-j2)=50-j100\\ \\Omega"
+      }
+    ],
+    "answer": "\\boxed{Z_{\\text{in}}=(50-j100)\\ \\Omega}",
+    "related": [
+      "wg-z0-lossless"
+    ]
+  },
+  {
+    "id": "ex-wg-3",
+    "cat": "waveguide",
+    "title": "矩形谐振腔的谐振频率",
+    "type": "计算",
+    "problem": "空气填充矩形谐振腔尺寸 $a=2\\ \\mathrm{cm}$、$b=1\\ \\mathrm{cm}$、$d=3\\ \\mathrm{cm}$。求 $\\mathrm{TE}_{101}$ 模（$m=1,n=0,p=1$）的谐振频率 $f_{101}$。",
+    "steps": [
+      {
+        "text": "矩形谐振腔谐振频率 $f_{mnp}=\\dfrac{1}{2\\sqrt{\\mu\\varepsilon}}\\sqrt{(m/a)^{2}+(n/b)^{2}+(p/d)^{2}}$，空气 $1/\\sqrt{\\mu\\varepsilon}=c$。",
+        "latex": "f_{mnp}=\\frac{c}{2}\\sqrt{\\left(\\frac{m}{a}\\right)^{2}+\\left(\\frac{n}{b}\\right)^{2}+\\left(\\frac{p}{d}\\right)^{2}}"
+      },
+      {
+        "text": "$\\mathrm{TE}_{101}$ 模 $m=1,n=0,p=1$，含 $n$ 的项消失。",
+        "latex": "f_{101}=\\frac{c}{2}\\sqrt{\\left(\\frac{1}{a}\\right)^{2}+\\left(\\frac{1}{d}\\right)^{2}}"
+      },
+      {
+        "text": "代入尺寸计算根号内之值。",
+        "latex": "\\left(\\frac{1}{0.02}\\right)^{2}+\\left(\\frac{1}{0.03}\\right)^{2}=2500+1111=3611\\ \\mathrm{m^{-2}}"
+      },
+      {
+        "text": "开方后代入 $c$。",
+        "latex": "\\sqrt{3611}\\approx 60.1\\ \\mathrm{m^{-1}},\\quad f_{101}=\\frac{3\\times10^{8}}{2}\\times 60.1"
+      },
+      {
+        "text": "得谐振频率。仅当激励频率等于某 $f_{mnp}$ 时腔内形成稳定驻波，偏离则响应急剧下降。",
+        "latex": "f_{101}\\approx 9.01\\times10^{9}\\ \\mathrm{Hz}=9.01\\ \\mathrm{GHz}"
+      }
+    ],
+    "answer": "\\boxed{f_{101}\\approx 9.01\\ \\mathrm{GHz}}",
+    "related": [
+      "wg-resonator",
+      "wg-cutoff-f"
+    ]
+  }
+]

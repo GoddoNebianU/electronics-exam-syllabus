@@ -1,0 +1,97 @@
+[
+  {
+    "id": "ex-tv-1",
+    "cat": "time-varying",
+    "title": "法拉第定律求感应电动势",
+    "type": "计算",
+    "problem": "半径 $r=5\\ \\mathrm{cm}$ 的单匝圆形线圈置于均匀磁场中，磁场方向垂直于线圈平面。磁感应强度随时间变化 $B(t)=0.5\\cos(100\\pi t)\\ \\mathrm{T}$（$f=50\\ \\mathrm{Hz}$）。求线圈中的感应电动势 $\\mathcal{E}(t)$ 与其峰值。",
+    "steps": [
+      {
+        "text": "穿过线圈的磁通 $\\Phi=B(t)\\cdot A$，其中 $A=\\pi r^{2}=\\pi\\times 0.05^{2}=7.854\\times10^{-3}\\ \\mathrm{m^2}$。",
+        "latex": "\\Phi(t)=B(t)A=0.5\\times 7.854\\times10^{-3}\\cos(100\\pi t)=3.927\\times10^{-3}\\cos(100\\pi t)\\ \\mathrm{Wb}"
+      },
+      {
+        "text": "由法拉第电磁感应定律 $\\mathcal{E}=-\\dfrac{\\mathrm{d}\\Phi}{\\mathrm{d}t}$，对 $\\Phi$ 求时间导数。",
+        "latex": "\\mathcal{E}(t)=-\\frac{\\mathrm{d}\\Phi}{\\mathrm{d}t}=3.927\\times10^{-3}\\times 100\\pi\\,\\sin(100\\pi t)"
+      },
+      {
+        "text": "化简得电动势瞬时值，负号体现楞次定律（感应电流反抗磁通变化）。",
+        "latex": "\\mathcal{E}(t)=1.234\\,\\sin(100\\pi t)\\ \\mathrm{V}"
+      },
+      {
+        "text": "峰值 $\\mathcal{E}_{\\max}=\\omega B_0 A$，对应磁通变化率最大的时刻。",
+        "latex": "\\mathcal{E}_{\\max}=100\\pi\\times 0.5\\times 7.854\\times10^{-3}\\approx 1.23\\ \\mathrm{V}"
+      }
+    ],
+    "answer": "\\boxed{\\mathcal{E}(t)\\approx 1.23\\sin(100\\pi t)\\ \\mathrm{V},\\quad \\mathcal{E}_{\\max}\\approx 1.23\\ \\mathrm{V}}",
+    "related": [
+      "tv-faraday-int"
+    ]
+  },
+  {
+    "id": "ex-tv-2",
+    "cat": "time-varying",
+    "title": "电容器充电中的位移电流",
+    "type": "计算",
+    "problem": "平行板电容器极板半径 $R=5\\ \\mathrm{cm}$，板间真空，恒定充电电流 $I=2\\ \\mathrm{A}$。求板间位移电流密度 $J_d$、通过整个极板面积的位移电流 $I_d$，并求板间半径 $r=3\\ \\mathrm{cm}$ 处的磁感应强度 $B$。",
+    "steps": [
+      {
+        "text": "极板面积 $A=\\pi R^{2}=\\pi\\times 0.05^{2}=7.854\\times10^{-3}\\ \\mathrm{m^2}$。设板上电荷 $Q(t)$，由 $I=\\mathrm{d}Q/\\mathrm{d}t$，忽略边缘效应下板间均匀电场 $E=Q/(\\varepsilon_0 A)$。",
+        "latex": "\\frac{\\mathrm{d}E}{\\mathrm{d}t}=\\frac{1}{\\varepsilon_0 A}\\frac{\\mathrm{d}Q}{\\mathrm{d}t}=\\frac{I}{\\varepsilon_0 A}"
+      },
+      {
+        "text": "位移电流密度 $\\mathbf{J}_d=\\dfrac{\\partial\\mathbf{D}}{\\partial t}=\\varepsilon_0\\dfrac{\\partial\\mathbf{E}}{\\partial t}$，代入上式即 $J_d=I/A$。",
+        "latex": "J_d=\\varepsilon_0\\cdot\\frac{I}{\\varepsilon_0 A}=\\frac{I}{A}=\\frac{2}{7.854\\times10^{-3}}\\approx 2.55\\times10^{2}\\ \\mathrm{A/m^2}"
+      },
+      {
+        "text": "整个极板面积上的位移电流 $I_d=J_d A=I=2\\ \\mathrm{A}$，与导线传导电流相等，保证全电流连续。",
+        "latex": "I_d=J_d\\cdot A=I=2\\ \\mathrm{A}"
+      },
+      {
+        "text": "板间无传导电流，仅有位移电流。在板间半径 $r<R$ 处取圆形安培环路（$r=3\\ \\mathrm{cm}$），由全电流定律 $\\oint\\mathbf{H}\\cdot\\mathrm{d}\\mathbf{l}=I_{d,\\text{enc}}$，被包围位移电流 $I_{d,\\text{enc}}=J_d\\pi r^{2}$。",
+        "latex": "2\\pi r\\,H=J_d\\pi r^{2}\\ \\Rightarrow\\ H=\\frac{J_d r}{2}=\\frac{2.55\\times10^{2}\\times 0.03}{2}\\approx 3.82\\ \\mathrm{A/m}"
+      },
+      {
+        "text": "故 $B=\\mu_0 H$，方向沿方位角方向（绕轴线，由右手定则判定）。",
+        "latex": "B=\\mu_0 H=4\\pi\\times10^{-7}\\times 3.82\\approx 4.80\\times10^{-6}\\ \\mathrm{T}=4.80\\ \\mu\\mathrm{T}"
+      }
+    ],
+    "answer": "\\boxed{J_d\\approx 2.55\\times10^{2}\\ \\mathrm{A/m^2},\\quad I_d=2\\ \\mathrm{A},\\quad B(r=3\\,\\mathrm{cm})\\approx 4.80\\ \\mu\\mathrm{T}}",
+    "related": [
+      "tv-displacement",
+      "tv-ampere-int"
+    ]
+  },
+  {
+    "id": "ex-tv-3",
+    "cat": "time-varying",
+    "title": "真空平面波的坡印廷矢量与能流",
+    "type": "计算",
+    "problem": "真空中一均匀平面波电场 $\\mathbf{E}=100\\cos(\\omega t-\\beta z)\\,\\hat{x}\\ \\mathrm{V/m}$。求磁场 $\\mathbf{H}$、瞬时坡印廷矢量 $\\mathbf{S}$、平均坡印廷矢量 $\\langle\\mathbf{S}\\rangle$，以及穿过垂直于 $z$ 轴、面积 $A=1\\ \\mathrm{m^2}$ 的平均功率。$\\eta_0\\approx 377\\ \\Omega$。",
+    "steps": [
+      {
+        "text": "由平面波 $\\mathbf{E},\\mathbf{H},\\hat{k}$ 三者右手正交关系 $\\mathbf{H}=\\dfrac{1}{\\eta_0}\\hat{k}\\times\\mathbf{E}$，$\\hat{k}=\\hat{z}$，故 $\\hat{z}\\times\\hat{x}=\\hat{y}$。",
+        "latex": "\\mathbf{H}=\\frac{1}{\\eta_0}\\hat{z}\\times\\mathbf{E}=\\frac{100}{377}\\cos(\\omega t-\\beta z)\\,\\hat{y}\\approx 0.265\\cos(\\omega t-\\beta z)\\,\\hat{y}\\ \\mathrm{A/m}"
+      },
+      {
+        "text": "瞬时坡印廷矢量 $\\mathbf{S}=\\mathbf{E}\\times\\mathbf{H}$，方向沿 $\\hat{z}$。",
+        "latex": "\\mathbf{S}=\\mathbf{E}\\times\\mathbf{H}=\\hat{z}\\,\\frac{100^{2}}{377}\\cos^{2}(\\omega t-\\beta z)\\approx 26.5\\cos^{2}(\\omega t-\\beta z)\\,\\hat{z}\\ \\mathrm{W/m^2}"
+      },
+      {
+        "text": "对时谐场取时间平均，$\\langle\\cos^{2}\\rangle=\\tfrac{1}{2}$。",
+        "latex": "\\langle\\mathbf{S}\\rangle=\\hat{z}\\,\\frac{1}{2}\\frac{100^{2}}{377}=\\hat{z}\\,\\frac{5000}{377}\\approx 13.3\\,\\hat{z}\\ \\mathrm{W/m^2}"
+      },
+      {
+        "text": "穿过 $A=1\\ \\mathrm{m^2}$ 法向与 $z$ 轴平行的面，平均功率 $\\langle P\\rangle=\\langle S\\rangle\\cdot A$。",
+        "latex": "\\langle P\\rangle=\\langle S\\rangle\\cdot A\\approx 13.3\\times 1=13.3\\ \\mathrm{W}"
+      }
+    ],
+    "answer": "\\boxed{\\mathbf{H}\\approx 0.265\\cos(\\omega t-\\beta z)\\,\\hat{y}\\ \\mathrm{A/m},\\ \\langle\\mathbf{S}\\rangle\\approx 13.3\\,\\hat{z}\\ \\mathrm{W/m^2},\\ \\langle P\\rangle\\approx 13.3\\ \\mathrm{W}}",
+    "related": [
+      "tv-poynting",
+      "tv-poynting-avg",
+      "pw-eh-rel",
+      "pw-impedance-vac"
+    ]
+  }
+]

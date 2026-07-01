@@ -1,0 +1,214 @@
+[
+  {
+    "id": "ex-se-1",
+    "cat": "static-e",
+    "title": "高斯定理求球对称体电荷电场",
+    "type": "计算",
+    "problem": "半径 $R=1\\ \\mathrm{cm}$ 的球体内均匀分布体电荷，密度 $\\rho=10^{-6}\\ \\mathrm{C/m^3}$，球外为真空。求球内 ($r=0.5\\ \\mathrm{cm}$)、球面 ($r=R$)、球外 ($r=2\\ \\mathrm{cm}$) 三点处的电场强度 $\\mathbf{E}$。$\\varepsilon_0=8.854\\times10^{-12}\\ \\mathrm{F/m}$。",
+    "steps": [
+      {
+        "text": "由球对称性，电场仅有径向分量 $\\mathbf{E}=E(r)\\,\\hat{r}$。以球心为心作半径 $r$ 的高斯球面，应用 $\\oint_S\\mathbf{D}\\cdot\\mathrm{d}\\mathbf{S}=Q_{\\text{enc}}$。",
+        "latex": "E(r)\\cdot 4\\pi r^{2}=\\frac{Q_{\\text{enc}}}{\\varepsilon_0}"
+      },
+      {
+        "text": "球内 $r<R$ 时被包围电荷 $Q_{\\text{enc}}=\\rho\\cdot\\tfrac{4}{3}\\pi r^{3}$，代入得 $E(r)=\\frac{\\rho r}{3\\varepsilon_0}$，沿径向。",
+        "latex": "E_{\\text{in}}(r)=\\frac{\\rho r}{3\\varepsilon_0}\\quad (r<R)"
+      },
+      {
+        "text": "在 $r=0.5\\ \\mathrm{cm}=5\\times10^{-3}\\ \\mathrm{m}$ 处：$E_{\\text{in}}=\\dfrac{10^{-6}\\times 5\\times10^{-3}}{3\\times 8.854\\times10^{-12}}=\\dfrac{5\\times10^{-9}}{2.656\\times10^{-11}}\\approx 1.88\\times10^{2}\\ \\mathrm{V/m}$。",
+        "latex": "E(0.5\\,\\mathrm{cm})\\approx 1.88\\times10^{2}\\ \\mathrm{V/m}"
+      },
+      {
+        "text": "球外 $r\\geq R$ 时 $Q_{\\text{enc}}=\\rho\\cdot\\tfrac{4}{3}\\pi R^{3}=Q$，得 $E(r)=\\frac{Q}{4\\pi\\varepsilon_0 r^{2}}=\\frac{\\rho R^{3}}{3\\varepsilon_0 r^{2}}$，等同点电荷场。在 $r=R$ 处与球内公式吻合。",
+        "latex": "E(R)=\\frac{\\rho R}{3\\varepsilon_0}=\\frac{10^{-6}\\times 10^{-2}}{2.656\\times10^{-11}}\\approx 3.77\\times10^{2}\\ \\mathrm{V/m}"
+      },
+      {
+        "text": "总电荷 $Q=\\tfrac{4}{3}\\pi R^{3}\\rho\\approx 4.19\\times10^{-12}\\ \\mathrm{C}$。在 $r=2\\ \\mathrm{cm}=2\\times10^{-2}\\ \\mathrm{m}$ 处：$E=\\dfrac{Q}{4\\pi\\varepsilon_0 r^{2}}\\approx\\dfrac{4.19\\times10^{-12}}{4\\pi\\times 8.854\\times10^{-12}\\times 4\\times10^{-4}}\\approx 9.42\\times10^{1}\\ \\mathrm{V/m}$。",
+        "latex": "E(2\\,\\mathrm{cm})=\\frac{Q}{4\\pi\\varepsilon_0 r^{2}}\\approx 9.42\\times10^{1}\\ \\mathrm{V/m}"
+      }
+    ],
+    "answer": "\\boxed{E(0.5\\,\\mathrm{cm})\\approx 1.88\\times10^{2}\\ \\mathrm{V/m},\\quad E(R)\\approx 3.77\\times10^{2}\\ \\mathrm{V/m},\\quad E(2\\,\\mathrm{cm})\\approx 9.42\\times10^{1}\\ \\mathrm{V/m}\\ \\text{，均沿径向}}",
+    "related": [
+      "se-gauss-int",
+      "se-e-point"
+    ]
+  },
+  {
+    "id": "ex-se-2",
+    "cat": "static-e",
+    "title": "点电荷电位的叠加计算",
+    "type": "计算",
+    "problem": "真空中点电荷 $q_1=+3\\ \\mathrm{nC}$ 位于原点，$q_2=-1\\ \\mathrm{nC}$ 位于 $(3,0,0)\\ \\mathrm{m}$ 处。求 $P(1,0,0)$ 点的电位 $\\varphi_P$ 与电场强度 $\\mathbf{E}_P$。$\\dfrac{1}{4\\pi\\varepsilon_0}\\approx 8.99\\times10^{9}\\ \\mathrm{N\\cdot m^2/C^2}$。",
+    "steps": [
+      {
+        "text": "电位与电场均满足叠加原理。先求 $P$ 到两电荷的距离 $r_1=1\\ \\mathrm{m}$，$r_2=3-1=2\\ \\mathrm{m}$。",
+        "latex": "r_1=|P-q_1|=1\\ \\mathrm{m},\\quad r_2=|P-q_2|=2\\ \\mathrm{m}"
+      },
+      {
+        "text": "由点电荷电位公式 $\\varphi=\\sum_i \\frac{1}{4\\pi\\varepsilon_0}\\frac{q_i}{r_i}$，代入叠加。",
+        "latex": "\\varphi_P=\\frac{1}{4\\pi\\varepsilon_0}\\!\\left(\\frac{3\\times10^{-9}}{1}+\\frac{-1\\times10^{-9}}{2}\\right)=8.99\\times10^{9}\\times 2.5\\times10^{-9}"
+      },
+      {
+        "text": "数值计算得 $\\varphi_P\\approx 22.5\\ \\mathrm{V}$。",
+        "latex": "\\varphi_P\\approx 22.5\\ \\mathrm{V}"
+      },
+      {
+        "text": "电场也叠加。$P$ 在两电荷连线上，$q_1>0$ 在 $P$ 处场指向 $+\\hat{x}$（远离正电荷），$q_2<0$ 在 $P$ 处场亦指向 $+\\hat{x}$（指向负电荷），故同向相加。",
+        "latex": "E_1=\\frac{1}{4\\pi\\varepsilon_0}\\frac{|q_1|}{r_1^{2}}=\\frac{8.99\\times10^{9}\\times 3\\times10^{-9}}{1}\\approx 27.0\\ \\mathrm{V/m}"
+      },
+      {
+        "text": "$q_2$ 贡献 $E_2=\\frac{1}{4\\pi\\varepsilon_0}\\frac{|q_2|}{r_2^{2}}=\\frac{8.99\\times10^{9}\\times 10^{-9}}{4}\\approx 2.25\\ \\mathrm{V/m}$，方向亦沿 $+\\hat{x}$。叠加得 $\\mathbf{E}_P$。",
+        "latex": "\\mathbf{E}_P=(E_1+E_2)\\,\\hat{x}\\approx (27.0+2.25)\\,\\hat{x}=29.2\\,\\hat{x}\\ \\mathrm{V/m}"
+      }
+    ],
+    "answer": "\\boxed{\\varphi_P\\approx 22.5\\ \\mathrm{V},\\quad \\mathbf{E}_P\\approx 29.2\\,\\hat{x}\\ \\mathrm{V/m}}",
+    "related": [
+      "se-pot-point",
+      "se-e-point",
+      "se-coulomb"
+    ]
+  },
+  {
+    "id": "ex-se-3",
+    "cat": "static-e",
+    "title": "同轴电缆电容与导体边界条件",
+    "type": "计算",
+    "problem": "空气填充的同轴电缆内导体半径 $a=1\\ \\mathrm{mm}$，外导体半径 $b=5\\ \\mathrm{mm}$，长度 $L=1\\ \\mathrm{m}$。在内、外导体间加电压 $U_0=100\\ \\mathrm{V}$（内导体高电位）。求单位长度电容 $C'$、内导体表面电荷线密度 $\\rho_l$ 及表面电场 $E(a)$。",
+    "steps": [
+      {
+        "text": "设内导体单位长度带电 $\\rho_l$，由柱对称在 $a<r<b$ 区域作同轴高斯柱面，得 $D(r)=\\dfrac{\\rho_l}{2\\pi r}$，方向沿径向。",
+        "latex": "D(r)=\\frac{\\rho_l}{2\\pi r}\\ \\Rightarrow\\ E(r)=\\frac{\\rho_l}{2\\pi\\varepsilon_0 r}"
+      },
+      {
+        "text": "电压 $U_0=\\int_a^b E\\,\\mathrm{d}r=\\dfrac{\\rho_l}{2\\pi\\varepsilon_0}\\ln\\dfrac{b}{a}$，由此得 $\\rho_l=\\dfrac{2\\pi\\varepsilon_0 U_0}{\\ln(b/a)}$。",
+        "latex": "\\rho_l=\\frac{2\\pi\\varepsilon_0 U_0}{\\ln(b/a)}=\\frac{2\\pi\\times 8.854\\times10^{-12}\\times 100}{\\ln 5}"
+      },
+      {
+        "text": "代入 $\\ln 5\\approx 1.609$ 得 $\\rho_l\\approx \\dfrac{5.563\\times10^{-9}}{1.609}\\approx 3.46\\times10^{-9}\\ \\mathrm{C/m}$。",
+        "latex": "\\rho_l\\approx 3.46\\times10^{-9}\\ \\mathrm{C/m}"
+      },
+      {
+        "text": "由 $C'=\\rho_l/U_0=\\dfrac{2\\pi\\varepsilon_0}{\\ln(b/a)}$ 得单位长度电容。",
+        "latex": "C'=\\frac{2\\pi\\times 8.854\\times10^{-12}}{\\ln 5}\\approx 3.46\\times10^{-11}\\ \\mathrm{F/m}=34.6\\ \\mathrm{pF/m}"
+      },
+      {
+        "text": "在导体表面 $r=a$ 处，由导体边界条件 $D_n=\\rho_s$（导体内部 $E=0$，外侧 $D$ 法向分量等于导体面电荷密度），$E(a)=\\dfrac{\\rho_l}{2\\pi\\varepsilon_0 a}$。",
+        "latex": "E(a)=\\frac{\\rho_l}{2\\pi\\varepsilon_0 a}=\\frac{3.46\\times10^{-9}}{2\\pi\\times 8.854\\times10^{-12}\\times 10^{-3}}\\approx 6.21\\times10^{4}\\ \\mathrm{V/m}"
+      }
+    ],
+    "answer": "\\boxed{C'\\approx 34.6\\ \\mathrm{pF/m},\\quad \\rho_l\\approx 3.46\\times10^{-9}\\ \\mathrm{C/m},\\quad E(a)\\approx 6.21\\times10^{4}\\ \\mathrm{V/m}\\ \\text{（径向）}}",
+    "related": [
+      "se-capacitance",
+      "se-gauss-int",
+      "se-bc-d"
+    ]
+  },
+  {
+    "id": "ex-se-4",
+    "cat": "static-e",
+    "title": "无限长线电荷的电场（柱对称高斯定理）",
+    "type": "计算",
+    "problem": "真空中一无限长直线上均匀分布线电荷，线密度 $\\rho_l=1\\ \\mu\\mathrm{C/m}$。用高斯定理求距线 $r$ 处的电场强度 $\\mathbf{E}(r)$，并计算 $r=0.5\\ \\mathrm{m}$ 处的值。$\\varepsilon_0=8.854\\times10^{-12}\\ \\mathrm{F/m}$。",
+    "steps": [
+      {
+        "text": "由轴对称性，$\\mathbf{E}$ 仅有径向分量。以线为轴作半径 $r$、长 $L$ 的同轴圆柱形高斯面（含两个端面）。",
+        "latex": "\\mathbf{E}=E(r)\\,\\hat{r}"
+      },
+      {
+        "text": "端面上 $\\mathbf{E}\\perp\\mathrm{d}\\mathbf{S}$（径向与轴向正交），通量为零；侧面上 $\\mathbf{E}\\parallel\\mathrm{d}\\mathbf{S}$，通量为 $E\\cdot 2\\pi r L$。",
+        "latex": "\\oint_S\\mathbf{D}\\cdot\\mathrm{d}\\mathbf{S}=\\varepsilon_0 E\\cdot 2\\pi r L"
+      },
+      {
+        "text": "高斯面包围电荷 $Q_{\\text{enc}}=\\rho_l L$，由高斯定理解出 $E(r)$。",
+        "latex": "E(r)\\cdot 2\\pi r L=\\frac{\\rho_l L}{\\varepsilon_0}\\ \\Rightarrow\\ E(r)=\\frac{\\rho_l}{2\\pi\\varepsilon_0 r}"
+      },
+      {
+        "text": "代入 $r=0.5\\ \\mathrm{m}$ 求数值。",
+        "latex": "E(0.5)=\\frac{10^{-6}}{2\\pi\\times 8.854\\times10^{-12}\\times 0.5}\\approx 3.60\\times10^{4}\\ \\mathrm{V/m}"
+      },
+      {
+        "text": "方向沿径向（$\\rho_l>0$ 指向外）。注意场强随 $1/r$ 衰减，区别于球对称的 $1/r^{2}$——源于柱对称与球对称高斯面包围电荷的方式不同。",
+        "latex": "\\mathbf{E}(r)=\\frac{\\rho_l}{2\\pi\\varepsilon_0 r}\\,\\hat{r}"
+      }
+    ],
+    "answer": "\\boxed{\\mathbf{E}(r)=\\dfrac{\\rho_l}{2\\pi\\varepsilon_0 r}\\,\\hat{r},\\quad E(0.5\\,\\mathrm{m})\\approx 3.60\\times10^{4}\\ \\mathrm{V/m}}",
+    "related": [
+      "se-gauss-int",
+      "se-e-point"
+    ]
+  },
+  {
+    "id": "ex-se-5",
+    "cat": "static-e",
+    "title": "平行板电容器的电场储能与能量密度",
+    "type": "计算",
+    "problem": "平行板电容器极板面积 $S=100\\ \\mathrm{cm^2}=10^{-2}\\ \\mathrm{m^2}$，间距 $d=1\\ \\mathrm{mm}$，填充相对介电常数 $\\varepsilon_r=2$ 的介质，充电至电压 $U=200\\ \\mathrm{V}$。求电容器储能 $W_e$ 与板间能量密度 $w_e$。",
+    "steps": [
+      {
+        "text": "平行板电容 $C=\\dfrac{\\varepsilon S}{d}=\\dfrac{\\varepsilon_0\\varepsilon_r S}{d}$。",
+        "latex": "C=\\frac{8.854\\times10^{-12}\\times 2\\times 10^{-2}}{10^{-3}}\\approx 1.77\\times10^{-10}\\ \\mathrm{F}=177\\ \\mathrm{pF}"
+      },
+      {
+        "text": "由电路储能公式 $W_e=\\tfrac{1}{2}CU^{2}$。",
+        "latex": "W_e=\\tfrac{1}{2}CU^{2}=\\tfrac{1}{2}\\times 1.77\\times10^{-10}\\times 200^{2}\\approx 3.54\\times10^{-6}\\ \\mathrm{J}=3.54\\ \\mu\\mathrm{J}"
+      },
+      {
+        "text": "板间电场均匀 $E=U/d$，电场能量密度 $w_e=\\tfrac{1}{2}\\varepsilon_0\\varepsilon_r E^{2}$。",
+        "latex": "E=\\frac{U}{d}=\\frac{200}{10^{-3}}=2\\times10^{5}\\ \\mathrm{V/m}"
+      },
+      {
+        "text": "代入能量密度公式。",
+        "latex": "w_e=\\tfrac{1}{2}\\times 2\\times 8.854\\times10^{-12}\\times (2\\times10^{5})^{2}\\approx 0.354\\ \\mathrm{J/m^3}"
+      },
+      {
+        "text": "验证：能量定域于场中，$W_e=w_e\\cdot Sd=0.354\\times 10^{-5}\\approx 3.54\\times10^{-6}\\ \\mathrm{J}$，与电路法一致。",
+        "latex": "W_e=w_e\\cdot (Sd)=\\tfrac{1}{2}\\varepsilon E^{2}\\cdot Sd=\\tfrac{1}{2}CU^{2}"
+      }
+    ],
+    "answer": "\\boxed{W_e\\approx 3.54\\ \\mu\\mathrm{J},\\quad w_e\\approx 0.354\\ \\mathrm{J/m^3}}",
+    "related": [
+      "se-energy",
+      "se-energy-density",
+      "se-capacitance"
+    ]
+  },
+  {
+    "id": "ex-se-6",
+    "cat": "static-e",
+    "title": "两种介电质分界面的边界条件与折射",
+    "type": "计算",
+    "problem": "两层无耗介电质分界面 $z=0$：$z>0$ 区 $\\varepsilon_{r1}=2$，$z<0$ 区 $\\varepsilon_{r2}=4$。已知 $z>0$ 侧电场 $\\mathbf{E}_1=3\\,\\hat{x}+2\\,\\hat{z}\\ \\mathrm{V/m}$（$\\hat{x}$ 为切向、$\\hat{z}$ 为界面法向）。求 $z<0$ 侧电场 $\\mathbf{E}_2$、电位移 $\\mathbf{D}_2$，并验证电场线的折射关系。",
+    "steps": [
+      {
+        "text": "界面无法向自由电荷时静电场边界条件：切向 $E_{1t}=E_{2t}$；法向 $D_{1n}=D_{2n}$，即 $\\varepsilon_1 E_{1n}=\\varepsilon_2 E_{2n}$。",
+        "latex": "E_{1t}=E_{2t},\\quad \\varepsilon_1 E_{1n}=\\varepsilon_2 E_{2n}"
+      },
+      {
+        "text": "由切向连续 $E_{2t}=E_{1t}=3\\ \\mathrm{V/m}$（$\\hat{x}$ 向）。",
+        "latex": "E_{2t}=3\\ \\mathrm{V/m}"
+      },
+      {
+        "text": "由法向 $D$ 连续 $\\varepsilon_{r1}E_{1n}=\\varepsilon_{r2}E_{2n}$，解出 $E_{2n}$。",
+        "latex": "E_{2n}=\\frac{\\varepsilon_{r1}}{\\varepsilon_{r2}}E_{1n}=\\frac{2}{4}\\times 2=1\\ \\mathrm{V/m}\\ (\\hat{z}\\text{ 向})"
+      },
+      {
+        "text": "故 $\\mathbf{E}_2=3\\,\\hat{x}+1\\,\\hat{z}\\ \\mathrm{V/m}$；$\\mathbf{D}_2=\\varepsilon_0\\varepsilon_{r2}\\mathbf{E}_2$。",
+        "latex": "\\mathbf{E}_2=3\\,\\hat{x}+1\\,\\hat{z}\\ \\mathrm{V/m},\\quad \\mathbf{D}_2=\\varepsilon_0\\cdot 4(3\\,\\hat{x}+1\\,\\hat{z})"
+      },
+      {
+        "text": "界面自由面电荷 $\\rho_s=D_{1n}-D_{2n}=\\varepsilon_0(\\varepsilon_{r1}E_{1n}-\\varepsilon_{r2}E_{2n})=\\varepsilon_0(2\\times 2-4\\times 1)=0$，与界面无自由电荷一致。",
+        "latex": "\\rho_s=0"
+      },
+      {
+        "text": "折射关系 $\\dfrac{\\tan\\theta_1}{\\tan\\theta_2}=\\dfrac{\\varepsilon_{r1}}{\\varepsilon_{r2}}$，其中 $\\theta$ 为场线与法向夹角。",
+        "latex": "\\tan\\theta_1=\\frac{E_{1t}}{E_{1n}}=1.5,\\ \\tan\\theta_2=\\frac{3}{1}=3\\ \\Rightarrow\\ \\frac{\\tan\\theta_1}{\\tan\\theta_2}=0.5=\\frac{\\varepsilon_{r1}}{\\varepsilon_{r2}}"
+      }
+    ],
+    "answer": "\\boxed{\\mathbf{E}_2=3\\,\\hat{x}+1\\,\\hat{z}\\ \\mathrm{V/m},\\quad \\mathbf{D}_2=4\\varepsilon_0(3\\,\\hat{x}+1\\,\\hat{z}),\\quad \\rho_s=0,\\quad \\tfrac{\\tan\\theta_1}{\\tan\\theta_2}=\\tfrac{\\varepsilon_{r1}}{\\varepsilon_{r2}}}",
+    "related": [
+      "se-bc-d",
+      "se-bc-e",
+      "se-d-const"
+    ]
+  }
+]

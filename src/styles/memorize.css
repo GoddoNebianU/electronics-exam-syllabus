@@ -1,0 +1,298 @@
+/* ==========================================================================
+   memorize.css — 公式背记（闪卡）页
+   风格沿用设计令牌：素雅、低饱和、细边框、小圆角。
+   ========================================================================== */
+
+.memorize-root {
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: var(--space-4) var(--space-5) var(--space-8);
+}
+
+/* 科目/分类下拉（页头右侧） */
+.memorize-select {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+}
+.memorize-select select {
+  font: inherit;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  padding: 3px var(--space-2);
+  cursor: pointer;
+}
+.memorize-select select:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+/* ---------- 控制条 ---------- */
+.memorize-controls {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-2);
+  flex-wrap: wrap;
+}
+.memorize-chip {
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  color: var(--text-muted);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 4px var(--space-2);
+  cursor: pointer;
+  transition: color var(--transition-fast),
+              background var(--transition-fast),
+              border-color var(--transition-fast);
+  user-select: none;
+}
+.memorize-chip:hover {
+  border-color: var(--border-strong);
+  color: var(--text);
+}
+.memorize-chip[data-active='true'] {
+  color: var(--accent-contrast);
+  background: var(--accent);
+  border-color: var(--accent);
+}
+.memorize-controls__spacer { flex: 1 1 auto; }
+.memorize-stat {
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+.memorize-stat em {
+  font-style: normal;
+  font-weight: 700;
+  color: var(--accent-strong);
+}
+.memorize-stat--muted em { color: var(--text); }
+
+/* ---------- 进度条 ---------- */
+.memorize-progress {
+  height: 3px;
+  background: var(--border);
+  border-radius: var(--radius-pill);
+  overflow: hidden;
+  margin-bottom: var(--space-5);
+}
+.memorize-progress__bar {
+  height: 100%;
+  background: var(--accent);
+  border-radius: var(--radius-pill);
+  transition: width var(--transition);
+}
+
+/* ---------- 闪卡 ---------- */
+.memorize-card {
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  padding: var(--space-6) var(--space-7) var(--space-5);
+  text-align: center;
+  cursor: pointer;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+.memorize-card:hover {
+  border-color: var(--accent);
+  box-shadow: var(--shadow-lg);
+}
+.memorize-card[data-revealed='true'] {
+  cursor: default;
+}
+
+.memorize-card__head {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+  margin-bottom: var(--space-5);
+  flex-wrap: wrap;
+}
+.memorize-card__index { font-weight: 700; color: var(--text); }
+.memorize-card__cat {
+  padding: 2px var(--space-2);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+}
+.memorize-card__known-toggle {
+  margin-left: auto;
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  color: var(--text-muted);
+  background: transparent;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  padding: 2px var(--space-2);
+  cursor: pointer;
+  user-select: none;
+  transition: color var(--transition-fast), background var(--transition-fast),
+              border-color var(--transition-fast);
+}
+.memorize-card__known-toggle:hover {
+  color: var(--accent-strong);
+  border-color: var(--accent);
+}
+.memorize-card__known-toggle[data-known='true'] {
+  color: var(--accent-contrast);
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.memorize-card__title {
+  font-size: var(--fs-xl);
+  font-weight: 700;
+  color: var(--accent-strong);
+  letter-spacing: 0.5px;
+  margin-bottom: var(--space-6);
+}
+
+/* 固定高度题面/答案区：保证下方按钮永不动 —— 内容超出则在区内滚动 */
+.memorize-card__body {
+  height: 300px;
+  overflow-y: auto;
+  margin: 0 calc(var(--space-7) * -1);   /* 让滚动区横向贴到卡片内边距外缘 */
+  padding: 0 var(--space-7);
+}
+.memorize-card__body-inner {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--space-4);
+}
+
+.memorize-card__hint {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--text-faint);
+}
+.memorize-card__hint-line { font-size: var(--fs-sm); }
+.memorize-card__hint-key { font-size: var(--fs-xs); }
+
+.memorize-card__answer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-x: auto;
+}
+.memorize-card__answer .katex-display { margin: 0; }
+.memorize-card__answer::-webkit-scrollbar { height: 6px; }
+
+.memorize-card__note {
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+  line-height: var(--lh-normal);
+  margin: 0 auto;
+  max-width: 60ch;
+  text-align: left;
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--border);
+}
+
+/* ---------- 卡片按钮区 ---------- */
+.memorize-card__foot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  margin-top: var(--space-6);
+  flex-wrap: wrap;
+}
+.memorize-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  padding: 7px var(--space-3);
+  cursor: pointer;
+  transition: background var(--transition-fast),
+              border-color var(--transition-fast),
+              color var(--transition-fast);
+  white-space: nowrap;
+}
+.memorize-btn--ghost {
+  color: var(--text-muted);
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+}
+.memorize-btn--ghost:hover {
+  color: var(--accent-strong);
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+.memorize-btn--primary {
+  color: var(--accent-contrast);
+  background: var(--accent);
+  border: 1px solid var(--accent);
+}
+.memorize-btn--primary:hover { background: var(--accent-strong); border-color: var(--accent-strong); }
+
+.memorize-kbd,
+kbd.memorize-kbd {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--text-muted);
+  background: var(--kbd-bg);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  padding: 1px 5px;
+  margin-left: 2px;
+}
+.memorize-btn--primary .memorize-kbd {
+  color: var(--accent-contrast);
+  background: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+/* ---------- 空态 ---------- */
+.memorize-empty {
+  text-align: center;
+  padding: var(--space-8) var(--space-4);
+  color: var(--text-muted);
+}
+.memorize-empty__icon {
+  display: block;
+  font-size: var(--fs-2xl);
+  color: var(--text-faint);
+  margin-bottom: var(--space-3);
+}
+.memorize-empty__hint {
+  font-size: var(--fs-xs);
+  color: var(--text-faint);
+  margin-top: var(--space-2);
+}
+
+/* ---------- 底部键盘提示 ---------- */
+.memorize-keys {
+  margin-top: var(--space-5);
+  font-size: var(--fs-xs);
+  color: var(--text-faint);
+  text-align: center;
+}
+
+/* ---------- 响应式 ---------- */
+@media (max-width: 600px) {
+  .memorize-root { padding: var(--space-3) var(--space-3) var(--space-7); }
+  .memorize-card { padding: var(--space-5) var(--space-4) var(--space-4); }
+  .memorize-card__title { font-size: var(--fs-lg); margin-bottom: var(--space-4); }
+  .memorize-card__body { height: 220px; }
+  .memorize-card__foot { gap: var(--space-1); }
+  .memorize-btn { padding: 6px var(--space-2); font-size: var(--fs-xs); }
+}

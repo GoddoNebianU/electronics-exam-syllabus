@@ -12,8 +12,8 @@
     'sidebar main';
   min-height: 100vh;
 }
-/* 公式页：隐藏侧边栏，主区跨满全宽 */
-.app--formula {
+/* 全宽页：隐藏侧边栏，主区跨满全宽 */
+.app--full {
   grid-template-columns: 1fr;
   grid-template-areas:
     'header'
@@ -88,6 +88,37 @@
   transition: background var(--transition-fast), color var(--transition-fast);
 }
 .header__menu-btn:hover { background: var(--surface-hover); color: var(--text); }
+
+/* 顶栏入口按钮（公式手册/背记/例题，由 app-pages 注册表驱动） */
+.header__entry {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  height: 34px;
+  padding: 0 var(--space-3);
+  border-radius: var(--radius-md);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--text-muted);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  white-space: nowrap;
+  transition: color var(--transition-fast), border-color var(--transition-fast),
+              background var(--transition-fast);
+  text-decoration: none;
+}
+.header__entry:hover {
+  color: var(--accent-strong);
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+.header__entry.is-active {
+  color: var(--accent-contrast);
+  background: var(--accent-line);
+  border-color: transparent;
+  box-shadow: 0 3px 10px var(--accent-glow);
+}
+.header__entry-icon { font-size: var(--fs-md); line-height: 1; }
 
 /* 侧边栏 Sidebar */
 .sidebar {

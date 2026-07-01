@@ -1,0 +1,173 @@
+[
+  {
+    "id": "ex-sm-1",
+    "cat": "static-m",
+    "title": "同轴电缆的安培环路磁场",
+    "type": "计算",
+    "problem": "同轴电缆内导体半径 $a=1\\ \\mathrm{mm}$、外导体内半径 $b=5\\ \\mathrm{mm}$、外导体外半径 $c=7\\ \\mathrm{mm}$，内外导体均通有恒定电流 $I=10\\ \\mathrm{A}$（内导体沿 $+\\hat{z}$，外导体沿 $-\\hat{z}$ 返回），导体横截面电流均匀分布。求磁场强度 $H(r)$ 在四个区域的表达式，并给出 $r=0.5\\ \\mathrm{mm}$、$r=3\\ \\mathrm{mm}$、$r=6\\ \\mathrm{mm}$、$r=8\\ \\mathrm{mm}$ 处的数值。",
+    "steps": [
+      {
+        "text": "由柱对称 $\\mathbf{H}=H_\\varphi(r)\\,\\hat{\\varphi}$。取半径 $r$ 的圆形安培环路，由 $\\oint\\mathbf{H}\\cdot\\mathrm{d}\\mathbf{l}=I_{\\text{enc}}$ 得 $H_\\varphi=\\dfrac{I_{\\text{enc}}}{2\\pi r}$。",
+        "latex": "H_\\varphi(r)=\\frac{I_{\\text{enc}}(r)}{2\\pi r}"
+      },
+      {
+        "text": "区域① $r<a$（内导体内部）：电流均匀分布，$I_{\\text{enc}}=I\\cdot r^{2}/a^{2}$。",
+        "latex": "H_\\varphi=\\frac{I r}{2\\pi a^{2}}\\quad (r<a)"
+      },
+      {
+        "text": "区域② $a<r<b$（介质区）：环路包围全部内导体电流 $I_{\\text{enc}}=I$。",
+        "latex": "H_\\varphi=\\frac{I}{2\\pi r}\\quad (a<r<b)"
+      },
+      {
+        "text": "区域③ $b<r<c$（外导体内部）：被反向电流抵消一部分，$I_{\\text{enc}}=I-I\\cdot\\dfrac{r^{2}-b^{2}}{c^{2}-b^{2}}=I\\cdot\\dfrac{c^{2}-r^{2}}{c^{2}-b^{2}}$。",
+        "latex": "H_\\varphi=\\frac{I(c^{2}-r^{2})}{2\\pi r(c^{2}-b^{2})}\\quad (b<r<c)"
+      },
+      {
+        "text": "区域④ $r>c$（外导体外部）：内外电流完全抵消，$I_{\\text{enc}}=0$，$H=0$。",
+        "latex": "H_\\varphi=0\\quad (r>c)"
+      },
+      {
+        "text": "代入数值：$r=0.5\\ \\mathrm{mm}$（区①）$H=\\dfrac{10\\times 5\\times10^{-4}}{2\\pi\\times10^{-6}}\\approx 796\\ \\mathrm{A/m}$；$r=3\\ \\mathrm{mm}$（区②）$H=\\dfrac{10}{2\\pi\\times 3\\times10^{-3}}\\approx 531\\ \\mathrm{A/m}$；$r=6\\ \\mathrm{mm}$（区③，$c^{2}-b^{2}=24\\times10^{-6}$）$H=\\dfrac{10\\times 13\\times10^{-6}}{2\\pi\\times 6\\times10^{-3}\\times 24\\times10^{-6}}\\approx 144\\ \\mathrm{A/m}$；$r=8\\ \\mathrm{mm}>c$（区④）$H=0$。",
+        "latex": "H(0.5\\,\\mathrm{mm})\\approx 796,\\ H(3\\,\\mathrm{mm})\\approx 531,\\ H(6\\,\\mathrm{mm})\\approx 144,\\ H(8\\,\\mathrm{mm})=0\\ \\ (\\mathrm{A/m})"
+      }
+    ],
+    "answer": "\\boxed{H=\\dfrac{Ir}{2\\pi a^{2}}\\,(r<a),\\ \\dfrac{I}{2\\pi r}\\,(a<r<b),\\ \\dfrac{I(c^{2}-r^{2})}{2\\pi r(c^{2}-b^{2})}\\,(b<r<c),\\ 0\\,(r>c);\\ \\text{代值得}\\ 796,\\ 531,\\ 144,\\ 0\\ \\mathrm{A/m}}",
+    "related": [
+      "sm-ampere-int",
+      "sm-b-const"
+    ]
+  },
+  {
+    "id": "ex-sm-2",
+    "cat": "static-m",
+    "title": "圆电流轴线磁场（毕奥-萨伐尔定律）",
+    "type": "计算",
+    "problem": "半径 $R=0.1\\ \\mathrm{m}$ 的圆形线圈通有恒定电流 $I=5\\ \\mathrm{A}$，置于真空中。求圆心处及轴线上 $z=0.2\\ \\mathrm{m}$ 处的磁感应强度 $B$。$\\mu_0=4\\pi\\times10^{-7}\\ \\mathrm{H/m}$。",
+    "steps": [
+      {
+        "text": "由对称性，圆电流轴线上 $B$ 仅有沿轴向分量。对一段电流元 $I\\,\\mathrm{d}\\mathbf{l}$ 应用毕奥-萨伐尔定律 $\\mathrm{d}\\mathbf{B}=\\dfrac{\\mu_0 I}{4\\pi}\\dfrac{\\mathrm{d}\\mathbf{l}\\times\\hat{r}}{r^{2}}$，对整圆积分后非轴向分量成对抵消，仅轴向分量保留。",
+        "latex": "B(z)=\\frac{\\mu_0 I R^{2}}{2(R^{2}+z^{2})^{3/2}}"
+      },
+      {
+        "text": "圆心处 $z=0$，公式退化为 $B(0)=\\dfrac{\\mu_0 I}{2R}$。",
+        "latex": "B(0)=\\frac{\\mu_0 I}{2R}=\\frac{4\\pi\\times10^{-7}\\times 5}{2\\times 0.1}"
+      },
+      {
+        "text": "数值计算得圆心磁感应强度。",
+        "latex": "B(0)=\\frac{2\\pi\\times10^{-6}}{0.1}\\approx 3.14\\times10^{-5}\\ \\mathrm{T}=31.4\\ \\mu\\mathrm{T}"
+      },
+      {
+        "text": "在 $z=0.2\\ \\mathrm{m}$ 处：$R^{2}+z^{2}=0.01+0.04=0.05$，$(R^{2}+z^{2})^{3/2}=0.05^{3/2}=1.118\\times10^{-2}$。",
+        "latex": "B(0.2)=\\frac{4\\pi\\times10^{-7}\\times 5\\times 0.01}{2\\times 1.118\\times10^{-2}}=\\frac{6.283\\times10^{-8}}{2.236\\times10^{-2}}"
+      },
+      {
+        "text": "化简得 $z=0.2\\ \\mathrm{m}$ 处磁感应强度，方向沿轴向（由右手定则判定）。",
+        "latex": "B(0.2)\\approx 2.81\\times10^{-6}\\ \\mathrm{T}=2.81\\ \\mu\\mathrm{T}"
+      }
+    ],
+    "answer": "\\boxed{B(0)\\approx 31.4\\ \\mu\\mathrm{T},\\quad B(0.2\\,\\mathrm{m})\\approx 2.81\\ \\mu\\mathrm{T}\\ \\text{，均沿轴向}}",
+    "related": [
+      "sm-biot-savart",
+      "sm-b-const"
+    ]
+  },
+  {
+    "id": "ex-sm-3",
+    "cat": "static-m",
+    "title": "同轴电缆外自感与磁场储能",
+    "type": "计算",
+    "problem": "同轴电缆内导体半径 $a=1\\ \\mathrm{mm}$，外导体内半径 $b=5\\ \\mathrm{mm}$，外导体视为薄壳（仅计算外自感），介质区为真空。求单位长度外自感 $L'$ 与通有 $I=10\\ \\mathrm{A}$ 时单位长度所储磁场能量 $W'$。",
+    "steps": [
+      {
+        "text": "介质区 $a<r<b$ 内磁场 $H=\\dfrac{I}{2\\pi r}$。单位长度磁链（薄外导体单匝）为穿过 $a<r<b$ 区域、宽 $\\mathrm{d}r$、长 $1\\ \\mathrm{m}$ 矩形的磁通积分。",
+        "latex": "\\Phi'=\\int_a^b B\\,\\mathrm{d}r=\\int_a^b \\frac{\\mu_0 I}{2\\pi r}\\,\\mathrm{d}r=\\frac{\\mu_0 I}{2\\pi}\\ln\\frac{b}{a}"
+      },
+      {
+        "text": "由 $L'=\\Phi'/I$ 得单位长度外自感。",
+        "latex": "L'=\\frac{\\mu_0}{2\\pi}\\ln\\frac{b}{a}=\\frac{4\\pi\\times10^{-7}}{2\\pi}\\ln 5=2\\times10^{-7}\\times 1.609"
+      },
+      {
+        "text": "数值计算得单位长度外自感。",
+        "latex": "L'\\approx 3.22\\times10^{-7}\\ \\mathrm{H/m}=322\\ \\mathrm{nH/m}"
+      },
+      {
+        "text": "磁场能量可由电路公式 $W'=\\tfrac{1}{2}L'I^{2}$ 计算，亦可由场积分 $W'=\\int\\tfrac{1}{2}\\mu_0 H^{2}\\,\\mathrm{d}V$ 验证（结果一致）。代入 $I=10\\ \\mathrm{A}$。",
+        "latex": "W'=\\frac{1}{2}L'I^{2}=\\frac{1}{2}\\times 3.22\\times10^{-7}\\times 100"
+      },
+      {
+        "text": "得单位长度储能。",
+        "latex": "W'\\approx 1.61\\times10^{-5}\\ \\mathrm{J/m}=16.1\\ \\mu\\mathrm{J/m}"
+      }
+    ],
+    "answer": "\\boxed{L'\\approx 322\\ \\mathrm{nH/m},\\quad W'\\approx 16.1\\ \\mu\\mathrm{J/m}\\ (I=10\\ \\mathrm{A})}",
+    "related": [
+      "sm-self-ind",
+      "sm-energy",
+      "sm-ampere-int"
+    ]
+  },
+  {
+    "id": "ex-sm-4",
+    "cat": "static-m",
+    "title": "螺线管与副线圈的互感",
+    "type": "计算",
+    "problem": "长直螺线管长 $l=0.5\\ \\mathrm{m}$、截面积 $S=2\\ \\mathrm{cm^2}=2\\times10^{-4}\\ \\mathrm{m^2}$、匝数 $N_1=200$，内部为空气（$\\mu_r\\approx 1$）。其外密绕一副线圈 $N_2=50$ 匝，与原线圈全长耦合。求两线圈互感 $M$。",
+    "steps": [
+      {
+        "text": "设原线圈通电流 $I_1$。长螺线管内部磁场近似均匀 $B=\\mu_0 N_1 I_1/l$。",
+        "latex": "B=\\frac{\\mu_0 N_1 I_1}{l}"
+      },
+      {
+        "text": "副线圈每匝磁通 $\\Phi_{21}=B\\cdot S$，磁链 $\\psi_{21}=N_2\\Phi_{21}$。",
+        "latex": "\\psi_{21}=N_2 BS=\\frac{\\mu_0 N_1 N_2 S}{l}I_1"
+      },
+      {
+        "text": "互感 $M=\\psi_{21}/I_1$。",
+        "latex": "M=\\frac{\\psi_{21}}{I_1}=\\frac{\\mu_0 N_1 N_2 S}{l}"
+      },
+      {
+        "text": "代入数值。",
+        "latex": "M=\\frac{4\\pi\\times10^{-7}\\times 200\\times 50\\times 2\\times10^{-4}}{0.5}=16\\pi\\times10^{-7}"
+      },
+      {
+        "text": "得互感。$M$ 仅取决于两线圈几何与相对位置，与电流无关。",
+        "latex": "M\\approx 5.03\\times10^{-6}\\ \\mathrm{H}=5.03\\ \\mu\\mathrm{H}"
+      }
+    ],
+    "answer": "\\boxed{M\\approx 5.03\\ \\mu\\mathrm{H}}",
+    "related": [
+      "sm-mutual-ind",
+      "sm-flux",
+      "sm-biot-savart"
+    ]
+  },
+  {
+    "id": "ex-sm-5",
+    "cat": "static-m",
+    "title": "电子在均匀磁场中的回旋运动（洛伦兹力）",
+    "type": "计算",
+    "problem": "一电子（电荷量 $e=1.6\\times10^{-19}\\ \\mathrm{C}$，质量 $m=9.11\\times10^{-31}\\ \\mathrm{kg}$）以动能 $E_k=10\\ \\mathrm{keV}$ 垂直射入均匀磁场 $B=0.1\\ \\mathrm{T}$。求电子做圆周运动的回旋半径 $r$ 与周期 $T$。",
+    "steps": [
+      {
+        "text": "动能换算 $E_k=10\\ \\mathrm{keV}=10^4\\times 1.6\\times10^{-19}=1.6\\times10^{-15}\\ \\mathrm{J}$，由 $E_k=\\tfrac{1}{2}mv^{2}$ 求速率。",
+        "latex": "v=\\sqrt{\\frac{2E_k}{m}}=\\sqrt{\\frac{2\\times 1.6\\times10^{-15}}{9.11\\times10^{-31}}}\\approx 5.93\\times10^{7}\\ \\mathrm{m/s}"
+      },
+      {
+        "text": "洛伦兹力 $\\mathbf{F}=q\\mathbf{v}\\times\\mathbf{B}$，$v\\perp B$ 时大小 $F=evB$，方向始终垂直 $\\mathbf{v}$，不做功，提供圆周运动的向心力。",
+        "latex": "evB=\\frac{mv^{2}}{r}"
+      },
+      {
+        "text": "回旋半径 $r=mv/(eB)$。",
+        "latex": "r=\\frac{mv}{eB}=\\frac{9.11\\times10^{-31}\\times 5.93\\times10^{7}}{1.6\\times10^{-19}\\times 0.1}\\approx 3.38\\times10^{-3}\\ \\mathrm{m}=3.38\\ \\mathrm{mm}"
+      },
+      {
+        "text": "周期 $T=2\\pi r/v=2\\pi m/(eB)$，注意 $T$ 与 $v$ 无关（回旋共振特征）。",
+        "latex": "T=\\frac{2\\pi m}{eB}=\\frac{2\\pi\\times 9.11\\times10^{-31}}{1.6\\times10^{-19}\\times 0.1}\\approx 3.58\\times10^{-10}\\ \\mathrm{s}=0.358\\ \\mathrm{ns}"
+      }
+    ],
+    "answer": "\\boxed{r\\approx 3.38\\ \\mathrm{mm},\\quad T\\approx 0.358\\ \\mathrm{ns}}",
+    "related": [
+      "sm-lorentz"
+    ]
+  }
+]

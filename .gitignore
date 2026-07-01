@@ -12,3 +12,5 @@ node_modules/
 *.log
 .tmp/
 dist/
+# AI 工具产物（OpenCode/OhMyOpenCode 会话与索引）
+.omo/

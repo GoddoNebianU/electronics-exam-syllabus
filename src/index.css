@@ -7,10 +7,13 @@
 @import './styles/tags.css';
 @import './styles/markdown.css';
 @import './styles/layout.css';
+@import './styles/page.css';
 @import './styles/components.css';
 @import './styles/search.css';
 @import './styles/formula-page.css';
 @import './styles/formula-card.css';
+@import './styles/memorize.css';
+@import './styles/examples.css';
 @import './styles/derivation.css';
 @import './styles/formula-extras.css';
 @import './styles/stats.css';

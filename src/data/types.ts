@@ -85,6 +85,8 @@ export interface Formula {
   note?: string;
   /** 推导步骤（可选）：仅推导性公式有，2-5 步 */
   derivation?: DerivationStep[];
+  /** 是否考试必背（可选，缺省 true）。false 表示公式表常给出或可现场推导，非硬背项 */
+  memorize?: boolean;
 }
 
 /** 符号定义 */
@@ -99,3 +101,31 @@ export interface SymbolDef {
 
 /** 符号字典：token → 定义 */
 export type SymbolDict = Record<string, SymbolDef>;
+
+/** 例题解答单步 */
+export interface ExampleStep {
+  /** 该步文字说明（用 $...$ 标记行内数学，前端自动 KaTeX 渲染） */
+  text: string;
+  /** 该步独立显示的数学式（KaTeX 源码，JS 字符串已转义）。可省略（纯文字步骤） */
+  latex?: string;
+}
+
+/** 例题条目 */
+export interface Example {
+  /** 唯一 id */
+  id: string;
+  /** 所属分类 id（与 FormulaCategory.id 对应） */
+  cat: string;
+  /** 题目标题/简述 */
+  title: string;
+  /** 题型 */
+  type?: '概念' | '计算' | '证明' | '综合';
+  /** 题干（用 $...$ 标记行内数学） */
+  problem: string;
+  /** 分步解答 */
+  steps: ExampleStep[];
+  /** 最终答案（KaTeX display 源码，JS 字符串已转义） */
+  answer?: string;
+  /** 关联公式 id（跳转公式手册），需为真实存在的公式 id */
+  related?: string[];
+}

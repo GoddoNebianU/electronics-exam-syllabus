@@ -1,5 +1,7 @@
 /* ==========================================================================
    公式手册页（迁移自 legacy/css/fields.css）
+   页头（返回/标题/右侧控件）已抽到 PageHeader + page.css；本文件保留
+   公式手册专属：全幅根容器、收藏切换、搜索框、左栏导航、主区、分节标题。
    ========================================================================== */
 .fields-root {
   flex: 1;
@@ -7,57 +9,6 @@
   display: flex;
   flex-direction: column;
 }
-.fields-toolbar {
-  position: sticky;
-  top: var(--header-h);
-  z-index: 20;
-  display: flex;
-  align-items: center;
-  gap: var(--space-4);
-  padding: 0 var(--space-7);
-  height: var(--fields-toolbar-h);
-  background: color-mix(in srgb, var(--surface) 90%, transparent);
-  backdrop-filter: blur(12px) saturate(140%);
-  -webkit-backdrop-filter: blur(12px) saturate(140%);
-  border-bottom: 1px solid var(--border);
-}
-.fields-toolbar__left { display: flex; align-items: center; gap: var(--space-4); min-width: 0; }
-.fields-back {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-1);
-  padding: var(--space-1) var(--space-3);
-  border-radius: var(--radius-md);
-  font-size: var(--fs-sm);
-  font-weight: 600;
-  color: var(--text-muted);
-  background: var(--surface-2);
-  border: 1px solid var(--border);
-  white-space: nowrap;
-  transition: all var(--transition-fast);
-}
-.fields-back:hover {
-  color: var(--accent-strong);
-  border-color: var(--accent);
-  background: var(--accent-soft);
-}
-.fields-toolbar__title { min-width: 0; }
-.fields-toolbar__name {
-  display: block;
-  font-size: var(--fs-md);
-  font-weight: 800;
-  letter-spacing: -0.3px;
-  line-height: 1.15;
-  color: var(--text);
-}
-.fields-toolbar__sub {
-  display: block;
-  font-size: var(--fs-xs);
-  color: var(--text-faint);
-  letter-spacing: 0.3px;
-  margin-top: 1px;
-}
-.fields-toolbar__right { margin-left: auto; display: flex; align-items: center; gap: var(--space-3); }
 .fields-search { position: relative; width: 260px; max-width: 42vw; }
 .fields-search__icon {
   position: absolute;
@@ -95,9 +46,9 @@
 }
 .fields-nav {
   position: sticky;
-  top: calc(var(--header-h) + var(--fields-toolbar-h));
+  top: calc(var(--header-h) + var(--page-header-h));
   align-self: start;
-  max-height: calc(100vh - var(--header-h) - var(--fields-toolbar-h));
+  max-height: calc(100vh - var(--header-h) - var(--page-header-h));
   overflow-y: auto;
   padding: var(--space-5) var(--space-3) var(--space-7);
   border-right: 1px solid var(--border);
@@ -170,7 +121,7 @@
   max-width: 920px;
 }
 .fields-section {
-  scroll-margin-top: calc(var(--header-h) + var(--fields-toolbar-h) + var(--space-4));
+  scroll-margin-top: calc(var(--header-h) + var(--page-header-h) + var(--space-4));
   margin-bottom: var(--space-9);
 }
 .fields-section__head {

@@ -262,7 +262,8 @@
         "text": "两边体积分，左边用散度定理",
         "latex": "-\\oint_{S}(\\mathbf{E}\\times\\mathbf{H})\\cdot d\\mathbf{S}=\\frac{\\partial}{\\partial t}\\!\\int_{V}(w_e+w_m)dV+\\int_{V}\\mathbf{J}\\cdot\\mathbf{E}\\,dV"
       }
-    ]
+    ],
+    "memorize": false
   },
   {
     "id": "tv-poynting-avg",
@@ -346,7 +347,8 @@
         "text": "代入 $\\nabla\\times\\mathbf{H}=\\mathbf{J}+\\frac{\\partial\\mathbf{D}}{\\partial t}$",
         "latex": "\\nabla\\times\\dot{\\mathbf{H}}=\\dot{\\mathbf{J}}+j\\omega\\varepsilon\\dot{\\mathbf{E}}"
       }
-    ]
+    ],
+    "memorize": false
   },
   {
     "id": "tv-phasor2",
@@ -370,6 +372,7 @@
         "text": "代入 $\\nabla\\times\\mathbf{E}=-\\frac{\\partial\\mathbf{B}}{\\partial t}$",
         "latex": "\\nabla\\times\\dot{\\mathbf{E}}=-j\\omega\\mu\\dot{\\mathbf{H}}"
       }
-    ]
+    ],
+    "memorize": false
   }
 ]

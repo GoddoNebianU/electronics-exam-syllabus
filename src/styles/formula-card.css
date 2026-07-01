@@ -13,11 +13,30 @@
   transform: translateY(-1px);
 }
 .formula__title {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
   font-size: var(--fs-sm);
   font-weight: 700;
   color: var(--accent-strong);
   margin-bottom: var(--space-3);
   letter-spacing: 0.1px;
+}
+.formula__title-text { flex: 0 1 auto; }
+
+/* 「非必背」徽标：莫兰迪哑光灰，低存在感提示 */
+.formula__badge {
+  flex: 0 0 auto;
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  line-height: 1;
+  padding: 2px 7px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border-strong);
+  color: var(--text-muted);
+  background: var(--bg-soft, transparent);
+  letter-spacing: 0.5px;
+  white-space: nowrap;
 }
 .formula-math {
   display: flex;

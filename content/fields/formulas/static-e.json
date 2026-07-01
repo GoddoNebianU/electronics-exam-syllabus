@@ -224,7 +224,8 @@
         "text": "代入电偶极矩 $p=ql$",
         "latex": "\\varphi=\\frac{p\\cos\\theta}{4\\pi\\varepsilon r^2}"
       }
-    ]
+    ],
+    "memorize": false
   },
   {
     "id": "se-energy",

@@ -149,7 +149,8 @@
         "text": "整理",
         "latex": "\\nabla^2\\mathbf{A}=-\\mu\\mathbf{J}"
       }
-    ]
+    ],
+    "memorize": false
   },
   {
     "id": "sm-flux",

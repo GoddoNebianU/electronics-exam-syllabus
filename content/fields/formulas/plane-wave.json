@@ -317,7 +317,8 @@
         "text": "通分",
         "latex": "\\tau=\\frac{2\\eta_2}{\\eta_2+\\eta_1}"
       }
-    ]
+    ],
+    "memorize": false
   },
   {
     "id": "pw-vswr",

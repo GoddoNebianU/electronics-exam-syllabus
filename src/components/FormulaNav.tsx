@@ -12,7 +12,10 @@ interface FormulaNavProps {
   formulas: Formula[];
   /** 当前激活分类（scrollspy 维护，外部也可设初值） */
   activeCat: string;
+  /** 用户点击导航项：高亮 + 平滑滚动到该分类 */
   onNavigate: (catId: string) => void;
+  /** scrollspy 检测到当前可视分类：仅更新高亮，不滚动（避免覆盖用户点击的目标） */
+  onHighlight: (catId: string) => void;
 }
 
 export function FormulaNav({
@@ -20,11 +23,12 @@ export function FormulaNav({
   formulas,
   activeCat,
   onNavigate,
+  onHighlight,
 }: FormulaNavProps) {
   const countOf = (catId: string) =>
     formulas.reduce((n, f) => n + (f.cat === catId ? 1 : 0), 0);
 
-  // scrollspy：监听区块进入视口，更新激活分类
+  // scrollspy：监听区块进入视口，仅更新激活高亮（不触发滚动）
   useEffect(() => {
     if (!('IntersectionObserver' in window)) return;
     const sections = document.querySelectorAll('.fields-section');
@@ -42,7 +46,7 @@ export function FormulaNav({
         }
         if (best) {
           const cat = (best.target as HTMLElement).getAttribute('data-cat');
-          if (cat) onNavigate(cat);
+          if (cat) onHighlight(cat);
         }
       },
       { rootMargin: '-25% 0px -65% 0px', threshold: 0 },
@@ -50,7 +54,7 @@ export function FormulaNav({
 
     sections.forEach((s) => obs.observe(s));
     return () => obs.disconnect();
-  }, [onNavigate]);
+  }, [onHighlight]);
 
   return (
     <nav className="fields-nav" aria-label="公式分类导航">
