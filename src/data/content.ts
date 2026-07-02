@@ -15,8 +15,6 @@ import fieldsCats from '../../content/fields/categories.json';
 import fieldsSyms from '../../content/fields/symbols.json';
 import modianCats from '../../content/modian/categories.json';
 import modianSyms from '../../content/modian/symbols.json';
-import signalsCats from '../../content/signals/categories.json';
-import signalsSyms from '../../content/signals/symbols.json';
 
 /** 自动发现各分类的公式文件（eager：构建期内联，dev/build 一致） */
 const FIELDS_FORMULA_FILES = import.meta.glob('../../content/fields/formulas/*.json', {
@@ -30,11 +28,6 @@ const FIELDS_EXAMPLE_FILES = import.meta.glob('../../content/fields/examples/*.j
 }) as Record<string, Example[]>;
 
 const MODIAN_FORMULA_FILES = import.meta.glob('../../content/modian/formulas/*.json', {
-  eager: true,
-  import: 'default',
-}) as Record<string, Formula[]>;
-
-const SIGNALS_FORMULA_FILES = import.meta.glob('../../content/signals/formulas/*.json', {
   eager: true,
   import: 'default',
 }) as Record<string, Formula[]>;
@@ -68,8 +61,3 @@ export const FIELDS_EXAMPLES = assembleByCategory(FIELDS_CATEGORIES, FIELDS_EXAM
 export const MODIAN_CATEGORIES = modianCats as FormulaCategory[];
 export const MODIAN_SYMBOLS = modianSyms as unknown as SymbolDict;
 export const MODIAN_FORMULAS = assembleByCategory(MODIAN_CATEGORIES, MODIAN_FORMULA_FILES, 'formulas', 'modian');
-
-/* ---------------- 信号与系统 ---------------- */
-export const SIGNALS_CATEGORIES = signalsCats as FormulaCategory[];
-export const SIGNALS_SYMBOLS = signalsSyms as unknown as SymbolDict;
-export const SIGNALS_FORMULAS = assembleByCategory(SIGNALS_CATEGORIES, SIGNALS_FORMULA_FILES, 'formulas', 'signals');
