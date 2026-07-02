@@ -192,6 +192,20 @@
 .memorize-card__answer .katex-display { margin: 0; }
 .memorize-card__answer::-webkit-scrollbar { height: 6px; }
 
+/* 答案中可点击符号（与公式手册 .formula-math .sym 一致） */
+.memorize-card__answer .sym {
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  padding: 0 2px;
+  margin: 0 -2px;
+  border-bottom: 1px dotted color-mix(in srgb, var(--accent) 55%, transparent);
+  transition: background var(--transition-fast), border-color var(--transition-fast);
+}
+.memorize-card__answer .sym:hover {
+  background: var(--accent-soft);
+  border-bottom-color: var(--accent);
+}
+
 .memorize-card__note {
   font-size: var(--fs-xs);
   color: var(--text-muted);

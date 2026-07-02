@@ -9,11 +9,13 @@
  * 「会了」持久化进度（useMemorizeStore）。
  * ==========================================================================
  */
-import { useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { FORMULA_VIEWS, getFormulaView } from '../data/formula-registry';
-import type { Formula } from '../data/types';
+import type { Formula, SymbolDef } from '../data/types';
 import { renderDisplay } from '../lib/katex';
+import { getRegistry, markupSymbols } from '../lib/markupSymbols';
 import { PageHeader } from '../components/PageHeader';
+import { SymbolPopover } from '../components/SymbolPopover';
 import { memorizeKey, useMemorizeStore } from '../store/useMemorizeStore';
 
 const SPACE = ' ';
@@ -52,7 +54,8 @@ export function MemorizePage() {
   const [seenCount, setSeenCount] = useState(0); // 本次会话已看（揭晓过）计数
 
   const view = getFormulaViewById(viewId);
-  const { categories, formulas } = view.data;
+  const { categories, formulas, symbols } = view.data;
+  const registry = useMemo(() => getRegistry(symbols), [symbols]);
 
   // 按当前选择过滤（科目在 viewId 切换时随 view 变）
   const baseDeck = useMemo<Formula[]>(
@@ -149,8 +152,27 @@ export function MemorizePage() {
   }, [revealed, total, current, view.id]);
 
   const answerHtml = useMemo(
-    () => (current ? renderDisplay(current.latex) : ''),
-    [current],
+    () => (current ? renderDisplay(markupSymbols(current.latex, current.symbols, symbols)) : ''),
+    [current, symbols],
+  );
+
+  // 符号点击弹窗（与公式手册一致：点答案里的符号 → 显示定义）
+  const [popover, setPopover] = useState<{ token: string; def: SymbolDef; anchor: HTMLElement } | null>(null);
+  const onAnswerClick = useCallback(
+    (e: React.MouseEvent<HTMLDivElement>) => {
+      if (!registry) return;
+      const sym = (e.target as HTMLElement).closest('.sym') as HTMLElement | null;
+      if (!sym) return;
+      e.preventDefault();
+      e.stopPropagation();
+      const m = (sym.getAttribute('class') || '').match(/sym-([A-Za-z0-9_-]+)/);
+      if (!m) return;
+      const token = registry.resolve(m[1]);
+      if (!token) return;
+      const def = symbols[token];
+      if (def) setPopover({ token, def, anchor: sym });
+    },
+    [registry, symbols],
   );
 
   const catName =
@@ -280,6 +302,7 @@ export function MemorizePage() {
               ) : (
                 <div
                   className="memorize-card__answer"
+                  onClick={onAnswerClick}
                   dangerouslySetInnerHTML={{ __html: answerHtml }}
                 />
               )}
@@ -335,6 +358,13 @@ export function MemorizePage() {
         <kbd className="memorize-kbd">n</kbd>/<kbd className="memorize-kbd">l</kbd> 下一/上一 ·{' '}
         <kbd className="memorize-kbd">m</kbd> 标记会了
       </p>
+
+      <SymbolPopover
+        def={popover?.def ?? null}
+        token={popover?.token ?? null}
+        anchor={popover?.anchor ?? null}
+        onClose={() => setPopover(null)}
+      />
     </div>
   );
 }
