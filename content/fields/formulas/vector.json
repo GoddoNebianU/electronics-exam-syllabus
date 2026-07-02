@@ -97,7 +97,7 @@
   {
     "id": "v-id-divcurl0",
     "cat": "vector",
-    "title": "恒等式：散度的旋度为零",
+    "title": "恒等式：旋度的散度为零",
     "latex": "\\nabla\\cdot(\\nabla\\times\\mathbf{A})=0",
     "symbols": [
       "\\nabla\\cdot",
@@ -109,7 +109,7 @@
   {
     "id": "v-id-curlgrad0",
     "cat": "vector",
-    "title": "恒等式：旋度的梯度为零",
+    "title": "恒等式：梯度的旋度为零",
     "latex": "\\nabla\\times(\\nabla\\varphi)=0",
     "symbols": [
       "\\nabla\\times",
@@ -272,7 +272,7 @@
   {
     "id": "v-sph-curl",
     "cat": "vector",
-    "title": "旋度（球坐标，z 分量）",
+    "title": "旋度（球坐标，r 分量）",
     "latex": "(\\nabla\\times\\mathbf{F})_r=\\frac{1}{r\\sin\\theta}\\!\\left[\\frac{\\partial}{\\partial\\theta}(\\sin\\theta\\,F_{\\phi})-\\frac{\\partial F_{\\theta}}{\\partial\\phi}\\right]",
     "symbols": [
       "\\nabla\\times",
